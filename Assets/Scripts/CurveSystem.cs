@@ -16,7 +16,7 @@ public class CurveSystem : MonoBehaviour
         for (int i = 0; i < curves.Length; i++)
         {
             Curve curve = curves[i] = Instantiate<Curve>(curvePrefab);
-            curve.transform.SetParent(transform, false);
+            curve.transform.SetParent(transform);
             if (i > 0)
             {
                 curve.AlignWith(curves[i - 1]);

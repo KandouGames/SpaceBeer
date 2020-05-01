@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curvePrefab: {fileID: 8394909495086069568, guid: cf2f83f2d9ffde54f9dab2eb20388354,
     type: 3}
-  curveCount: 16
+  curveCount: 10
 --- !u!4 &387028083
 Transform:
   m_ObjectHideFlags: 0
