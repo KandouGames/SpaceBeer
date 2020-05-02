@@ -24,6 +24,8 @@ public class Curve : MonoBehaviour
     [BoxGroup("NumOfSegments")]
     public int minCurveSegmentCount, maxCurveSegmentCount;
 
+    public bool renderPipes = false;
+
     private float curveRadius;
     private int curveSegmentCount;
     private float curveAngle;
@@ -33,21 +35,60 @@ public class Curve : MonoBehaviour
     private int[] triangles;
 
     [SerializeField]
-    private Vector3[] curveBasePoints;
+    private Transform[] curveBasePoints;
 
-    private void Awake()
+    private MeshFilter curveFilter;
+
+    /// <summary>
+    /// Generates a curve
+    /// </summary>
+    /// <param name="renderPipes">Generate a pipe too</param>
+    public void Create(bool renderPipes)
     {
-        GetComponent<MeshFilter>().mesh = mesh = new Mesh();
+        curveFilter = GetComponent<MeshFilter>();
+        curveFilter.mesh = mesh = new Mesh();
         mesh.name = "Pipe";
+        this.renderPipes = renderPipes;
+
+        if (!renderPipes)
+            GetComponent<MeshRenderer>().enabled = false;
 
         curveRadius = Random.Range(minCurveRadius, maxCurveRadius);
         curveSegmentCount = Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
 
-        curveBasePoints = new Vector3[curveSegmentCount + 1];
+        curveBasePoints = new Transform[curveSegmentCount + 1];
 
-        SetVertices();
-        SetTriangles();
-        mesh.RecalculateNormals();
+        for (int i = 0; i < curveBasePoints.Length; i++)
+        {
+            curveBasePoints[i] = new GameObject().transform;
+            curveBasePoints[i].transform.parent = this.transform;
+            curveBasePoints[i].transform.name = "point " + i;
+        }
+
+        //TODO: Make curves completely independent of the torus
+
+        if (true /*renderPipes*/)
+        {
+            SetVertices();
+            SetTriangles();
+            mesh.RecalculateNormals();
+        }
+        else
+        {
+            float curveStep = ringDistance / curveRadius;
+            Vector3 transformPosition = Vector3.zero;
+
+            vertices = new Vector3[curveSegmentCount + 1];
+
+            for (int i = 0; i < curveBasePoints.Length; i++)
+            {
+                curveBasePoints[i].position = vertices[i] = GetPointCurve(i * curveStep);
+
+                transformPosition += curveBasePoints[i].position;
+            }
+            mesh.vertices = vertices;
+        }
+
     }
 
     private void SetVertices()
@@ -57,6 +98,7 @@ public class Curve : MonoBehaviour
         float curveStep = ringDistance / curveRadius;
         curveAngle = curveStep * curveSegmentCount * (360f / (2f * Mathf.PI));
         int iDelta = pipeSegmentCount * QUAD_NUM_OF_VERTEX;
+
         CreateFirstQuadRing(curveStep);
 
         for (int u = 2, i = iDelta; u <= curveSegmentCount; u++, i += iDelta)
@@ -88,8 +130,8 @@ public class Curve : MonoBehaviour
         Vector3 vertexA = GetPointTorus(0f, 0f);
         Vector3 vertexB = GetPointTorus(curveStep, 0f);
 
-        curveBasePoints[0] = GetPointCurve(0);
-        curveBasePoints[1] = GetPointCurve(curveStep);
+        curveBasePoints[0].position = GetPointCurve(0);
+        curveBasePoints[1].position = GetPointCurve(curveStep);
 
         for (int v = 1, i = 0; v <= pipeSegmentCount; v++, i += QUAD_NUM_OF_VERTEX)
         {
@@ -106,7 +148,7 @@ public class Curve : MonoBehaviour
         int ringOffset = pipeSegmentCount * QUAD_NUM_OF_VERTEX;
 
         Vector3 vertex = GetPointTorus(curveStep, 0f);
-        curveBasePoints[(int)curveSegment] = GetPointCurve(curveStep);
+        curveBasePoints[(int)curveSegment].position = GetPointCurve(curveStep);
 
         for (int v = 1; v <= pipeSegmentCount; v++, i += QUAD_NUM_OF_VERTEX)
         {
@@ -117,12 +159,7 @@ public class Curve : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Generates a specific point in a torus 
-    /// </summary>
-    /// <param name="curveStep">Angle along the curve</param>
-    /// <param name="curveSegmentLenght">segment of the pipe</param>
-    /// <returns></returns>
+
     private Vector3 GetPointTorus(float curveStep, float curveSegmentLenght)
     {
         Vector3 p;
@@ -145,36 +182,38 @@ public class Curve : MonoBehaviour
 
     public void AlignWith(Curve curve)
     {
-        float relativeRotation = Random.Range(0, curveSegmentCount) * 360f / pipeSegmentCount;
-
-        //Set the previous curve as a parent
-        transform.SetParent(curve.transform, false);
-
-        //Place at the beggining of the curve with the opposite rotation
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.Euler(0f, 0f, -curve.curveAngle);
-
-        //Place the curve
-        transform.Translate(0f, curve.curveRadius, 0f);
-        transform.Rotate(relativeRotation, 0f, 0f);
-        transform.Translate(0f, -curveRadius, 0f);
-
-        for (int i = 0; i < curveBasePoints.Length; i++)
+        if (true/*renderPipes*/)
         {
-            curveBasePoints[i].y += curve.curveRadius;
-            curveBasePoints[i].y -= curveRadius;
+            //For aligning meshes
+            float relativeRotation = Random.Range(0, curveSegmentCount) * 360f / pipeSegmentCount;
+
+            //Set the previous curve as a parent
+            transform.SetParent(curve.transform, false);
+
+            //Place at the beggining of the curve with the opposite rotation
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.Euler(0f, 0f, -curve.curveAngle);
+
+            //Place the curve
+            transform.Translate(0f, curve.curveRadius, 0f);
+            transform.Rotate(relativeRotation, 0f, 0f);
+            transform.Translate(0f, -curveRadius, 0f);
+
+            //Change parent to curve manager
+            transform.SetParent(curve.transform.parent);
+        }
+        else
+        {
+            /*Align only the points to the previous curve*/
         }
 
-        //Change parent to curve manager
-        transform.SetParent(curve.transform.parent);
     }
 
     private void OnDrawGizmos()
     {
-        for (int v = 0; v < curveBasePoints.Length; v++)
+        for (int i = 0; i < curveBasePoints.Length; i++)
         {
-            Gizmos.DrawSphere(curveBasePoints[v], 0.1f);
-            Debug.Log("el punto esta en" + curveBasePoints[v]);
+            Gizmos.DrawSphere(curveBasePoints[i].position, 0.1f);
         }
     }
 }
