@@ -47,22 +47,11 @@ public class CurveSystem : MonoBehaviour
     {
         Transform[] firstPoints = curves[0].getCurveBasePoints();
 
-        Debug.Log("Before point t: " + firstPoints[0].rotation.eulerAngles + " player pos " + playerShip.transform.rotation.eulerAngles);
-
         playerShip.transform.position = firstPoints[0].position;
+        playerShip.transform.forward = firstPoints[0].forward;
 
-        Vector3 forward = firstPoints[0].forward;
+        playerShip.GetComponent<StandaloneController>().rest_rotation = playerShip.transform.rotation.eulerAngles;
 
-        playerShip.transform.forward = forward;
-
-
-        Vector2 transformedRotationAxis = new Vector2(-playerShip.transform.rotation.eulerAngles.z, -playerShip.transform.rotation.eulerAngles.x);
-
-        playerShip.GetComponent<StandaloneController>().res_rotation = transformedRotationAxis;
-
-        Debug.Log("point t: " + firstPoints[0].rotation.eulerAngles + " player pos " + playerShip.transform.rotation.eulerAngles);
-
-        // playerShip.transform.forward = forward;
     }
 
 }

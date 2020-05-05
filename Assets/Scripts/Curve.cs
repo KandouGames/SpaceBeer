@@ -89,6 +89,9 @@ public class Curve : MonoBehaviour
             mesh.vertices = vertices;
         }
 
+
+        //Aquí crear enemigos considerando la puntuación
+
     }
 
     private void SetVertices()
