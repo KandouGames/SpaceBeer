@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class StandaloneController : MonoBehaviour
 {
+
     private Vector3 screenBoundaries;
 
     // Translation
@@ -15,6 +16,7 @@ public class StandaloneController : MonoBehaviour
     // Rotation
     public Vector2 r_velocity;
     public Vector2 rotation;
+    public Vector2 res_rotation;
     private float r_acceleration = 1000.0f;
     private float r_maxVelocity = 500.0f;
     private float r_maxRotationX = 20.0f;
@@ -24,16 +26,21 @@ public class StandaloneController : MonoBehaviour
     void Start()
     {
         position = this.transform.position;
-        rotation = new Vector2(0, 0);
+        rotation = Vector2.zero;
+        //res_rotation = this.transform.rotation.eulerAngles;
+
+        t_velocity = Vector2.zero;
+        r_velocity = Vector2.zero;
 
         //Camera must be in (0, 0, z)
         screenBoundaries = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         screenBoundaries.x = Math.Abs(screenBoundaries.x);
         screenBoundaries.y = Math.Abs(screenBoundaries.y);
+
     }
 
     void Update()
-    { 
+    {
         // Getting buttons pressed (obtains 0, 1 or -1)
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
@@ -46,9 +53,10 @@ public class StandaloneController : MonoBehaviour
 
         // Updating velocity in rotation using acceleration created to recover rest position 
         // and acceleration created when pressing 
-        float r_accelx = (-r_stiffness * rotation.x) + (r_acceleration * x);
-        float r_accely = (-r_stiffness * rotation.y) + (r_acceleration * y);
-        
+
+        float r_accelx = (-r_stiffness * (rotation.x - res_rotation.x)) + (r_acceleration * x);
+        float r_accely = (-r_stiffness * (rotation.y - res_rotation.y)) + (r_acceleration * y);
+
         r_velocity.x += r_accelx * Time.deltaTime;
         r_velocity.y += r_accely * Time.deltaTime;
         r_velocity.x = Mathf.Clamp(r_velocity.x, -r_maxVelocity, r_maxVelocity);
@@ -58,16 +66,16 @@ public class StandaloneController : MonoBehaviour
         if (x == 0)
         {
             // Decelerating velocity in traslation
-            if(t_velocity.x != 0)
-                if(t_velocity.x < 0.5 && t_velocity.x > -0.5)
+            if (t_velocity.x != 0)
+                if (t_velocity.x < 0.5 && t_velocity.x > -0.5)
                     t_velocity.x = 0;
                 else
                     t_velocity.x -= t_deceleration * Time.deltaTime * (t_velocity.x / Math.Abs(t_velocity.x));
 
             // Forcing to stop rotation
-            if (rotation.x < 3 && rotation.x > -3)
+            if (rotation.x < res_rotation.x + 3 && rotation.x > res_rotation.x - 3)
             {
-                rotation.x = 0;
+                rotation.x = res_rotation.x;
                 r_velocity.x = 0;
             }
         }
@@ -83,9 +91,9 @@ public class StandaloneController : MonoBehaviour
                     t_velocity.y -= t_deceleration * Time.deltaTime * (t_velocity.y / Math.Abs(t_velocity.y));
 
             // Forcing to stop rotation
-            if (rotation.y < 3 && rotation.y > -3)
+            if (rotation.y < res_rotation.y + 3 && rotation.y > res_rotation.y - 3)
             {
-                rotation.y = 0;
+                rotation.y = res_rotation.y;
                 r_velocity.y = 0;
             }
         }
@@ -95,23 +103,23 @@ public class StandaloneController : MonoBehaviour
         rotation += r_velocity * Time.deltaTime;
 
         // Forcing position to stay on screen
-        position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 2, screenBoundaries.x - 2);
-        position.y = Mathf.Clamp(position.y, -screenBoundaries.y + 1, screenBoundaries.y - 1);
+        // position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 2, screenBoundaries.x - 2);
+        // position.y = Mathf.Clamp(position.y, -screenBoundaries.y + 1, screenBoundaries.y - 1);
 
         // Forcing to not rotate more than max
-        if (rotation.x > r_maxRotationX || rotation.x < -r_maxRotationX)
+        if (rotation.x > r_maxRotationX + res_rotation.x || rotation.x < -r_maxRotationX + res_rotation.x)
         {
-            rotation.x = Mathf.Clamp(rotation.x, -r_maxRotationX, r_maxRotationX);
+            rotation.x = Mathf.Clamp(rotation.x, -r_maxRotationX + res_rotation.x, r_maxRotationX + res_rotation.x);
             r_velocity.x = 0;
         }
 
-        if (rotation.y > r_maxRotationY || rotation.y < -r_maxRotationY)
+        if (rotation.y > r_maxRotationY + res_rotation.y || rotation.y < -r_maxRotationY + res_rotation.y)
         {
-            rotation.y = Mathf.Clamp(rotation.y, -r_maxRotationY, r_maxRotationY);
+            rotation.y = Mathf.Clamp(rotation.y, -r_maxRotationY + res_rotation.y, r_maxRotationY + res_rotation.y);
             r_velocity.y = 0;
         }
 
-
+        Debug.Log("Res_rotation:" + res_rotation + " rotation " + rotation);
         updateTransform();
     }
 

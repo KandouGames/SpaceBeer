@@ -131,7 +131,9 @@ public class Curve : MonoBehaviour
         Vector3 vertexB = GetPointTorus(curveStep, 0f);
 
         curveBasePoints[0].position = GetPointCurve(0);
+        faceForward(curveBasePoints[0]);
         curveBasePoints[1].position = GetPointCurve(curveStep);
+        faceForward(curveBasePoints[1]);
 
         for (int v = 1, i = 0; v <= pipeSegmentCount; v++, i += QUAD_NUM_OF_VERTEX)
         {
@@ -149,6 +151,7 @@ public class Curve : MonoBehaviour
 
         Vector3 vertex = GetPointTorus(curveStep, 0f);
         curveBasePoints[(int)curveSegment].position = GetPointCurve(curveStep);
+        faceForward(curveBasePoints[(int)curveSegment]);
 
         for (int v = 1; v <= pipeSegmentCount; v++, i += QUAD_NUM_OF_VERTEX)
         {
@@ -180,6 +183,12 @@ public class Curve : MonoBehaviour
         return p;
     }
 
+    private void faceForward(Transform point)
+    {
+        Vector3 right = point.right;
+        point.forward = point.right;
+    }
+
     public void AlignWith(Curve curve)
     {
         if (true/*renderPipes*/)
@@ -207,6 +216,11 @@ public class Curve : MonoBehaviour
             /*Align only the points to the previous curve*/
         }
 
+    }
+
+    public Transform[] getCurveBasePoints()
+    {
+        return curveBasePoints;
     }
 
     private void OnDrawGizmos()
