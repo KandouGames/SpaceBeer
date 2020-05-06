@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
 
 public class Curve : MonoBehaviour
 {
@@ -13,20 +12,17 @@ public class Curve : MonoBehaviour
 
     //Ring distance will be divided by the curve radius to calculate how many chunks of the curve/pipe we will make
     [Tooltip("Length of the curve before starting a new one")]
-    [Range(0.5f, 1.8f)]
     public float ringDistance;
 
     [Tooltip("Determines how much the curve will bend. Random between both")]
-    [BoxGroup("Curvature")]
     public float minCurveRadius, maxCurveRadius;
 
     [Tooltip("The number of segments that will contribute to this curve. Random between both")]
-    [BoxGroup("NumOfSegments")]
     public int minCurveSegmentCount, maxCurveSegmentCount;
 
     public bool renderPipes = false;
 
-    private float curveRadius;
+    private float torusRadius;
     private int curveSegmentCount;
     private float curveAngle;
 
@@ -53,7 +49,7 @@ public class Curve : MonoBehaviour
         if (!renderPipes)
             GetComponent<MeshRenderer>().enabled = false;
 
-        curveRadius = Random.Range(minCurveRadius, maxCurveRadius);
+        torusRadius = Random.Range(minCurveRadius, maxCurveRadius);
         curveSegmentCount = Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
 
         curveBasePoints = new Transform[curveSegmentCount + 1];
@@ -75,7 +71,7 @@ public class Curve : MonoBehaviour
         }
         else
         {
-            float curveStep = ringDistance / curveRadius;
+            float curveStep = ringDistance / torusRadius;
             Vector3 transformPosition = Vector3.zero;
 
             vertices = new Vector3[curveSegmentCount + 1];
@@ -98,7 +94,7 @@ public class Curve : MonoBehaviour
     {
         vertices = new Vector3[pipeSegmentCount * curveSegmentCount * QUAD_NUM_OF_VERTEX];
 
-        float curveStep = ringDistance / curveRadius;
+        float curveStep = ringDistance / torusRadius;
         curveAngle = curveStep * curveSegmentCount * (360f / (2f * Mathf.PI));
         int iDelta = pipeSegmentCount * QUAD_NUM_OF_VERTEX;
 
@@ -169,7 +165,7 @@ public class Curve : MonoBehaviour
     private Vector3 GetPointTorus(float curveStep, float curveSegmentLenght)
     {
         Vector3 p;
-        float r = (curveRadius + pipeRadius * Mathf.Cos(curveSegmentLenght));
+        float r = (torusRadius + pipeRadius * Mathf.Cos(curveSegmentLenght));
         p.x = r * Mathf.Sin(curveStep);
         p.y = r * Mathf.Cos(curveStep);
         p.z = pipeRadius * Mathf.Sin(curveSegmentLenght);
@@ -179,7 +175,7 @@ public class Curve : MonoBehaviour
     private Vector3 GetPointCurve(float curveStep)
     {
         Vector3 p;
-        float r = (curveRadius);
+        float r = (torusRadius);
         p.x = r * Mathf.Sin(curveStep);
         p.y = r * Mathf.Cos(curveStep);
         p.z = 0;
@@ -207,9 +203,9 @@ public class Curve : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0f, 0f, -curve.curveAngle);
 
             //Place the curve
-            transform.Translate(0f, curve.curveRadius, 0f);
+            transform.Translate(0f, curve.torusRadius, 0f);
             transform.Rotate(relativeRotation, 0f, 0f);
-            transform.Translate(0f, -curveRadius, 0f);
+            transform.Translate(0f, -torusRadius, 0f);
 
             //Change parent to curve manager
             transform.SetParent(curve.transform.parent);
@@ -224,6 +220,11 @@ public class Curve : MonoBehaviour
     public Transform[] getCurveBasePoints()
     {
         return curveBasePoints;
+    }
+
+    public float getTorusRadius()
+    {
+        return torusRadius;
     }
 
     private void OnDrawGizmos()
