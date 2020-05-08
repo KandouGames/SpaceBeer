@@ -120,6 +120,13 @@ public class StandaloneController : MonoBehaviour
         }
 
         updateTransform();
+
+
+        if (Input.GetKeyUp(KeyCode.J))
+            print("Dispara");
+
+        if (Input.GetKeyUp(KeyCode.K))
+            print("Power Up");
     }
 
     private void updateTransform()

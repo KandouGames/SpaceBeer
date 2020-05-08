@@ -130,7 +130,7 @@ public class PhoneController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
-}
+    }
 
     private void updateTransform()
     {
