@@ -18,6 +18,7 @@ public class Curve : MonoBehaviour
     public float minCurveRadius, maxCurveRadius;
 
     [Tooltip("The number of segments that will contribute to this curve. Random between both")]
+    [Range(0.5f, 1.8f)]
     public int minCurveSegmentCount, maxCurveSegmentCount;
 
     public bool renderPipes = false;
@@ -25,6 +26,7 @@ public class Curve : MonoBehaviour
     private float torusRadius;
     private int curveSegmentCount;
     private float curveAngle;
+    private float relativeRotation = 0;
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -193,7 +195,7 @@ public class Curve : MonoBehaviour
         if (true/*renderPipes*/)
         {
             //For aligning meshes
-            float relativeRotation = Random.Range(0, curveSegmentCount) * 360f / pipeSegmentCount;
+            relativeRotation = Random.Range(0, curveSegmentCount) * 360f / pipeSegmentCount;
 
             //Set the previous curve as a parent
             transform.SetParent(curve.transform, false);
@@ -222,9 +224,19 @@ public class Curve : MonoBehaviour
         return curveBasePoints;
     }
 
-    public float getTorusRadius()
+    public float GetTorusRadius()
     {
         return torusRadius;
+    }
+
+    public float getCurveAngle()
+    {
+        return curveAngle;
+    }
+
+    public float GetRelativeRotation()
+    {
+        return relativeRotation;
     }
 
     private void OnDrawGizmos()

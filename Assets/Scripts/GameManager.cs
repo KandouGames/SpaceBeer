@@ -6,6 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playerShip;
     public CurveSystem curveManager;
+    public GameObject world;
+    public Camera skyboxCamera;
+
+    private float worldAccumulatedRotation = 0f;
+
 
     void Start()
     {
@@ -17,6 +22,7 @@ public class GameManager : MonoBehaviour
 #endif
         curveManager.Generate(playerShip);
 
+        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, world);
     }
 
 }
