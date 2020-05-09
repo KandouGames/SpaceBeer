@@ -40,6 +40,13 @@ public class CameraController : MonoBehaviour
     {
         currentView = views[1];
     }
-
+    void SetCameraSettingsMenu()
+    {
+        currentView = views[2];
+    }
+    void SetCameraPrincipalMenu()
+    {
+        currentView = views[3];
+    }
 
 }
