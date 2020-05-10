@@ -103,7 +103,7 @@ public class StandaloneController : MonoBehaviour
         rotation += r_velocity * Time.deltaTime;
 
         // Forcing position to stay on screen
-         position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 2, screenBoundaries.x - 2);
+         position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 1, screenBoundaries.x - 1);
          position.y = Mathf.Clamp(position.y, -screenBoundaries.y + 1, screenBoundaries.y - 1);
 
         // Forcing to not rotate more than max

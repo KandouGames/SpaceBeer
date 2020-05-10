@@ -49,9 +49,9 @@ public class PlayerCurveTraveller : MonoBehaviour
     {
 
 
-        //RotationAdvance();
+        RotationAdvance();
 
-
+        /*
         if (currentPointInCurve < curveBasePoints.Length - 1)
         {
             world.transform.position += curveBasePoints[currentPointInCurve].transform.position - curveBasePoints[currentPointInCurve + 1].transform.position;
@@ -74,8 +74,9 @@ public class PlayerCurveTraveller : MonoBehaviour
 
 
             currentPointInCurve = 0;
-
+           
         }
+         */
 
     }
 

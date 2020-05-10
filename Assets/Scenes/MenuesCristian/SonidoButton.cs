@@ -15,6 +15,7 @@ public class SonidoButton : MonoBehaviour
 
     public void Reproducir()
     {
-        fuente.Play();
+        fuente.Play(0);
+
     }
 }
