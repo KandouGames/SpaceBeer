@@ -196,6 +196,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floating Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -306,16 +316,6 @@ PrefabInstance:
       propertyPath: deadZone
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 8170153791961219456, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -346,6 +346,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8891898516545891184, guid: bdd66a6a0bcdcae4f9acadbccea10903,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891898516545891184, guid: bdd66a6a0bcdcae4f9acadbccea10903,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.8140347
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716832535548182031, guid: bdd66a6a0bcdcae4f9acadbccea10903,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.8156863
+      objectReference: {fileID: 0}
     - target: {fileID: 4970570970787095303, guid: bdd66a6a0bcdcae4f9acadbccea10903,
         type: 3}
       propertyPath: m_Name
@@ -568,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1144977978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +821,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 213358294}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1457547786
+--- !u!114 &1457547785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -815,14 +830,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1457547783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26dde80f533c6542bfdb8c3aae12ade, type: 3}
+  m_Script: {fileID: 11500000, guid: a991d1836daa97c4bb03804f9ce5dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 905628895}
   t_velocity: {x: 0, y: 0}
   position: {x: 0, y: 0}
   r_velocity: {x: 0, y: 0}
   rotation: {x: 0, y: 0}
+  rest_rotation: {x: 0, y: 0, z: 0}
 --- !u!224 &2062458517 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791961219456, guid: 0d230cc8be529a542a08cb878ab14b18,
