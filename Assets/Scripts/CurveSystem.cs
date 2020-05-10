@@ -59,8 +59,6 @@ public class CurveSystem : MonoBehaviour
         playerShip.transform.position = firstPoints[0].position;
         playerShip.transform.forward = firstPoints[0].forward;
 
-        // playerShip.GetComponent<StandaloneController>().rest_rotation = playerShip.transform.rotation.eulerAngles;
-
         currentPlayerCurve = 0;
     }
 
@@ -78,9 +76,9 @@ public class CurveSystem : MonoBehaviour
     private void MoveCurveOrder()
     {
         Curve finishedCurve = curves[0];
-        for (int i = 0; i < curves.Length - 1; i++)
+        for (int i = 1; i < curves.Length; i++)
         {
-            curves[i] = curves[i + 1];
+            curves[i - 1] = curves[i];
         }
         curves[curves.Length - 1] = finishedCurve;
     }
