@@ -89,6 +89,6 @@ public class PlayerCurveTraveller : MonoBehaviour
         {
             worldRotation -= 360f;
         }
-        world.transform.localRotation = Quaternion.Euler(worldRotation, 0f, 0f);
+        world.transform.localRotation = Quaternion.Euler(worldRotation, -90f, 0f);
     }
 }
