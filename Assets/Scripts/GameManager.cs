@@ -14,15 +14,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        /*
-#if UNITY_ANDROID
-        playerShip.AddComponent<PhoneController>();
-#else
-        playerShip.AddComponent<StandaloneController>();
-#endif
-        */
-        playerShip.AddComponent<StandaloneController>();
-
         curveManager.Generate(playerShip);
 
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, world);

@@ -41,7 +41,6 @@ public class UIManager : MonoBehaviour
             else
                 arrayBarrels[i].SetActive(false);
         }
-
     }
 
     public void showGameOver(int beerCoins, ulong distance)
