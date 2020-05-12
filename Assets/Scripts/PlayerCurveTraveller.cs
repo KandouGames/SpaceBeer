@@ -32,8 +32,6 @@ public class PlayerCurveTraveller : MonoBehaviour
         deltaToRotation = 0f;
         totalDeltaTraveled = 0f;
 
-        //curveBasePoints = currentCurve.getCurveBasePoints();
-
         SetupCurrentCurve();
 
     }
@@ -77,6 +75,7 @@ public class PlayerCurveTraveller : MonoBehaviour
             worldRotation -= 360f;
         }
         world.transform.localRotation = Quaternion.Euler(worldRotation, -90f, 0f);
+
     }
 
 

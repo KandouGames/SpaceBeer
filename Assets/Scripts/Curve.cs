@@ -73,6 +73,7 @@ public class Curve : MonoBehaviour
 
         //Aquí crear enemigos considerando la puntuación
 
+
     }
 
     private void SetVertices()
