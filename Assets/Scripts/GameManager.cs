@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private float worldAccumulatedRotation = 0f;
 
 
-    void Start()
+    void Awake()
     {
         curveManager.Generate(playerShip);
 

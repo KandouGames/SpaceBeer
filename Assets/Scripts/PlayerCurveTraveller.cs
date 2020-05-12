@@ -10,13 +10,14 @@ public class PlayerCurveTraveller : MonoBehaviour
 
     private Curve currentCurve;
 
-    public float playerVelocity = 1.5f;
+    public float playerVelocity = 1f;
     private float curveSystemAccumulatedRotation = 0f;
     private float worldRotation = 0f;
 
-    private float deltaTraveledToRotation = 0f;
-    private float deltaTraveled = 0f;
+    private float deltaToRotation = 0f;
+    private float totalDeltaTraveled = 0f;
 
+    Transform[] curveBasePoints;
 
     public void Setup(CurveSystem curveManager, GameManager gameManager, GameObject world)
     {
@@ -26,9 +27,12 @@ public class PlayerCurveTraveller : MonoBehaviour
 
         currentCurve = curveManager.getCurves()[0];
 
-        deltaTraveledToRotation = 360f / (2f * Mathf.PI * currentCurve.GetTorusRadius());
+        curveSystemAccumulatedRotation = 0f;
+        worldRotation = 0f;
+        deltaToRotation = 0f;
+        totalDeltaTraveled = 0f;
 
-        curveBasePoints = currentCurve.getCurveBasePoints();
+        //curveBasePoints = currentCurve.getCurveBasePoints();
 
         SetupCurrentCurve();
 
@@ -36,41 +40,24 @@ public class PlayerCurveTraveller : MonoBehaviour
 
     private void Update()
     {
-        AdvanceCurve();
-    }
-
-    float distanceFromPointToPoint = 0;
-    Vector3 toTranslate = Vector3.zero;
-    float pointDistDelta = 0;
-
-    int currentPointInCurve = 0;
-    int currentCurveID = 0;
-    Transform[] curveBasePoints;
-
-    private void AdvanceCurve()
-    {
         RotationAdvance();
-
     }
+
 
 
     private void RotationAdvance()
     {
         float delta = playerVelocity * Time.deltaTime;
-        deltaTraveled += delta;
-
-        currentCurve = curveManager.getCurves()[curveManager.getCurrentPlayerCurve()];
-
-        curveSystemAccumulatedRotation += deltaTraveled * deltaTraveledToRotation;
-
+        totalDeltaTraveled += delta;
+        curveSystemAccumulatedRotation += delta * deltaToRotation;
 
         if (curveSystemAccumulatedRotation >= currentCurve.getCurveAngle())
         {
             //Finished a pipe! Converting the travelled angle to distance
-            deltaTraveled = (curveSystemAccumulatedRotation - currentCurve.getCurveAngle()) / deltaTraveledToRotation;
+            delta = (curveSystemAccumulatedRotation - currentCurve.getCurveAngle()) / deltaToRotation;
             currentCurve = curveManager.PrepareNextCurve();
             SetupCurrentCurve();
-            curveSystemAccumulatedRotation = deltaTraveled * deltaTraveledToRotation;
+            curveSystemAccumulatedRotation = delta * deltaToRotation;
         }
 
         curveManager.transform.localRotation = Quaternion.Euler(0, 0, curveSystemAccumulatedRotation);
@@ -79,7 +66,7 @@ public class PlayerCurveTraveller : MonoBehaviour
 
     private void SetupCurrentCurve()
     {
-        deltaTraveledToRotation = 360f / (2f * Mathf.PI * currentCurve.GetTorusRadius());
+        deltaToRotation = 360f / (2f * Mathf.PI * currentCurve.GetTorusRadius());
         worldRotation += currentCurve.GetRelativeRotation();
         if (worldRotation < 0f)
         {
@@ -91,4 +78,6 @@ public class PlayerCurveTraveller : MonoBehaviour
         }
         world.transform.localRotation = Quaternion.Euler(worldRotation, -90f, 0f);
     }
+
+
 }

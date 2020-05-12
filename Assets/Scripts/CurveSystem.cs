@@ -66,6 +66,7 @@ public class CurveSystem : MonoBehaviour
     {
         MoveCurveOrder();
         AlignCurveWithOrigin();
+        //Move curveSystem to make the curve appear at origin
         transform.localPosition = new Vector3(0f, -curves[0].GetTorusRadius());
         return curves[0];
     }
