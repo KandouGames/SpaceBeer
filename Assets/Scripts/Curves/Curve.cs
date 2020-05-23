@@ -72,7 +72,7 @@ public class Curve : MonoBehaviour
 
 
         //Aquí crear enemigos considerando la puntuación
-
+        GetComponent<ObstacleFactory>().Generate(this);
 
     }
 
