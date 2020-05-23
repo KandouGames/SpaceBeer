@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerShipController : MonoBehaviour
+public class PlayerShipHandler : MonoBehaviour
 {
 
     private Vector3 screenBoundaries;

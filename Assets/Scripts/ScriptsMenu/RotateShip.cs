@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateShips : MonoBehaviour
+public class RotateShip : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
