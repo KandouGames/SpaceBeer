@@ -64,16 +64,11 @@ public class Curve : MonoBehaviour
             curveBasePoints[i].transform.name = "point " + i;
         }
 
-
         SetVertices();
         SetTriangles();
         mesh.RecalculateNormals();
 
-
-
-        //Aquí crear enemigos considerando la puntuación
-        GetComponent<ObstacleFactory>().Generate(this);
-
+        AlignCurveBasePoints();
     }
 
     private void SetVertices()
@@ -116,9 +111,7 @@ public class Curve : MonoBehaviour
         Vector3 vertexB = GetPointTorus(curveStep, 0f);
 
         curveBasePoints[0].position = GetPointCurve(0);
-        faceForward(curveBasePoints[0]);
         curveBasePoints[1].position = GetPointCurve(curveStep);
-        faceForward(curveBasePoints[1]);
 
         for (int v = 1, i = 0; v <= pipeSegmentCount; v++, i += QUAD_NUM_OF_VERTEX)
         {
@@ -136,7 +129,6 @@ public class Curve : MonoBehaviour
 
         Vector3 vertex = GetPointTorus(curveStep, 0f);
         curveBasePoints[(int)curveSegment].position = GetPointCurve(curveStep);
-        faceForward(curveBasePoints[(int)curveSegment]);
 
         for (int v = 1; v <= pipeSegmentCount; v++, i += QUAD_NUM_OF_VERTEX)
         {
@@ -168,10 +160,16 @@ public class Curve : MonoBehaviour
         return p;
     }
 
-    private void faceForward(Transform point)
+    private void AlignCurveBasePoints()
     {
-        Vector3 right = point.right;
-        point.forward = point.right;
+        for (int i = 0; i < curveBasePoints.Length - 1; i++)
+        {
+            curveBasePoints[i].transform.right = Vector3.right;
+            curveBasePoints[i].transform.forward = (curveBasePoints[i + 1].transform.position - curveBasePoints[i].transform.position).normalized;
+        }
+
+        curveBasePoints[curveBasePoints.Length - 1].right = curveBasePoints[curveBasePoints.Length - 2].right;
+        curveBasePoints[curveBasePoints.Length - 1].forward = curveBasePoints[curveBasePoints.Length - 2].forward;
     }
 
     public void AlignWith(Curve curve)
@@ -197,10 +195,21 @@ public class Curve : MonoBehaviour
 
         transform.localScale = Vector3.one;
 
+        //Align last basePoint of curve
+        curve.curveBasePoints[curve.curveBasePoints.Length - 1].right = this.curveBasePoints[0].right;
+        curve.curveBasePoints[curve.curveBasePoints.Length - 1].forward = this.curveBasePoints[0].forward;
 
     }
 
-    public Transform[] getCurveBasePoints()
+    public void CreateEnemies()
+    {
+        //Aquí crear enemigos considerando la puntuación
+        GetComponent<ObstacleFactory>().Generate(this);
+        GetComponent<ObstacleFactory>().Generate(this);
+        GetComponent<ObstacleFactory>().Generate(this);
+    }
+
+    public Transform[] GetCurveBasePoints()
     {
         return curveBasePoints;
     }
@@ -210,7 +219,7 @@ public class Curve : MonoBehaviour
         return torusRadius;
     }
 
-    public float getCurveAngle()
+    public float GetCurveAngle()
     {
         return curveAngle;
     }

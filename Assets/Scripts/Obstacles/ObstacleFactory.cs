@@ -7,16 +7,17 @@ public class ObstacleFactory : MonoBehaviour
     public GameObject asteroid;
     public GameObject Generate(Curve curve)
     {
-        Transform[] curvePoints = curve.getCurveBasePoints();
-        Transform randPoint = curvePoints[Random.Range(0, curvePoints.Length)];
-        float xPos = Random.Range(-curve.pipeRadius, curve.pipeRadius);
-        float yPos = Random.Range(-curve.pipeRadius, curve.pipeRadius);
+        Transform[] curvePoints = curve.GetCurveBasePoints();
+        Transform randCurvePoint = curvePoints[Random.Range(0, curvePoints.Length)];
 
-        GameObject obstacle = Instantiate(asteroid, randPoint.position, randPoint.rotation);
+        float deltaXPos = Random.Range(-curve.pipeRadius * 0.8f, curve.pipeRadius * 0.8f);
+        float deltaYPos = Random.Range(-curve.pipeRadius * 0.8f, curve.pipeRadius * 0.8f);
 
-        obstacle.transform.parent = curve.transform;
-        obstacle.transform.forward = randPoint.forward;
-        obstacle.transform.localPosition = new Vector3(obstacle.transform.localPosition.x + curve.pipeRadius, obstacle.transform.localPosition.y, obstacle.transform.localPosition.z);
+        GameObject obstacle = Instantiate(asteroid, randCurvePoint.position, randCurvePoint.rotation);
+
+        obstacle.transform.SetParent(randCurvePoint.parent);
+        obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
+        obstacle.transform.Rotate(new Vector3(0, Random.Range(0, 180), 0));
 
         return obstacle;
     }

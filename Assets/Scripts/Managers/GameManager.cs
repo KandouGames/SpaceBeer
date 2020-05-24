@@ -8,18 +8,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerShip;
     public CurveSystem curveManager;
-    public GameObject world;
+    public GameObject curveWorld;
     public Camera skyboxCamera;
-
-
-    private float worldAccumulatedRotation = 0f;
 
 
     void Awake()
     {
         curveManager.Generate(playerShip);
 
-        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, world);
+        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
 
         skyboxCamera.transform.parent = curveManager.getCurves()[0].transform;
     }

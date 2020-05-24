@@ -49,10 +49,10 @@ public class PlayerCurveTraveller : MonoBehaviour
         totalDeltaTraveled += delta;
         curveSystemAccumulatedRotation += delta * deltaToRotation;
 
-        if (curveSystemAccumulatedRotation >= currentCurve.getCurveAngle())
+        if (curveSystemAccumulatedRotation >= currentCurve.GetCurveAngle())
         {
             //Finished a pipe! Converting the travelled angle to distance
-            delta = (curveSystemAccumulatedRotation - currentCurve.getCurveAngle()) / deltaToRotation;
+            delta = (curveSystemAccumulatedRotation - currentCurve.GetCurveAngle()) / deltaToRotation;
             currentCurve = curveManager.PrepareNextCurve();
             SetupCurrentCurve();
             curveSystemAccumulatedRotation = delta * deltaToRotation;

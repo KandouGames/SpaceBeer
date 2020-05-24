@@ -14,49 +14,49 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        startNewGame();
+        StartNewGame();
     }
 
     void Update()
     {
         distance += 1;
-        uiManager.setDistance(distance);
+        uiManager.SetDistance(distance);
 
         // Para probar
         if (Input.GetKeyDown(KeyCode.Z))
-            earnBarrel();
+            EarnBarrel();
 
         if (Input.GetKeyDown(KeyCode.X))
-            looseBarrel();
+            LooseBarrel();
 
         if (Input.GetKeyDown(KeyCode.C))
-            distributeBarrel();
+            DistributeBarrel();
     }
 
-    public void startNewGame()
+    public void StartNewGame()
     {
         beerCoins = 0;
         distance = 0;
         barrels = iniBarrels;
 
-        uiManager.setBeerCoins(beerCoins);
-        uiManager.setDistance(distance);
-        uiManager.setBarrels(barrels);
+        uiManager.SetBeerCoins(beerCoins);
+        uiManager.SetDistance(distance);
+        uiManager.SetBarrels(barrels);
     }
 
-    public void earnBarrel()
+    public void EarnBarrel()
     {
         
         if (barrels < maxBarrels)
         {
             ++barrels;
-            uiManager.setBarrels(barrels);
+            uiManager.SetBarrels(barrels);
         }
 
 
     }
 
-    public void distributeBarrel()
+    public void DistributeBarrel()
     {
         switch (barrels)
         {
@@ -85,21 +85,21 @@ public class ScoreManager : MonoBehaviour
         }
 
         
-        uiManager.setBarrels(barrels);
-        uiManager.setBeerCoins(beerCoins);
+        uiManager.SetBarrels(barrels);
+        uiManager.SetBeerCoins(beerCoins);
 
     }
 
-    public void looseBarrel()
+    public void LooseBarrel()
     {
         if (barrels == 0)
         {
-            uiManager.showGameOver(beerCoins, distance);
+            uiManager.ShowGameOver(beerCoins, distance);
             print("game over");
         } else
         {
             --barrels;
-            uiManager.setBarrels(barrels);
+            uiManager.SetBarrels(barrels);
         }
             
             

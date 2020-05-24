@@ -3905,10 +3905,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1936435454}
-  mainVolume: 0.596
+  mainVolume: 0.208
   mainMenuSong:
     clip: {fileID: 8300000, guid: 8a78726935cd6364fa4b9241612630ca, type: 3}
-    volume: 0.518
+    volume: 0.481
     loop: 1
     source: {fileID: 0}
   buttonClickSound:
@@ -5350,7 +5350,7 @@ MonoBehaviour:
     hangarPanel:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
-  transitionSpeed: 3
+  timeTakenDuringLerp: 5
 --- !u!4 &1307544051
 Transform:
   m_ObjectHideFlags: 0

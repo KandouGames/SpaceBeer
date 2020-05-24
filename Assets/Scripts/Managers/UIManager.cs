@@ -22,17 +22,17 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void setBeerCoins(int beerCoins)
+    public void SetBeerCoins(int beerCoins)
     {
         beerCoinsText.text = beerCoins.ToString();
     }
 
-    public void setDistance(ulong distance)
+    public void SetDistance(ulong distance)
     {
         distanceText.text = distance.ToString();
     }
 
-    public void setBarrels(int barrels)
+    public void SetBarrels(int barrels)
     {
         for(int i = 0; i < arrayBarrels.Count; ++i)
         {
@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void showGameOver(int beerCoins, ulong distance)
+    public void ShowGameOver(int beerCoins, ulong distance)
     {
         gameOverUI.SetActive(true);
         gameOverRecordText.text = "You won " + beerCoins.ToString() + " beercoins \n and have traveled " + distance.ToString() + " km";

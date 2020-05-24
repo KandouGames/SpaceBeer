@@ -10,9 +10,9 @@ public class PlayerShipHandler : MonoBehaviour
     // Translation
     public Vector2 t_velocity;
     public Vector2 position;
-    private float t_acceleration = 170.0f;
-    private float t_deceleration = 70.0f;
-    private float t_maxVelocity = 25.0f;
+    private float t_acceleration = 120.0f;
+    private float t_deceleration = 40.0f;
+    private float t_maxVelocity = 15.0f;
 
     // Rotation
     public Vector2 r_velocity;
@@ -27,6 +27,10 @@ public class PlayerShipHandler : MonoBehaviour
     //Bullet
     public GameObject bullet;
     public float bulletSpeed = 20.0f;
+
+    //Boundary
+    public Curve curve;
+    public float radius;
 
     void Start()
     {
@@ -56,6 +60,8 @@ public class PlayerShipHandler : MonoBehaviour
             inputs = (Inputs)standaloneInput;
         #endif
         */
+
+        radius = curve.pipeRadius - 2.0f;
     }
 
     void Update()
@@ -72,7 +78,6 @@ public class PlayerShipHandler : MonoBehaviour
 
         // Updating velocity in rotation using acceleration created to recover rest position 
         // and acceleration created when pressing 
-
         float r_accelx = (-r_stiffness * rotation.x) + (r_acceleration * x);
         float r_accely = (-r_stiffness * rotation.y) + (r_acceleration * y);
 
@@ -122,8 +127,10 @@ public class PlayerShipHandler : MonoBehaviour
         rotation += r_velocity * Time.deltaTime;
 
         // Forcing position to stay on screen
-        position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 1, screenBoundaries.x - 1);
-        position.y = Mathf.Clamp(position.y, -screenBoundaries.y + 1, screenBoundaries.y - 1);
+        if (position.magnitude > radius)
+            position = position.normalized * radius;
+        //position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 1, screenBoundaries.x - 1);
+        //position.y = Mathf.Clamp(position.y, -screenBoundaries.y + 1, screenBoundaries.y - 1);
 
         // Forcing to not rotate more than max
         if (rotation.x > r_maxRotationX || rotation.x < -r_maxRotationX)
@@ -162,6 +169,11 @@ public class PlayerShipHandler : MonoBehaviour
         GameObject goBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
         goBullet.GetComponent<Rigidbody>().AddForce(Vector3.forward * bulletSpeed);
         Destroy(goBullet, 2.0f);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        print("colisionado con " + other.gameObject.name);
     }
 
 }

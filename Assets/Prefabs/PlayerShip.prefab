@@ -5344,7 +5344,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6542,7 +6542,7 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 10601
         ctime1: 19661
-        ctime2: 57825
+        ctime2: 39321
         ctime3: 65535
         ctime4: 0
         ctime5: 0
@@ -6550,7 +6550,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5975
-        atime2: 65535
+        atime2: 45875
         atime3: 65535
         atime4: 65535
         atime5: 0
@@ -12029,7 +12029,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -13227,7 +13227,7 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 10601
         ctime1: 19661
-        ctime2: 57825
+        ctime2: 39321
         ctime3: 65535
         ctime4: 0
         ctime5: 0
@@ -13235,7 +13235,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5975
-        atime2: 65535
+        atime2: 45875
         atime3: 65535
         atime4: 65535
         atime5: 0

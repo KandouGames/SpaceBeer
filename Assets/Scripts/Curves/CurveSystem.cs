@@ -41,6 +41,8 @@ public class CurveSystem : MonoBehaviour
             {
                 curve.AlignWith(curves[i - 1]);
             }
+
+            curve.CreateEnemies();
         }
 
         //Position the curves at 0,0
@@ -54,7 +56,7 @@ public class CurveSystem : MonoBehaviour
 
     private void AlignPlayerShip()
     {
-        Transform[] firstPoints = curves[0].getCurveBasePoints();
+        Transform[] firstPoints = curves[0].GetCurveBasePoints();
 
         playerShip.transform.position = firstPoints[0].position;
         playerShip.transform.forward = firstPoints[0].forward;

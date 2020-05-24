@@ -50,8 +50,8 @@ MonoBehaviour:
   pipeSegmentCount: 8
   ringDistance: 1.05
   minCurveRadius: 10
-  maxCurveRadius: 20
-  minCurveSegmentCount: 5
+  maxCurveRadius: 30
+  minCurveSegmentCount: 10
   maxCurveSegmentCount: 20
   renderPipes: 0
   curveBasePoints: []

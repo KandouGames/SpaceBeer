@@ -16,7 +16,9 @@ public class MenuManager : MonoBehaviour
 
     private Camera camera;
     private Trans currentCameraView;
-    public float transitionSpeed = 3.0f;
+    public float timeTakenDuringLerp = 5.0f;
+    //Esta variable guarda el tiempo en el que comenzo la interpolacion
+    private float timeStartedLerp;
 
     public void Awake()
     {
@@ -40,11 +42,22 @@ public class MenuManager : MonoBehaviour
         currentCameraView.rotation = cameraPositions.mainPanel.rotation;        
     }
 
-    void LateUpdate()
+    void Update()
     {
 
-        camera.transform.position = Vector3.Lerp(camera.transform.position, currentCameraView.position, Time.deltaTime * transitionSpeed);
-        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, Quaternion.Euler(currentCameraView.rotation), Time.deltaTime * transitionSpeed);
+        //Cojo la diferencia de tiempo entre el actual y desde que comenzo la interpolacion para calcular el porcentaje
+        float timeSinceStarted = Time.time - timeStartedLerp;
+        float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
+
+        camera.transform.position = Vector3.Lerp(camera.transform.position, currentCameraView.position, percentageComplete);
+        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, Quaternion.Euler(currentCameraView.rotation), percentageComplete);
+
+        //En caso de haber llegado a final la posicion actual sera la misma que la final
+        if (percentageComplete >= 1.0f)
+        {
+            camera.transform.position = currentCameraView.position;
+            camera.transform.rotation = Quaternion.Euler(currentCameraView.rotation);
+        }
     }
 
     public void CargaEscena(string pNombreScene)
@@ -68,6 +81,7 @@ public class MenuManager : MonoBehaviour
 
         currentCameraView.position = cameraPositions.mainPanel.position;
         currentCameraView.rotation = cameraPositions.mainPanel.rotation;
+        timeStartedLerp = Time.time;
     }
 
     public void ShowSettingsMenu()
@@ -81,6 +95,7 @@ public class MenuManager : MonoBehaviour
 
         currentCameraView.position = cameraPositions.settingsPanel.position;
         currentCameraView.rotation = cameraPositions.settingsPanel.rotation;
+        timeStartedLerp = Time.time;
     }
 
     public void ShowCreditsMenu()
@@ -94,6 +109,7 @@ public class MenuManager : MonoBehaviour
 
         currentCameraView.position = cameraPositions.creditsPanel.position;
         currentCameraView.rotation = cameraPositions.creditsPanel.rotation;
+        timeStartedLerp = Time.time;
     }
 
     public void ShowHangarMenu()
@@ -107,6 +123,7 @@ public class MenuManager : MonoBehaviour
 
         currentCameraView.position = cameraPositions.hangarPanel.position;
         currentCameraView.rotation = cameraPositions.hangarPanel.rotation;
+        timeStartedLerp = Time.time;
     }
 
     public void ShowExitMenu()
