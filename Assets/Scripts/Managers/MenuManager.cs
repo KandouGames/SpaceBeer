@@ -36,7 +36,7 @@ public class MenuManager : MonoBehaviour
         cameraPositions.creditsPanel.rotation = new Vector3(0f, 70f, 0f);
 
         cameraPositions.hangarPanel.position = new Vector3(0.0f, 23.0f, -43.0f);
-        cameraPositions.hangarPanel.rotation = new Vector3(11.342f, -70.729f, 0f);
+        cameraPositions.hangarPanel.rotation = new Vector3(11.342f, -62.838f, 1.547f);
 
         currentCameraView.position = cameraPositions.mainPanel.position;
         currentCameraView.rotation = cameraPositions.mainPanel.rotation;        
