@@ -27,6 +27,7 @@ public class PlayerShipHandler : MonoBehaviour
     //Bullet
     public GameObject bullet;
     public float bulletSpeed = 20.0f;
+    public float bulletLifeTime = 2.0f;
 
     //Boundary
     public Curve curve;
@@ -97,7 +98,7 @@ public class PlayerShipHandler : MonoBehaviour
                     t_velocity.x -= t_deceleration * Time.deltaTime * (t_velocity.x / Math.Abs(t_velocity.x));
 
             // Forcing to stop rotation
-            if (rotation.x < 3 && rotation.x > - 3)
+            if (rotation.x < 3 && rotation.x > -3)
             {
                 rotation.x = 0;
                 r_velocity.x = 0;
@@ -115,7 +116,7 @@ public class PlayerShipHandler : MonoBehaviour
                     t_velocity.y -= t_deceleration * Time.deltaTime * (t_velocity.y / Math.Abs(t_velocity.y));
 
             // Forcing to stop rotation
-            if (rotation.y < 3 && rotation.y > - 3)
+            if (rotation.y < 3 && rotation.y > -3)
             {
                 rotation.y = 0;
                 r_velocity.y = 0;
@@ -150,7 +151,7 @@ public class PlayerShipHandler : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.J))
             shoot();
-            
+
 
         if (Input.GetKeyUp(KeyCode.K))
             print("Power Up");
@@ -166,9 +167,12 @@ public class PlayerShipHandler : MonoBehaviour
 
     private void shoot()
     {
-        GameObject goBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
-        goBullet.GetComponent<Rigidbody>().AddForce(Vector3.forward * bulletSpeed);
-        Destroy(goBullet, 2.0f);
+
+        Bullet goBullet = DynamicPool.instance.GetBullet().GetComponent<Bullet>();
+        goBullet.transform.position = this.transform.position;
+        goBullet.transform.rotation = Quaternion.identity;
+        goBullet.Shoot(bulletSpeed, bulletLifeTime);
+
     }
 
     public void OnTriggerEnter(Collider other)
