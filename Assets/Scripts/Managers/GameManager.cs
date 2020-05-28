@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        //Pools must be generated before curves because curves place obstacles that need to be in the pools
+        DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
+        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, asteroidPrefab);
+
         curveManager.Generate(playerShip);
 
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
@@ -26,8 +30,7 @@ public class GameManager : MonoBehaviour
         skyboxCamera.transform.parent = curveManager.getCurves()[0].transform;
         spaceAtrezzo.transform.parent = curveManager.getCurves()[0].transform;
 
-        DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
-        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, asteroidPrefab);
+
     }
 
 }

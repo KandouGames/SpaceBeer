@@ -70,7 +70,6 @@ public class DynamicPool : MonoBehaviour
         Queue<GameObject> currentQueue = GetObjQueue(objToCreate, ref queueWasNull);
         if (queueWasNull)
         {
-            currentQueue = new Queue<GameObject>();
             int numToCreate = 0;
 
             switch (objToCreate)
