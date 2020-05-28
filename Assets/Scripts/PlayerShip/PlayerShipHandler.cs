@@ -167,12 +167,10 @@ public class PlayerShipHandler : MonoBehaviour
 
     private void shoot()
     {
-
-        Bullet goBullet = DynamicPool.instance.GetBullet().GetComponent<Bullet>();
+        Bullet goBullet = DynamicPool.instance.GetObj(DynamicPool.objType.Bullet).GetComponent<Bullet>();
         goBullet.transform.position = this.transform.position;
         goBullet.transform.rotation = Quaternion.identity;
         goBullet.Shoot(bulletSpeed, bulletLifeTime);
-
     }
 
     public void OnTriggerEnter(Collider other)

@@ -10,19 +10,21 @@ public class GameManager : MonoBehaviour
     public CurveSystem curveManager;
     public GameObject curveWorld;
     public Camera skyboxCamera;
+
     public GameObject bulletPrefab;
+    public GameObject asteroidPrefab;
 
 
     void Awake()
     {
-
         curveManager.Generate(playerShip);
 
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
 
         skyboxCamera.transform.parent = curveManager.getCurves()[0].transform;
 
-        DynamicPool.instance.GenerateBullets(bulletPrefab);
+        DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
+        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, asteroidPrefab);
     }
 
 }
