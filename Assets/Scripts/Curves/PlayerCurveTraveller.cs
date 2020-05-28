@@ -25,12 +25,14 @@ public class PlayerCurveTraveller : MonoBehaviour
         this.gameManager = gameManager;
         this.world = world;
 
-        currentCurve = curveManager.getCurves()[0];
+        //The setup is done with the second curve to avoid seeing the pipes disappear
+        currentCurve = curveManager.getCurves()[1];
 
         curveSystemAccumulatedRotation = 0f;
         worldRotation = 0f;
         deltaToRotation = 0f;
         totalDeltaTraveled = 0f;
+
 
         SetupCurrentCurve();
 

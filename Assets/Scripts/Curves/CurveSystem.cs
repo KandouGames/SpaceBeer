@@ -16,6 +16,7 @@ public class CurveSystem : MonoBehaviour
 
     private uint currentPlayerCurve = 0;
 
+
     public void Generate(GameObject playerShip)
     {
         if (playerShip == null)
@@ -46,12 +47,14 @@ public class CurveSystem : MonoBehaviour
         }
 
         //Position the curves at 0,0
-        transform.localPosition = new Vector3(0, -curves[0].GetTorusRadius(), 0);
+        //The setup is done with the second curve to avoid seeing the pipes disappear
+        transform.localPosition = new Vector3(0, -curves[1].GetTorusRadius(), 0);
 
         //Align with controller axis
         transform.rotation = Quaternion.Euler(0, -90, 0);
 
         AlignPlayerShip();
+        AlignCurveWithOrigin();
     }
 
     private void AlignPlayerShip()
@@ -69,8 +72,9 @@ public class CurveSystem : MonoBehaviour
         MoveCurveOrder();
         AlignCurveWithOrigin();
         //Move curveSystem to make the curve appear at origin
-        transform.localPosition = new Vector3(0f, -curves[0].GetTorusRadius());
-        return curves[0];
+        curves[curves.Length - 1].AlignWith(curves[curves.Length - 2]);
+        transform.localPosition = new Vector3(0f, -curves[1].GetTorusRadius());
+        return curves[1];
     }
 
     /// <summary>
@@ -88,21 +92,23 @@ public class CurveSystem : MonoBehaviour
 
     private void AlignCurveWithOrigin()
     {
-        Transform currentCurveInOrigin = curves[0].transform;
+        Transform currentCurveInOrigin = curves[1].transform;
 
         //If we set the curves as childs of this curve everything will rotate and move with it
         //Same strategy used with the curvePoints
-        for (int i = 1; i < curves.Length; i++)
+        for (int i = 0; i < curves.Length; i++)
         {
-            curves[i].transform.SetParent(currentCurveInOrigin);
+            if (i != 1)
+                curves[i].transform.SetParent(currentCurveInOrigin);
         }
 
         currentCurveInOrigin.localPosition = Vector3.zero;
         currentCurveInOrigin.localRotation = Quaternion.identity;
 
-        for (int i = 1; i < curves.Length; i++)
+        for (int i = 0; i < curves.Length; i++)
         {
-            curves[i].transform.SetParent(transform);
+            if (i != 1)
+                curves[i].transform.SetParent(transform);
         }
     }
 

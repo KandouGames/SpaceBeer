@@ -14,6 +14,10 @@ public class ObstacleFactory : MonoBehaviour
         float deltaYPos = Random.Range(-curve.pipeRadius * 0.8f, curve.pipeRadius * 0.8f);
 
         GameObject obstacle = Instantiate(asteroid, randCurvePoint.position, randCurvePoint.rotation);
+        /*
+        GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.Asteroid);
+        obstacle.transform.position = randCurvePoint.position;
+        obstacle.transform.rotation = randCurvePoint.rotation;*/
 
         obstacle.transform.SetParent(randCurvePoint.parent);
         obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;

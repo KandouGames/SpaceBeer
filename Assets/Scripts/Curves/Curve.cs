@@ -199,6 +199,8 @@ public class Curve : MonoBehaviour
         curve.curveBasePoints[curve.curveBasePoints.Length - 1].right = this.curveBasePoints[0].right;
         curve.curveBasePoints[curve.curveBasePoints.Length - 1].forward = this.curveBasePoints[0].forward;
 
+        transform.localScale = Vector3.one;
+
     }
 
     public void CreateEnemies()
