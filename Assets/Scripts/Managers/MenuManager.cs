@@ -35,11 +35,13 @@ public class MenuManager : MonoBehaviour
         cameraPositions.creditsPanel.position = new Vector3(27.0f, 25.0f, -8.0f);
         cameraPositions.creditsPanel.rotation = new Vector3(0f, 70f, 0f);
 
-        cameraPositions.hangarPanel.position = new Vector3(0.0f, 23.0f, -43.0f);
+        cameraPositions.hangarPanel.position = new Vector3(-0.64f, 22.96f, -46.26f);
         cameraPositions.hangarPanel.rotation = new Vector3(11.342f, -62.838f, 1.547f);
 
         currentCameraView.position = cameraPositions.mainPanel.position;
-        currentCameraView.rotation = cameraPositions.mainPanel.rotation;        
+        currentCameraView.rotation = cameraPositions.mainPanel.rotation;
+        
+
     }
 
     void Update()
@@ -62,6 +64,13 @@ public class MenuManager : MonoBehaviour
 
     public void CargaEscena(string pNombreScene)
     {
+        //Necesitamos indicar que no se destruya la nave a enviar
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShips[playerData.spaceShipID].name).gameObject;
+        //Desparentamos la nave
+        spaceShip.transform.parent = null;
+        DontDestroyOnLoad(spaceShip);
+
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
             {
@@ -145,6 +154,43 @@ public class MenuManager : MonoBehaviour
         menuPanels.exitPanel.SetActive(false);
         menuPanels.volumePanel.SetActive(true);
     }
+
+    //Este metodo actualiza el indice y se encarga de enseñar la nave en el menu
+    public void NextSpaceShip()
+    {
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        Quaternion rotacionNave;
+        //Desactivamos nave actual
+        playerData.spaceShips[playerData.spaceShipID].SetActive(false);
+        rotacionNave = playerData.spaceShips[playerData.spaceShipID].transform.rotation;
+
+        //Actualizamos id de la nave
+        playerData.spaceShipID = (playerData.spaceShipID + 1) % playerData.spaceShips.Count;
+
+        //Activamos nave siguiente
+        playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
+        playerData.spaceShips[playerData.spaceShipID].SetActive(true);
+    }
+
+    public void PreviousSpaceShip()
+    {
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        Quaternion rotacionNave;
+
+        //Desactivamos nave actual
+        playerData.spaceShips[playerData.spaceShipID].SetActive(false);
+        rotacionNave = playerData.spaceShips[playerData.spaceShipID].transform.rotation;
+
+        //Actualizamos id de la nave
+        if (playerData.spaceShipID == 0) playerData.spaceShipID = playerData.spaceShips.Count - 1;
+        else playerData.spaceShipID--;
+
+        //Activamos nave siguiente
+        playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
+        playerData.spaceShips[playerData.spaceShipID].SetActive(true);
+    }
+    
+
 }
 
 [System.Serializable]
