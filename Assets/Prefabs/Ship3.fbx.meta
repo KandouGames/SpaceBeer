@@ -1,17 +1,190 @@
 fileFormatVersion: 2
-guid: f8825b5ea83a09840b2deb5cd692c1dd
+guid: acf5703669bd00440905ed556cc53d86
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cube.001
+    100004: Cube.002
+    100006: Cube.003
+    100008: Cube.004
+    100010: Cube.005
+    100012: Cube.006
+    100014: Cube.007
+    100016: Cube.008
+    100018: Cube.009
+    100020: Cube.010
+    100022: Cube.011
+    100024: Cube.012
+    100026: Cube.014
+    100028: Empty
+    100030: EX GRV L unit A
+    100032: EX GRV L unit C
+    100034: EX GRV L unit D
+    100036: EX GRV R unit A
+    100038: EX GRV R unit B
+    100040: EX GRV R unit C
+    100042: EX GRV R unit D
+    100044: L wing C interface 01
+    100046: L wing C interface 02
+    100048: Left Wing arm unit
+    100050: Main hull
+    100052: R wing C interface 01
+    100054: R wing C interface 02
+    100056: Right Wing arm unit
     400000: //RootNode
-    2100000: sh3
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Ship_Type_3
-    7400000: Default Take
-    9500000: //RootNode
-  externalObjects: {}
+    400002: Cube.001
+    400004: Cube.002
+    400006: Cube.003
+    400008: Cube.004
+    400010: Cube.005
+    400012: Cube.006
+    400014: Cube.007
+    400016: Cube.008
+    400018: Cube.009
+    400020: Cube.010
+    400022: Cube.011
+    400024: Cube.012
+    400026: Cube.014
+    400028: Empty
+    400030: EX GRV L unit A
+    400032: EX GRV L unit C
+    400034: EX GRV L unit D
+    400036: EX GRV R unit A
+    400038: EX GRV R unit B
+    400040: EX GRV R unit C
+    400042: EX GRV R unit D
+    400044: L wing C interface 01
+    400046: L wing C interface 02
+    400048: Left Wing arm unit
+    400050: Main hull
+    400052: R wing C interface 01
+    400054: R wing C interface 02
+    400056: Right Wing arm unit
+    2100000: Soft Matte theme
+    2100002: Solid dark green
+    2100004: DRIVE GLOW
+    2100006: Soft Matte theme.001
+    2100008: Soft Matte theme.002
+    2100010: Main theme
+    2100012: G Energy glow
+    2300000: Cube.001
+    2300002: Cube.002
+    2300004: Cube.003
+    2300006: Cube.004
+    2300008: Cube.005
+    2300010: Cube.006
+    2300012: Cube.007
+    2300014: Cube.008
+    2300016: Cube.009
+    2300018: Cube.010
+    2300020: Cube.011
+    2300022: Cube.012
+    2300024: Cube.014
+    2300026: EX GRV L unit A
+    2300028: EX GRV L unit C
+    2300030: EX GRV L unit D
+    2300032: EX GRV R unit A
+    2300034: EX GRV R unit B
+    2300036: EX GRV R unit C
+    2300038: EX GRV R unit D
+    2300040: L wing C interface 01
+    2300042: L wing C interface 02
+    2300044: Left Wing arm unit
+    2300046: Main hull
+    2300048: R wing C interface 01
+    2300050: R wing C interface 02
+    2300052: Right Wing arm unit
+    3300000: Cube.001
+    3300002: Cube.002
+    3300004: Cube.003
+    3300006: Cube.004
+    3300008: Cube.005
+    3300010: Cube.006
+    3300012: Cube.007
+    3300014: Cube.008
+    3300016: Cube.009
+    3300018: Cube.010
+    3300020: Cube.011
+    3300022: Cube.012
+    3300024: Cube.014
+    3300026: EX GRV L unit A
+    3300028: EX GRV L unit C
+    3300030: EX GRV L unit D
+    3300032: EX GRV R unit A
+    3300034: EX GRV R unit B
+    3300036: EX GRV R unit C
+    3300038: EX GRV R unit D
+    3300040: L wing C interface 01
+    3300042: L wing C interface 02
+    3300044: Left Wing arm unit
+    3300046: Main hull
+    3300048: R wing C interface 01
+    3300050: R wing C interface 02
+    3300052: Right Wing arm unit
+    4300000: Main hull
+    4300002: Cube.012
+    4300004: Cube.005
+    4300006: Right Wing arm unit
+    4300008: R wing C interface 02
+    4300010: R wing C interface 01
+    4300012: Cube.014
+    4300014: Cube.006
+    4300016: Cube.001
+    4300018: Cube.002
+    4300020: Cube.004
+    4300022: EX GRV R unit D
+    4300024: EX GRV R unit C
+    4300026: EX GRV R unit B
+    4300028: EX GRV R unit A
+    4300030: Left Wing arm unit
+    4300032: L wing C interface 02
+    4300034: L wing C interface 01
+    4300036: Cube.008
+    4300038: Cube.007
+    4300040: Cube.009
+    4300042: Cube.010
+    4300044: Cube.011
+    4300046: EX GRV L unit D
+    4300048: EX GRV L unit C
+    4300050: Cube.003
+    4300052: EX GRV L unit A
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DRIVE GLOW
+    second: {fileID: 2100000, guid: 2f5d268be308dd74b9d846d48278ce88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: G Energy glow
+    second: {fileID: 2100000, guid: 08b0cc0cba4e0b54aa01a00b40eb3238, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Main theme
+    second: {fileID: 2100000, guid: f9c769af1182f154c8b69f163238f1e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Soft Matte theme
+    second: {fileID: 2100000, guid: 5d0561c281e35b64ebe5998d67b84980, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Soft Matte theme.001
+    second: {fileID: 2100000, guid: 7248ba6d2ba522043930fc804832ba42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Soft Matte theme.002
+    second: {fileID: 2100000, guid: b4b5170784d6167449dc01ceae55f082, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Solid dark green
+    second: {fileID: 2100000, guid: 03a5d39326b6e28409e1b63326706875, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -63,8 +236,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -91,7 +264,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

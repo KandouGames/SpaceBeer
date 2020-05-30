@@ -1,21 +1,17 @@
 fileFormatVersion: 2
-guid: 664c7ee32d929a449993c103b2ccf0d0
+guid: f8825b5ea83a09840b2deb5cd692c1dd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: SciFi_Fighter_AK5
+    2100000: sh3
     2300000: //RootNode
     3300000: //RootNode
-    4300000: SciFi_Fighter
-    2186277476908879412: ImportLogs
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SciFi_Fighter_AK5
-    second: {fileID: 2100000, guid: 519ec40d89b42f8428802bf988c41b32, type: 2}
+    4300000: Ship_Type_3
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +63,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -95,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
