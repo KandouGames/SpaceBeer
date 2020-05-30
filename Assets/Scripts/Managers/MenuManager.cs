@@ -67,9 +67,11 @@ public class MenuManager : MonoBehaviour
         //Necesitamos indicar que no se destruya la nave a enviar
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShips[playerData.spaceShipID].name).gameObject;
+
         //Desparentamos la nave
         spaceShip.transform.parent = null;
         DontDestroyOnLoad(spaceShip);
+
 
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
@@ -85,6 +87,8 @@ public class MenuManager : MonoBehaviour
         menuPanels.settingsPanel.SetActive(false);
         menuPanels.creditsPanel.SetActive(false);
         menuPanels.hangarPanel.SetActive(false);
+        menuPanels.hangarPanel.transform.Find("ButtonsPanel/ShipsButton").GetComponent<Button>().interactable = false;
+        menuPanels.hangarPanel.transform.Find("ButtonsPanel/WeaponsButton").GetComponent<Button>().interactable = true;
         menuPanels.exitPanel.SetActive(false);
         menuPanels.volumePanel.SetActive(false);
 
@@ -156,38 +160,101 @@ public class MenuManager : MonoBehaviour
     }
 
     //Este metodo actualiza el indice y se encarga de enseñar la nave en el menu
-    public void NextSpaceShip()
+    public void Next()
     {
+        GameObject botonNave = GameObject.Find("Canvas").transform.Find("HangarPanel/ButtonsPanel/ShipsButton").gameObject;
+        GameObject botonArmas = GameObject.Find("Canvas").transform.Find("HangarPanel/ButtonsPanel/WeaponsButton").gameObject;
+
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-        Quaternion rotacionNave;
-        //Desactivamos nave actual
-        playerData.spaceShips[playerData.spaceShipID].SetActive(false);
-        rotacionNave = playerData.spaceShips[playerData.spaceShipID].transform.rotation;
 
-        //Actualizamos id de la nave
-        playerData.spaceShipID = (playerData.spaceShipID + 1) % playerData.spaceShips.Count;
+        if (!botonNave.GetComponent<Button>().IsInteractable())
+        {
+            
+            Quaternion rotacionNave;
+            //Desactivamos nave actual
+            playerData.spaceShips[playerData.spaceShipID].SetActive(false);
+            rotacionNave = playerData.spaceShips[playerData.spaceShipID].transform.rotation;
 
-        //Activamos nave siguiente
-        playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
-        playerData.spaceShips[playerData.spaceShipID].SetActive(true);
+            //Actualizamos id de la nave
+            playerData.spaceShipID = (playerData.spaceShipID + 1) % playerData.spaceShips.Count;
+
+            //Activamos nave siguiente
+            playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
+            playerData.spaceShips[playerData.spaceShipID].SetActive(true);
+        }
+
+        else if (!botonArmas.GetComponent<Button>().IsInteractable())
+        {
+            Quaternion rotacionArma;
+
+            //Desactivamos arma actual
+            playerData.weapons[playerData.weaponID].SetActive(false);
+            rotacionArma = playerData.weapons[playerData.weaponID].transform.rotation;
+
+            //Actualizamos id de la nave
+            playerData.weaponID = (playerData.weaponID + 1) % playerData.weapons.Count;
+
+            //Activamos nave siguiente
+            playerData.weapons[playerData.weaponID].transform.rotation = rotacionArma;
+            playerData.weapons[playerData.weaponID].SetActive(true);
+        }
     }
 
-    public void PreviousSpaceShip()
+    public void Previous()
+    {
+        GameObject botonNave = GameObject.Find("Canvas").transform.Find("HangarPanel/ButtonsPanel/ShipsButton").gameObject;
+        GameObject botonArmas = GameObject.Find("Canvas").transform.Find("HangarPanel/ButtonsPanel/WeaponsButton").gameObject;
+
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+
+        if (!botonNave.GetComponent<Button>().IsInteractable())
+        {
+            Quaternion rotacionNave;
+
+            //Desactivamos nave actual
+            playerData.spaceShips[playerData.spaceShipID].SetActive(false);
+            rotacionNave = playerData.spaceShips[playerData.spaceShipID].transform.rotation;
+
+            //Actualizamos id de la nave
+            if (playerData.spaceShipID == 0) playerData.spaceShipID = playerData.spaceShips.Count - 1;
+            else playerData.spaceShipID--;
+
+            //Activamos nave siguiente
+            playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
+            playerData.spaceShips[playerData.spaceShipID].SetActive(true);
+        }
+        else if(!botonArmas.GetComponent<Button>().IsInteractable())
+        {
+            Quaternion rotacionArma;
+
+            //Desactivamos arma actual
+            playerData.weapons[playerData.weaponID].SetActive(false);
+            rotacionArma = playerData.weapons[playerData.weaponID].transform.rotation;
+
+            //Actualizamos id de la nave
+            if (playerData.weaponID == 0) playerData.weaponID = playerData.weapons.Count - 1;
+            else playerData.weaponID--;
+
+            //Activamos nave siguiente
+            playerData.weapons[playerData.weaponID].transform.rotation = rotacionArma;
+            playerData.weapons[playerData.weaponID].SetActive(true);
+        }
+    }
+
+    public void ShowSpaceShips()
     {
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-        Quaternion rotacionNave;
-
-        //Desactivamos nave actual
-        playerData.spaceShips[playerData.spaceShipID].SetActive(false);
-        rotacionNave = playerData.spaceShips[playerData.spaceShipID].transform.rotation;
-
-        //Actualizamos id de la nave
-        if (playerData.spaceShipID == 0) playerData.spaceShipID = playerData.spaceShips.Count - 1;
-        else playerData.spaceShipID--;
-
-        //Activamos nave siguiente
-        playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
         playerData.spaceShips[playerData.spaceShipID].SetActive(true);
+
+        playerData.weapons[playerData.weaponID].SetActive(false);
+    }
+
+    public void ShowWeapons()
+    {
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        playerData.spaceShips[playerData.spaceShipID].SetActive(false);
+
+        playerData.weapons[playerData.weaponID].SetActive(true);
     }
     
 

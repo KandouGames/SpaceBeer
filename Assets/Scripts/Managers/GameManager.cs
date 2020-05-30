@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         //-----------------------NAVE----------------------
         GameObject spaceShip = GameObject.Find(playerData.spaceShips[playerData.spaceShipID].name);
         SceneManager.MoveGameObjectToScene(spaceShip, SceneManager.GetActiveScene());
-        spaceShip.transform.parent = GameObject.Find("World").transform.Find("ContainerPlayerShip").transform; ;
+        spaceShip.transform.parent = GameObject.Find("World").transform.Find("ContainerPlayerShip").transform;
 
         //Nos deshacemos de los objetos no necesarios
         Destroy(spaceShip.GetComponent<RotateShip>());
@@ -57,7 +57,9 @@ public class GameManager : MonoBehaviour
         spaceShip.transform.localPosition = Vector3.zero;
         spaceShip.transform.localEulerAngles = Vector3.zero;
 
-        //-----------------------BALAS----------------------
+        //-----------------------ARMAS----------------------
+
+
     }
 
 }
