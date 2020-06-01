@@ -16,7 +16,6 @@ public class ObstacleFactory : MonoBehaviour
         // GameObject obstacle = Instantiate(asteroid, randCurvePoint.position, randCurvePoint.rotation);
 
         GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.Asteroid);
-        Debug.Log(obstacle);
         obstacle.transform.position = randCurvePoint.position;
         obstacle.transform.rotation = randCurvePoint.rotation;
 
