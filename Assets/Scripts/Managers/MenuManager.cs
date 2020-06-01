@@ -64,14 +64,17 @@ public class MenuManager : MonoBehaviour
 
     public void CargaEscena(string pNombreScene)
     {
-        //Necesitamos indicar que no se destruya la nave a enviar
+        //Pasamos nave y balas a la escena gameplay
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShips[playerData.spaceShipID].name).gameObject;
+        GameObject bullet = GameObject.Find("Space").transform.Find(playerData.bullets[playerData.weaponID].name).gameObject;
 
-        //Desparentamos la nave
+        //Desparentamos la nave y la bala
         spaceShip.transform.parent = null;
+        bullet.transform.parent = null;
         DontDestroyOnLoad(spaceShip);
-
+        bullet.SetActive(true);
+        DontDestroyOnLoad(bullet);
 
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
