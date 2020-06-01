@@ -33,13 +33,7 @@ public class GameManager : MonoBehaviour
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
 
         skyboxCamera.transform.parent = curveManager.getCurves()[0].transform;
-        spaceAtrezzo.transform.parent = curveManager.getCurves()[0].transform;
-
-
-        
-
-        
-        
+        spaceAtrezzo.transform.parent = curveManager.getCurves()[0].transform;  
     }
 
     void LoadData(PlayerData playerData)
