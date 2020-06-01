@@ -5,6 +5,7 @@ using UnityEngine;
 public class CurveSystem : MonoBehaviour
 {
     public Curve curvePrefab;
+    private GameObject spaceAtrezzo;
 
     [HideInInspector]
     public Transform playerShip;
@@ -67,6 +68,12 @@ public class CurveSystem : MonoBehaviour
         currentPlayerCurve = 0;
     }
 
+    public void SetupAtrezzo(GameObject spaceAtrezzo)
+    {
+        spaceAtrezzo.transform.parent = curves[curves.Length - 1].transform;
+        this.spaceAtrezzo = spaceAtrezzo;
+    }
+
     public Curve PrepareNextCurve()
     {
         MoveCurveOrder();
@@ -74,6 +81,7 @@ public class CurveSystem : MonoBehaviour
         //Move curveSystem to make the curve appear at origin
         curves[curves.Length - 1].AlignWith(curves[curves.Length - 2]);
         transform.localPosition = new Vector3(0f, -curves[1].GetTorusRadius());
+        MoveSpaceAtrezzo();
         return curves[1];
     }
 
@@ -110,6 +118,11 @@ public class CurveSystem : MonoBehaviour
             if (i != 1)
                 curves[i].transform.SetParent(transform);
         }
+    }
+
+    private void MoveSpaceAtrezzo()
+    {
+        spaceAtrezzo.transform.SetParent(curves[1].transform, true);
     }
 
     public Curve[] getCurves()

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             playerData = PD.GetComponent<PlayerData>();
             LoadData(playerData);
         }
-            
+
 
 
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
 
         skyboxCamera.transform.parent = curveManager.getCurves()[0].transform;
-        spaceAtrezzo.transform.parent = curveManager.getCurves()[0].transform;  
+
+        curveManager.SetupAtrezzo(spaceAtrezzo);
     }
 
     void LoadData(PlayerData playerData)
