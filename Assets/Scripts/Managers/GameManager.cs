@@ -21,8 +21,15 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         //Cargamos datos de la nave y balas
-        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-        LoadData(playerData);
+        GameObject PD = GameObject.Find("PlayerData");
+        PlayerData playerData;
+        if (PD != null)
+        {
+            playerData = PD.GetComponent<PlayerData>();
+            LoadData(playerData);
+        }
+            
+
 
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
