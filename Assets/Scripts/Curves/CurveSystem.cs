@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CurveSystem : MonoBehaviour
 {
+    const int SECOND_CURVE = 1;
+    const int FIRST_CURVE = 0;
+
     public Curve curvePrefab;
     private GameObject spaceAtrezzo;
 
@@ -49,24 +52,15 @@ public class CurveSystem : MonoBehaviour
 
         //Position the curves at 0,0
         //The setup is done with the second curve to avoid seeing the pipes disappear
-        transform.localPosition = new Vector3(0, -curves[1].GetTorusRadius(), 0);
+        transform.localPosition = new Vector3(0, -curves[SECOND_CURVE].GetTorusRadius(), 0);
 
         //Align with controller axis
         transform.rotation = Quaternion.Euler(0, -90, 0);
 
-        AlignPlayerShip();
         AlignCurveWithOrigin();
     }
 
-    private void AlignPlayerShip()
-    {
-        Transform[] firstPoints = curves[0].GetCurveBasePoints();
 
-        playerShip.transform.position = firstPoints[0].position;
-        playerShip.transform.forward = firstPoints[0].forward;
-
-        currentPlayerCurve = 0;
-    }
 
     public void SetupAtrezzo(GameObject spaceAtrezzo)
     {
@@ -80,9 +74,9 @@ public class CurveSystem : MonoBehaviour
         AlignCurveWithOrigin();
         //Move curveSystem to make the curve appear at origin
         curves[curves.Length - 1].AlignWith(curves[curves.Length - 2]);
-        transform.localPosition = new Vector3(0f, -curves[1].GetTorusRadius());
+        transform.localPosition = new Vector3(0f, -curves[SECOND_CURVE].GetTorusRadius());
         MoveSpaceAtrezzo();
-        return curves[1];
+        return curves[SECOND_CURVE];
     }
 
     /// <summary>
@@ -90,7 +84,7 @@ public class CurveSystem : MonoBehaviour
     /// </summary>
     private void MoveCurveOrder()
     {
-        Curve finishedCurve = curves[0];
+        Curve finishedCurve = curves[FIRST_CURVE];
         for (int i = 1; i < curves.Length; i++)
         {
             curves[i - 1] = curves[i];
@@ -100,13 +94,13 @@ public class CurveSystem : MonoBehaviour
 
     private void AlignCurveWithOrigin()
     {
-        Transform currentCurveInOrigin = curves[1].transform;
+        Transform currentCurveInOrigin = curves[SECOND_CURVE].transform;
 
         //If we set the curves as childs of this curve everything will rotate and move with it
         //Same strategy used with the curvePoints
         for (int i = 0; i < curves.Length; i++)
         {
-            if (i != 1)
+            if (i != SECOND_CURVE)
                 curves[i].transform.SetParent(currentCurveInOrigin);
         }
 
@@ -115,14 +109,14 @@ public class CurveSystem : MonoBehaviour
 
         for (int i = 0; i < curves.Length; i++)
         {
-            if (i != 1)
+            if (i != SECOND_CURVE)
                 curves[i].transform.SetParent(transform);
         }
     }
 
     private void MoveSpaceAtrezzo()
     {
-        spaceAtrezzo.transform.SetParent(curves[1].transform, true);
+        spaceAtrezzo.transform.SetParent(curves[SECOND_CURVE].transform, true);
     }
 
     public Curve[] getCurves()
