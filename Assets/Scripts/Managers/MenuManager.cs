@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
 {
 
     public Image screenFader;
+    public Canvas mainMenuUI;
     public float transitionTime = 1.0f;
 
     public MenuPanels menuPanels;
@@ -40,7 +41,7 @@ public class MenuManager : MonoBehaviour
 
         currentCameraView.position = cameraPositions.mainPanel.position;
         currentCameraView.rotation = cameraPositions.mainPanel.rotation;
-        
+
 
     }
 
@@ -75,6 +76,9 @@ public class MenuManager : MonoBehaviour
         DontDestroyOnLoad(spaceShip);
         bullet.SetActive(true);
         DontDestroyOnLoad(bullet);
+
+        //Desactivamos las interacciones durante la animación
+        mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
 
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
@@ -172,7 +176,7 @@ public class MenuManager : MonoBehaviour
 
         if (!botonNave.GetComponent<Button>().IsInteractable())
         {
-            
+
             Quaternion rotacionNave;
             //Desactivamos nave actual
             playerData.spaceShips[playerData.spaceShipID].SetActive(false);
@@ -226,7 +230,7 @@ public class MenuManager : MonoBehaviour
             playerData.spaceShips[playerData.spaceShipID].transform.rotation = rotacionNave;
             playerData.spaceShips[playerData.spaceShipID].SetActive(true);
         }
-        else if(!botonArmas.GetComponent<Button>().IsInteractable())
+        else if (!botonArmas.GetComponent<Button>().IsInteractable())
         {
             Quaternion rotacionArma;
 
@@ -259,7 +263,7 @@ public class MenuManager : MonoBehaviour
 
         playerData.weapons[playerData.weaponID].SetActive(true);
     }
-    
+
 
 }
 
