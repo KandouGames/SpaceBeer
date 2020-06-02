@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CurveSystem : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class CurveSystem : MonoBehaviour
 
     public int curveCount;
     public bool generatePipes = false;
+    public float dissapearObstaclesZ = -1f;
 
     private Curve[] curves;
 
     private uint currentPlayerCurve = 0;
+    bool finishedGenerating = false;
 
 
     public void Generate(GameObject playerShip)
@@ -49,6 +52,7 @@ public class CurveSystem : MonoBehaviour
 
             curve.GenerateObstacles();
         }
+        finishedGenerating = true;
 
         //Position the curves at 0,0
         //The setup is done with the second curve to avoid seeing the pipes disappear
@@ -61,6 +65,23 @@ public class CurveSystem : MonoBehaviour
     }
 
 
+    void Update()
+    {
+        if (finishedGenerating)
+        {
+            //If we checked all curves generated obstacles behind the player from other curves would fade
+            CheckForFadingObstacles(curves[FIRST_CURVE]);
+            CheckForFadingObstacles(curves[SECOND_CURVE]);
+        }
+    }
+
+    private void CheckForFadingObstacles(Curve curve)
+    {
+        for (int i = 0; i < curve.obstacleList.Count; i++)
+            if (curve.obstacleList[i].obstacleObj.transform.position.z <= dissapearObstaclesZ
+                && !curve.obstacleList[i].hasFaded)
+                curve.obstacleList[i].FadeOutObstacle();
+    }
 
     public void SetupAtrezzo(GameObject spaceAtrezzo)
     {
@@ -72,10 +93,13 @@ public class CurveSystem : MonoBehaviour
     {
         MoveCurveOrder();
         AlignCurveWithOrigin();
+
         //Move curveSystem to make the curve appear at origin
         curves[curves.Length - 1].AlignWith(curves[curves.Length - 2]);
         transform.localPosition = new Vector3(0f, -curves[SECOND_CURVE].GetTorusRadius());
+
         MoveSpaceAtrezzo();
+        FadeInLastCurve();
         return curves[SECOND_CURVE];
     }
 
@@ -111,6 +135,15 @@ public class CurveSystem : MonoBehaviour
         {
             if (i != SECOND_CURVE)
                 curves[i].transform.SetParent(transform);
+        }
+    }
+
+    private void FadeInLastCurve()
+    {
+        List<Obstacle> obstacles = curves[curves.Length - 1].obstacleList;
+        for (int i = 0; i < obstacles.Count; i++)
+        {
+            obstacles[i].FadeInObstacle();
         }
     }
 

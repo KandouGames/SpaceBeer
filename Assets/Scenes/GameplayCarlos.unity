@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.015456173, g: 0.015171084, b: 0.015456173, a: 1}
+  m_IndirectSpecularColor: {r: 0.016139656, g: 0.017619919, b: 0.016139656, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2438,8 +2438,9 @@ MonoBehaviour:
   curvePrefab: {fileID: 8394909495086069568, guid: cf2f83f2d9ffde54f9dab2eb20388354,
     type: 3}
   playerShip: {fileID: 0}
-  curveCount: 20
+  curveCount: 4
   generatePipes: 0
+  dissapearObstaclesZ: -0.75
 --- !u!1 &1106481510
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,7 +4147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 499520, guid: b696a85a1bdab3d4096cfcbcc7e4fe38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.04834
+      value: 67.1
       objectReference: {fileID: 0}
     - target: {fileID: 499520, guid: b696a85a1bdab3d4096cfcbcc7e4fe38, type: 3}
       propertyPath: m_LocalPosition.y

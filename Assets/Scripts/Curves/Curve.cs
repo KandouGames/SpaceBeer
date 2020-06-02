@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class Curve : MonoBehaviour
 {
@@ -32,14 +34,14 @@ public class Curve : MonoBehaviour
     private Vector3[] vertices;
     private int[] triangles;
 
-    [SerializeField]
     private Transform[] curveBasePoints;
 
     private MeshFilter curveFilter;
 
     private ObstacleFactory obstacleFactory;
+    [HideInInspector]
     public GameObject obstacleHolder;
-    public List<GameObject> obstacleList;
+    public List<Obstacle> obstacleList { get; private set; }
 
     /// <summary>
     /// Generates a curve
@@ -85,7 +87,7 @@ public class Curve : MonoBehaviour
             curveBasePoints[i].transform.name = "point " + i;
         }
 
-        obstacleList = new List<GameObject>();
+        obstacleList = new List<Obstacle>();
         obstacleHolder = new GameObject();
         obstacleHolder.name = "CurveObstacles";
         obstacleHolder.transform.parent = this.transform;
@@ -229,13 +231,14 @@ public class Curve : MonoBehaviour
         obstacleFactory.GenerateObstacles();
     }
 
-    public void AddObstacleToCurve(GameObject obstacle)
+    public void AddObstacleToCurve(GameObject obstacle, Obstacle.obstType obstType)
     {
         obstacle.transform.parent = obstacleHolder.transform;
-        obstacleList.Add(obstacle);
+        Obstacle currentObstacle = new Obstacle(obstacle, false, obstType);
+        obstacleList.Add(currentObstacle);
     }
 
-    public void DeleteObstacleFromCurve(GameObject obstacle)
+    public void DeleteObstacleFromCurve(Obstacle obstacle)
     {
         if (obstacleList.Contains(obstacle))
         {
@@ -246,8 +249,7 @@ public class Curve : MonoBehaviour
             Debug.LogWarning("<color=yellow>You are trying to remove" + obstacle +
             "from the curve but it is not stored as an obstacle</color>");
         }
-        obstacle.transform.parent = obstacleHolder.transform;
-        obstacleList.Add(obstacle);
+        obstacle.obstacleObj.transform.parent = obstacleHolder.transform;
     }
 
     public Transform[] GetCurveBasePoints()
@@ -276,5 +278,54 @@ public class Curve : MonoBehaviour
         {
             Gizmos.DrawSphere(curveBasePoints[i].position, 0.1f);
         }
+    }
+}
+
+
+public class Obstacle
+{
+    public enum obstType { Mesh, Texture }
+
+    public Obstacle(GameObject obstacle, bool faded, obstType obstType)
+    {
+        this.obstacleObj = obstacle;
+        this.hasFaded = faded;
+        this.type = obstType;
+    }
+    public float fadeOutTime = 0.5f;
+    public float fadeInTime = 3f;
+
+    public GameObject obstacleObj { get; private set; }
+    public bool hasFaded;
+    public obstType type { get; private set; }
+
+    public void FadeOutObstacle()
+    {
+        Material matColor;
+        if (type == obstType.Mesh)
+            matColor = obstacleObj.GetComponentInChildren<MeshRenderer>().material;
+        else
+        {
+            matColor = obstacleObj.GetComponentInChildren<SpriteRenderer>().material;
+            obstacleObj.GetComponentInChildren<PortalAnimation>()?.Deactivate(fadeOutTime);
+        }
+
+        matColor?.DOFade(0.25f, fadeOutTime);
+
+        hasFaded = true;
+    }
+
+    public void FadeInObstacle()
+    {
+        Material matColor;
+        if (type == obstType.Mesh)
+            matColor = obstacleObj.GetComponentInChildren<MeshRenderer>().material;
+        else
+        {
+            matColor = obstacleObj.GetComponentInChildren<SpriteRenderer>().material;
+            obstacleObj.GetComponentInChildren<PortalAnimation>()?.Activate(fadeInTime);
+        }
+        matColor?.DOFade(1, fadeInTime);
+        hasFaded = false;
     }
 }

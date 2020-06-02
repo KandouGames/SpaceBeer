@@ -42,9 +42,8 @@ public class ObstacleFactory : MonoBehaviour
             obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
             obstacle.transform.Rotate(new Vector3(0, Random.Range(0, 180), 0));
 
-            curve.AddObstacleToCurve(obstacle);
+            curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Mesh);
         }
-
     }
 
     public void GenerateBarrelPortals()
@@ -64,7 +63,7 @@ public class ObstacleFactory : MonoBehaviour
         obstacle.transform.SetParent(randCurvePoint.parent);
         obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
 
-        curve.AddObstacleToCurve(obstacle);
+        curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);
     }
 
     public void GeneratePlanetPortals()
@@ -84,7 +83,7 @@ public class ObstacleFactory : MonoBehaviour
         obstacle.transform.SetParent(randCurvePoint.parent);
         obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
 
-        curve.AddObstacleToCurve(obstacle);
+        curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);
     }
 
 

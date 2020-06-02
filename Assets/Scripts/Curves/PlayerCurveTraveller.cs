@@ -43,8 +43,6 @@ public class PlayerCurveTraveller : MonoBehaviour
         RotationAdvance();
     }
 
-
-
     private void RotationAdvance()
     {
         float delta = playerVelocity * Time.deltaTime;
