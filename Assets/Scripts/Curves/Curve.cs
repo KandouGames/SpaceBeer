@@ -38,12 +38,28 @@ public class Curve : MonoBehaviour
     private MeshFilter curveFilter;
 
     private ObstacleFactory obstacleFactory;
+    public GameObject obstacleHolder;
+    public List<GameObject> obstacleList;
 
     /// <summary>
     /// Generates a curve
     /// </summary>
     /// <param name="renderPipes">Generate a pipe too</param>
     public void Create(bool renderPipes)
+    {
+
+        InitializeData(renderPipes);
+        SetVertices();
+        SetTriangles();
+        mesh.RecalculateNormals();
+
+        AlignCurveBasePoints();
+
+        obstacleFactory = this.gameObject.AddComponent<ObstacleFactory>();
+        obstacleFactory.SetCurve(this);
+    }
+
+    private void InitializeData(bool renderPipes)
     {
         curveFilter = GetComponent<MeshFilter>();
         curveFilter.mesh = mesh = new Mesh();
@@ -58,22 +74,21 @@ public class Curve : MonoBehaviour
         curveSegmentCount = Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
 
         curveBasePoints = new Transform[curveSegmentCount + 1];
+        GameObject curveBasePointsHolder = new GameObject();
+        curveBasePointsHolder.name = "CurvePoints";
+        curveBasePointsHolder.transform.parent = this.transform;
 
         for (int i = 0; i < curveBasePoints.Length; i++)
         {
             curveBasePoints[i] = new GameObject().transform;
-            curveBasePoints[i].transform.parent = this.transform;
+            curveBasePoints[i].transform.parent = curveBasePointsHolder.transform;
             curveBasePoints[i].transform.name = "point " + i;
         }
 
-        SetVertices();
-        SetTriangles();
-        mesh.RecalculateNormals();
-
-        AlignCurveBasePoints();
-
-        obstacleFactory = this.gameObject.AddComponent<ObstacleFactory>();
-        obstacleFactory.SetCurve(this);
+        obstacleList = new List<GameObject>();
+        obstacleHolder = new GameObject();
+        obstacleHolder.name = "CurveObstacles";
+        obstacleHolder.transform.parent = this.transform;
     }
 
     private void SetVertices()
@@ -212,6 +227,27 @@ public class Curve : MonoBehaviour
     {
         //Aquí crear enemigos considerando la puntuación
         obstacleFactory.GenerateObstacles();
+    }
+
+    public void AddObstacleToCurve(GameObject obstacle)
+    {
+        obstacle.transform.parent = obstacleHolder.transform;
+        obstacleList.Add(obstacle);
+    }
+
+    public void DeleteObstacleFromCurve(GameObject obstacle)
+    {
+        if (obstacleList.Contains(obstacle))
+        {
+            obstacleList.Remove(obstacle);
+        }
+        else
+        {
+            Debug.LogWarning("<color=yellow>You are trying to remove" + obstacle +
+            "from the curve but it is not stored as an obstacle</color>");
+        }
+        obstacle.transform.parent = obstacleHolder.transform;
+        obstacleList.Add(obstacle);
     }
 
     public Transform[] GetCurveBasePoints()

@@ -124,10 +124,13 @@ public class DynamicPool : MonoBehaviour
         return currentObj;
     }
 
-    public void ResetBullet(GameObject bullet)
+    public void ResetObj(GameObject obj, objType objTypeOfObjToReset)
     {
-        bullet.SetActive(false);
-        bulletQueue.Enqueue(bullet);
+        bool checkIfWasNull = false;
+        Queue<GameObject> currentQueue = GetObjQueue(objTypeOfObjToReset, ref checkIfWasNull);
+
+        obj.SetActive(false);
+        currentQueue.Enqueue(obj);
     }
 
     private GameObject CreateSingleObject(objType objToCreate)
