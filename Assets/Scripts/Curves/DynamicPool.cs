@@ -129,24 +129,30 @@ public class DynamicPool : MonoBehaviour
         bool checkIfWasNull = false;
         Queue<GameObject> currentQueue = GetObjQueue(objTypeOfObjToReset, ref checkIfWasNull);
 
+        SetInactiveObjParent(objTypeOfObjToReset, obj);
+
         obj.SetActive(false);
         currentQueue.Enqueue(obj);
     }
 
     private GameObject CreateSingleObject(objType objToCreate)
     {
-
         GameObject currentObj = Instantiate(GetPrefabType(objToCreate));
+
+        SetInactiveObjParent(objToCreate, currentObj);
+
+        currentObj.name = Enum.GetName(typeof(objType), objToCreate);
+        currentObj.SetActive(false);
+        return currentObj;
+    }
+
+    private void SetInactiveObjParent(objType objToCreate, GameObject currentObj)
+    {
         //Only bullets are curve independent
         if (objType.Bullet == objToCreate)
             currentObj.transform.parent = bulletElements.transform;
         else
             currentObj.transform.parent = curveElements.transform;
-
-
-        currentObj.name = Enum.GetName(typeof(objType), objToCreate);
-        currentObj.SetActive(false);
-        return currentObj;
     }
 
     //FIXME:Should move the check and creation to another function 
