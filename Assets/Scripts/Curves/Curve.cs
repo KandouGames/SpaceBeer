@@ -37,6 +37,8 @@ public class Curve : MonoBehaviour
 
     private MeshFilter curveFilter;
 
+    private ObstacleFactory obstacleFactory;
+
     /// <summary>
     /// Generates a curve
     /// </summary>
@@ -69,6 +71,9 @@ public class Curve : MonoBehaviour
         mesh.RecalculateNormals();
 
         AlignCurveBasePoints();
+
+        obstacleFactory = this.gameObject.AddComponent<ObstacleFactory>();
+        obstacleFactory.SetCurve(this);
     }
 
     private void SetVertices()
@@ -203,12 +208,10 @@ public class Curve : MonoBehaviour
 
     }
 
-    public void CreateEnemies()
+    public void GenerateObstacles()
     {
         //Aquí crear enemigos considerando la puntuación
-        GetComponent<ObstacleFactory>().Generate(this);
-        GetComponent<ObstacleFactory>().Generate(this);
-        GetComponent<ObstacleFactory>().Generate(this);
+        obstacleFactory.GenerateObstacles();
     }
 
     public Transform[] GetCurveBasePoints()

@@ -47,7 +47,7 @@ public class CurveSystem : MonoBehaviour
                 curve.AlignWith(curves[i - 1]);
             }
 
-            curve.CreateEnemies();
+            curve.GenerateObstacles();
         }
 
         //Position the curves at 0,0
@@ -119,7 +119,7 @@ public class CurveSystem : MonoBehaviour
         spaceAtrezzo.transform.SetParent(curves[SECOND_CURVE].transform, true);
     }
 
-    public Curve[] getCurves()
+    public Curve[] GetCurves()
     {
         return curves;
     }

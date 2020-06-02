@@ -30,8 +30,11 @@ public class PlayerShipHandler : MonoBehaviour
     public float bulletLifeTime = 2.0f;
 
     //Boundary
+    private float radius;
     public Curve curve;
-    public float radius;
+
+    //Score control
+    public ScoreManager scoreManager;
 
     void Start()
     {
@@ -48,7 +51,7 @@ public class PlayerShipHandler : MonoBehaviour
         screenBoundaries.y = Math.Abs(screenBoundaries.y);
 
         //Obtener controles para ordenador o para moviles
-        StandaloneInput standaloneInput = new StandaloneInput();
+        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
         inputs = (Inputs)standaloneInput;
 
         /*
@@ -175,7 +178,26 @@ public class PlayerShipHandler : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        print("colisionado con " + other.gameObject.name);
+        DynamicPool.objType obstacle = (DynamicPool.objType)Enum.Parse(typeof(DynamicPool.objType), other.gameObject.name);
+
+        switch(obstacle)
+        {
+            case DynamicPool.objType.Asteroid:
+                scoreManager.LooseBarrel();
+                break;
+
+            case DynamicPool.objType.PortalBarrel:
+                scoreManager.EarnBarrel();
+                break;
+
+            case DynamicPool.objType.PortalPlanet:
+                scoreManager.DistributeBarrel();
+                break;
+        }
+
+
+        //Luego estos obstáculos se tendrán que poner otra vez trigger cuando se recoloquen
+        other.isTrigger = false;
     }
 
 }

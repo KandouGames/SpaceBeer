@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
 {
     const int Y_ROT_ALIGN_CURVE_AND_PLAYER = -90;
 
+    public ScoreManager scoreManager;
+
     public GameObject playerShip;
+
     public CurveSystem curveManager;
     public GameObject curveWorld;
 
@@ -15,7 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject spaceAtrezzo;
 
     public GameObject bulletPrefab;
-    public GameObject asteroidPrefab;
+
+    public ObstaclesPrefabs obstaclesPrefabs;
 
 
     void Awake()
@@ -29,17 +33,18 @@ public class GameManager : MonoBehaviour
             LoadData(playerData);
         }
 
-
-
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
-        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, asteroidPrefab);
+        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroid);
+        DynamicPool.instance.Generate(DynamicPool.objType.PortalBarrel, obstaclesPrefabs.portalBarrel);
+        DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
 
         curveManager.Generate(playerShip);
 
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
+        playerShip.GetComponent<PlayerShipHandler>().scoreManager = this.scoreManager;
 
-        skyboxCamera.transform.parent = curveManager.getCurves()[0].transform;
+        skyboxCamera.transform.parent = curveManager.GetCurves()[0].transform;
 
         curveManager.SetupAtrezzo(spaceAtrezzo);
     }
@@ -68,4 +73,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+}
+
+[System.Serializable]
+public class ObstaclesPrefabs
+{
+    public GameObject asteroid;
+    public GameObject portalBarrel;
+    public GameObject portalPlanet;
+    public GameObject darkHole;
 }

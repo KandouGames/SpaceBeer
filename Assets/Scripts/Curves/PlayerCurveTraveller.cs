@@ -26,7 +26,7 @@ public class PlayerCurveTraveller : MonoBehaviour
         this.world = world;
 
         //The setup is done with the second curve to avoid seeing the pipes disappear
-        currentCurve = curveManager.getCurves()[1];
+        currentCurve = curveManager.GetCurves()[1];
 
         curveSystemAccumulatedRotation = 0f;
         worldRotation = 0f;

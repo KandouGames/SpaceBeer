@@ -54,6 +54,7 @@ MonoBehaviour:
   rest_rotation: {x: 0, y: 0, z: 0}
   bullet: {fileID: 5040701228441179284, guid: e0e223f2baa9f8f42afac951503d31d0, type: 3}
   bulletSpeed: 50
+  bulletLifeTime: 2
   curve: {fileID: 8394909495086069568, guid: cf2f83f2d9ffde54f9dab2eb20388354, type: 3}
   radius: 0
 --- !u!114 &8692641112055714442

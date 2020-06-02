@@ -6,23 +6,23 @@ using UnityEngine;
 public class DynamicPool : MonoBehaviour
 {
     //Not happy about this
-    private GameObject bulletPrefab;
-    private GameObject asteroidPrefab;
-    private GameObject coinsPrefab;
-    private GameObject barrelPrefab;
-    private GameObject portalPrefab;
+    public GameObject bulletPrefab;
+    public GameObject asteroidPrefab;
+    public GameObject portalBarrelPrefab;
+    public GameObject portalPlanetPrefab;
+    public GameObject darkHolePrefab;
 
     public int numToCreateBullets = 10;
     public int numToCreateAsteroids = 10;
-    public int numToCreateCoins = 10;
-    public int numToCreateBarrels = 10;
-    public int numToCreatePortals = 10;
+    public int numToCreatePortalBarrels = 10;
+    public int numToCreatePortalPlanets = 10;
+    public int numToCreateDarkHoles = 10;
 
     private Queue<GameObject> bulletQueue;
     private Queue<GameObject> asteroidQueue;
-    private Queue<GameObject> coinQueue;
-    private Queue<GameObject> barrelQueue;
-    private Queue<GameObject> portalQueue;
+    private Queue<GameObject> portalBarrelQueue;
+    private Queue<GameObject> portalPlanetQueue;
+    private Queue<GameObject> darkHoleQueue;
 
     private GameObject curveElements;
     private GameObject bulletElements;
@@ -33,9 +33,9 @@ public class DynamicPool : MonoBehaviour
     {
         Bullet,
         Asteroid,
-        Coin,
-        Barrel,
-        Portal
+        PortalBarrel,
+        PortalPlanet,
+        DarkHole
     };
 
 
@@ -47,7 +47,6 @@ public class DynamicPool : MonoBehaviour
             {
                 _instance = new GameObject().AddComponent<DynamicPool>();
                 _instance.name = "DynamicPool";
-
             }
             return _instance;
         }
@@ -74,25 +73,25 @@ public class DynamicPool : MonoBehaviour
 
             switch (objToCreate)
             {
-                case objType.Asteroid:
-                    numToCreate = numToCreateAsteroids;
-                    this.asteroidPrefab = prefab;
-                    break;
                 case objType.Bullet:
                     numToCreate = numToCreateBullets;
                     this.bulletPrefab = prefab;
                     break;
-                case objType.Coin:
-                    numToCreate = numToCreateCoins;
-                    this.coinsPrefab = prefab;
+                case objType.Asteroid:
+                    numToCreate = numToCreateAsteroids;
+                    this.asteroidPrefab = prefab;
                     break;
-                case objType.Portal:
-                    numToCreate = numToCreatePortals;
-                    this.portalPrefab = prefab;
+                case objType.PortalBarrel:
+                    numToCreate = numToCreatePortalBarrels;
+                    this.portalBarrelPrefab = prefab;
                     break;
-                case objType.Barrel:
-                    numToCreate = numToCreateBarrels;
-                    this.barrelPrefab = prefab;
+                case objType.PortalPlanet:
+                    numToCreate = numToCreatePortalPlanets;
+                    this.portalPlanetPrefab = prefab;
+                    break;
+                case objType.DarkHole:
+                    numToCreate = numToCreateDarkHoles;
+                    this.darkHolePrefab = prefab;
                     break;
                 default:
                     Debug.LogError("<color=red> Dynamic pool received an incorrect object type </color>");
@@ -101,7 +100,6 @@ public class DynamicPool : MonoBehaviour
 
             for (int i = 0; i < numToCreate; i++)
             {
-
                 currentQueue.Enqueue(CreateSingleObject(objToCreate));
             }
         }
@@ -171,29 +169,29 @@ public class DynamicPool : MonoBehaviour
                 }
                 currentQueue = bulletQueue;
                 break;
-            case objType.Coin:
-                if (coinQueue is null)
+            case objType.PortalBarrel:
+                if (portalBarrelQueue is null)
                 {
                     queueWasNull = true;
-                    coinQueue = new Queue<GameObject>();
+                    portalBarrelQueue = new Queue<GameObject>();
                 }
-                currentQueue = coinQueue;
+                currentQueue = portalBarrelQueue;
                 break;
-            case objType.Portal:
-                if (portalQueue is null)
+            case objType.PortalPlanet:
+                if (portalPlanetQueue is null)
                 {
                     queueWasNull = true;
-                    portalQueue = new Queue<GameObject>();
+                    portalPlanetQueue = new Queue<GameObject>();
                 }
-                currentQueue = portalQueue;
+                currentQueue = portalPlanetQueue;
                 break;
-            case objType.Barrel:
-                if (barrelQueue is null)
+            case objType.DarkHole:
+                if (darkHoleQueue is null)
                 {
                     queueWasNull = true;
-                    barrelQueue = new Queue<GameObject>();
+                    darkHoleQueue = new Queue<GameObject>();
                 }
-                currentQueue = barrelQueue;
+                currentQueue = darkHoleQueue;
                 break;
             default:
                 Debug.LogError("<color=red> Dynamic pool received an incorrect object type </color>");
@@ -215,14 +213,14 @@ public class DynamicPool : MonoBehaviour
             case objType.Bullet:
                 prefabToGenerate = this.bulletPrefab;
                 break;
-            case objType.Coin:
-                prefabToGenerate = this.coinsPrefab;
+            case objType.PortalBarrel:
+                prefabToGenerate = this.portalBarrelPrefab;
                 break;
-            case objType.Portal:
-                prefabToGenerate = this.portalPrefab;
+            case objType.PortalPlanet:
+                prefabToGenerate = this.portalPlanetPrefab;
                 break;
-            case objType.Barrel:
-                prefabToGenerate = this.barrelPrefab;
+            case objType.DarkHole:
+                prefabToGenerate = this.darkHolePrefab;
                 break;
             default:
                 Debug.LogError("<color=red> Dynamic pool received an incorrect object type </color>");
