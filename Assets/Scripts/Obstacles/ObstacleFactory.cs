@@ -38,7 +38,6 @@ public class ObstacleFactory : MonoBehaviour
             obstacle.transform.position = randCurvePoint.position;
             obstacle.transform.rotation = randCurvePoint.rotation;
 
-            obstacle.transform.SetParent(randCurvePoint.parent);
             obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
             obstacle.transform.Rotate(new Vector3(0, Random.Range(0, 180), 0));
 
@@ -60,7 +59,6 @@ public class ObstacleFactory : MonoBehaviour
         obstacle.transform.position = randCurvePoint.position;
         obstacle.transform.rotation = randCurvePoint.rotation;
 
-        obstacle.transform.SetParent(randCurvePoint.parent);
         obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
 
         curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);
@@ -80,7 +78,6 @@ public class ObstacleFactory : MonoBehaviour
         obstacle.transform.position = randCurvePoint.position;
         obstacle.transform.rotation = randCurvePoint.rotation;
 
-        obstacle.transform.SetParent(randCurvePoint.parent);
         obstacle.transform.position += obstacle.transform.right * deltaXPos + obstacle.transform.up * deltaYPos;
 
         curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);

@@ -180,10 +180,13 @@ public class PlayerShipHandler : MonoBehaviour
     {
         DynamicPool.objType obstacle = (DynamicPool.objType)Enum.Parse(typeof(DynamicPool.objType), other.gameObject.name);
 
-        switch(obstacle)
+        other.isTrigger = false;
+
+        switch (obstacle)
         {
             case DynamicPool.objType.Asteroid:
                 scoreManager.LooseBarrel();
+
                 break;
 
             case DynamicPool.objType.PortalBarrel:
@@ -193,11 +196,14 @@ public class PlayerShipHandler : MonoBehaviour
             case DynamicPool.objType.PortalPlanet:
                 scoreManager.DistributeBarrel();
                 break;
+            case DynamicPool.objType.Bullet:
+                //Bullets have rigidbodies and should keep being istrigger
+                other.isTrigger = true;
+                break;
         }
 
 
         //Luego estos obstáculos se tendrán que poner otra vez trigger cuando se recoloquen
-        other.isTrigger = false;
     }
 
 }

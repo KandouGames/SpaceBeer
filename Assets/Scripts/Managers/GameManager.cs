@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
         playerShip.GetComponent<PlayerShipHandler>().scoreManager = this.scoreManager;
 
-        skyboxCamera.transform.parent = curveManager.GetCurves()[0].transform;
+        skyboxCamera.transform.parent = spaceAtrezzo.transform;
 
         curveManager.SetupAtrezzo(spaceAtrezzo);
     }
