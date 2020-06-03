@@ -3,188 +3,188 @@ guid: acf5703669bd00440905ed556cc53d86
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cube.001
-    100004: Cube.002
-    100006: Cube.003
-    100008: Cube.004
-    100010: Cube.005
-    100012: Cube.006
-    100014: Cube.007
-    100016: Cube.008
-    100018: Cube.009
-    100020: Cube.010
-    100022: Cube.011
-    100024: Cube.012
-    100026: Cube.014
-    100028: Empty
-    100030: EX GRV L unit A
-    100032: EX GRV L unit C
-    100034: EX GRV L unit D
-    100036: EX GRV R unit A
-    100038: EX GRV R unit B
-    100040: EX GRV R unit C
-    100042: EX GRV R unit D
-    100044: L wing C interface 01
-    100046: L wing C interface 02
-    100048: Left Wing arm unit
-    100050: Main hull
-    100052: R wing C interface 01
-    100054: R wing C interface 02
-    100056: Right Wing arm unit
-    400000: //RootNode
-    400002: Cube.001
-    400004: Cube.002
-    400006: Cube.003
-    400008: Cube.004
-    400010: Cube.005
-    400012: Cube.006
-    400014: Cube.007
-    400016: Cube.008
-    400018: Cube.009
-    400020: Cube.010
-    400022: Cube.011
-    400024: Cube.012
-    400026: Cube.014
-    400028: Empty
-    400030: EX GRV L unit A
-    400032: EX GRV L unit C
-    400034: EX GRV L unit D
-    400036: EX GRV R unit A
-    400038: EX GRV R unit B
-    400040: EX GRV R unit C
-    400042: EX GRV R unit D
-    400044: L wing C interface 01
-    400046: L wing C interface 02
-    400048: Left Wing arm unit
-    400050: Main hull
-    400052: R wing C interface 01
-    400054: R wing C interface 02
-    400056: Right Wing arm unit
-    2100000: Soft Matte theme
-    2100002: Solid dark green
-    2100004: DRIVE GLOW
-    2100006: Soft Matte theme.001
-    2100008: Soft Matte theme.002
-    2100010: Main theme
-    2100012: G Energy glow
-    2300000: Cube.001
-    2300002: Cube.002
-    2300004: Cube.003
-    2300006: Cube.004
-    2300008: Cube.005
-    2300010: Cube.006
-    2300012: Cube.007
-    2300014: Cube.008
-    2300016: Cube.009
-    2300018: Cube.010
-    2300020: Cube.011
-    2300022: Cube.012
-    2300024: Cube.014
-    2300026: EX GRV L unit A
-    2300028: EX GRV L unit C
-    2300030: EX GRV L unit D
-    2300032: EX GRV R unit A
-    2300034: EX GRV R unit B
-    2300036: EX GRV R unit C
-    2300038: EX GRV R unit D
-    2300040: L wing C interface 01
-    2300042: L wing C interface 02
-    2300044: Left Wing arm unit
-    2300046: Main hull
-    2300048: R wing C interface 01
-    2300050: R wing C interface 02
-    2300052: Right Wing arm unit
-    3300000: Cube.001
-    3300002: Cube.002
-    3300004: Cube.003
-    3300006: Cube.004
-    3300008: Cube.005
-    3300010: Cube.006
-    3300012: Cube.007
-    3300014: Cube.008
-    3300016: Cube.009
-    3300018: Cube.010
-    3300020: Cube.011
-    3300022: Cube.012
-    3300024: Cube.014
-    3300026: EX GRV L unit A
-    3300028: EX GRV L unit C
-    3300030: EX GRV L unit D
-    3300032: EX GRV R unit A
-    3300034: EX GRV R unit B
-    3300036: EX GRV R unit C
-    3300038: EX GRV R unit D
-    3300040: L wing C interface 01
-    3300042: L wing C interface 02
-    3300044: Left Wing arm unit
-    3300046: Main hull
-    3300048: R wing C interface 01
-    3300050: R wing C interface 02
-    3300052: Right Wing arm unit
-    4300000: Main hull
-    4300002: Cube.012
-    4300004: Cube.005
-    4300006: Right Wing arm unit
-    4300008: R wing C interface 02
-    4300010: R wing C interface 01
-    4300012: Cube.014
-    4300014: Cube.006
-    4300016: Cube.001
-    4300018: Cube.002
-    4300020: Cube.004
-    4300022: EX GRV R unit D
-    4300024: EX GRV R unit C
-    4300026: EX GRV R unit B
-    4300028: EX GRV R unit A
-    4300030: Left Wing arm unit
-    4300032: L wing C interface 02
-    4300034: L wing C interface 01
-    4300036: Cube.008
-    4300038: Cube.007
-    4300040: Cube.009
-    4300042: Cube.010
-    4300044: Cube.011
-    4300046: EX GRV L unit D
-    4300048: EX GRV L unit C
-    4300050: Cube.003
-    4300052: EX GRV L unit A
+    100000: Black
+    100002: BlkYllw-Ri
+    100004: DarkGrey-D
+    100006: Face
+    100008: Face0
+    100010: Glass
+    100012: Grey-Dirty
+    100014: Helmet
+    100016: Helmet0
+    100018: Light
+    100020: Light-Red
+    100022: Object02
+    100024: Rectangle0
+    100026: Red-Dirty
+    100028: Red-Suit
+    100030: Red-Suit0
+    100032: //RootNode
+    100034: White-Dir0
+    100036: White-Dirt
+    100038: Yellow-Dir
+    400000: Black
+    400002: BlkYllw-Ri
+    400004: DarkGrey-D
+    400006: Face
+    400008: Face0
+    400010: Glass
+    400012: Grey-Dirty
+    400014: Helmet
+    400016: Helmet0
+    400018: Light
+    400020: Light-Red
+    400022: Object02
+    400024: Rectangle0
+    400026: Red-Dirty
+    400028: Red-Suit
+    400030: Red-Suit0
+    400032: //RootNode
+    400034: White-Dir0
+    400036: White-Dirt
+    400038: Yellow-Dir
+    2100000: Light-Red
+    2100002: Red-Suit
+    2100004: Helmet
+    2100006: Face
+    2100008: BlkYllw-Ribbon
+    2100010: White-Dirty
+    2100012: Red-Dirty
+    2100014: No Name
+    2100016: Yellow-Dirty
+    2100018: Grey-Dirty
+    2100020: Light
+    2100022: Black
+    2100024: Glass
+    2100026: DarkGrey-Dirty
+    2300000: Black
+    2300002: BlkYllw-Ri
+    2300004: DarkGrey-D
+    2300006: Face
+    2300008: Face0
+    2300010: Glass
+    2300012: Grey-Dirty
+    2300014: Helmet
+    2300016: Helmet0
+    2300018: Light
+    2300020: Light-Red
+    2300022: Object02
+    2300024: Rectangle0
+    2300026: Red-Dirty
+    2300028: Red-Suit
+    2300030: Red-Suit0
+    2300032: White-Dir0
+    2300034: White-Dirt
+    2300036: Yellow-Dir
+    3300000: Black
+    3300002: BlkYllw-Ri
+    3300004: DarkGrey-D
+    3300006: Face
+    3300008: Face0
+    3300010: Glass
+    3300012: Grey-Dirty
+    3300014: Helmet
+    3300016: Helmet0
+    3300018: Light
+    3300020: Light-Red
+    3300022: Object02
+    3300024: Rectangle0
+    3300026: Red-Dirty
+    3300028: Red-Suit
+    3300030: Red-Suit0
+    3300032: White-Dir0
+    3300034: White-Dirt
+    3300036: Yellow-Dir
+    4300000: Light-Red
+    4300002: Red-Suit0
+    4300004: Helmet0
+    4300006: Face0
+    4300008: Helmet
+    4300010: Red-Suit
+    4300012: Face
+    4300014: BlkYllw-Ri
+    4300016: White-Dir0
+    4300018: Red-Dirty
+    4300020: Object02
+    4300022: Yellow-Dir
+    4300024: Grey-Dirty
+    4300026: Light
+    4300028: Rectangle0
+    4300030: Black
+    4300032: Glass
+    4300034: DarkGrey-D
+    4300036: White-Dirt
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: DRIVE GLOW
-    second: {fileID: 2100000, guid: 2f5d268be308dd74b9d846d48278ce88, type: 2}
+      name: Black
+    second: {fileID: 2100000, guid: 907cb55c150fe804a9f7b195d14b6d5a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: G Energy glow
-    second: {fileID: 2100000, guid: 08b0cc0cba4e0b54aa01a00b40eb3238, type: 2}
+      name: BlkYllw-Ribbon
+    second: {fileID: 2100000, guid: b57e9397d56fc3147ab554d8007276b9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Main theme
-    second: {fileID: 2100000, guid: f9c769af1182f154c8b69f163238f1e2, type: 2}
+      name: DarkGrey-Dirty
+    second: {fileID: 2100000, guid: c581161a93476f94eabb735e53670928, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Soft Matte theme
-    second: {fileID: 2100000, guid: 5d0561c281e35b64ebe5998d67b84980, type: 2}
+      name: Face
+    second: {fileID: 2100000, guid: e4c5fc4b585e8a94eacdbacaac3f6e48, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Soft Matte theme.001
-    second: {fileID: 2100000, guid: 7248ba6d2ba522043930fc804832ba42, type: 2}
+      name: Glass
+    second: {fileID: 2100000, guid: 6a996ad16a352df4381cd86a6c88cd69, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Soft Matte theme.002
-    second: {fileID: 2100000, guid: b4b5170784d6167449dc01ceae55f082, type: 2}
+      name: Grey-Dirty
+    second: {fileID: 2100000, guid: 517b97af8445d744ca2c4675d10b95af, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Solid dark green
-    second: {fileID: 2100000, guid: 03a5d39326b6e28409e1b63326706875, type: 2}
+      name: Helmet
+    second: {fileID: 2100000, guid: 9f52be85e5f917545b4249ba46974e83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light
+    second: {fileID: 2100000, guid: dd931d1296aa9dc46a96a3131a28f226, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light-Red
+    second: {fileID: 2100000, guid: b41b97cdc3e5efd42b9f9b0e6c4bdb19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 0aa3bdf018ae69e4f9e958366fd68095, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red-Dirty
+    second: {fileID: 2100000, guid: 18661286c99939e48b7d790abfbcd894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red-Suit
+    second: {fileID: 2100000, guid: c8e08a4fb65944b4790681ce5820a744, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White-Dirty
+    second: {fileID: 2100000, guid: 7d7e8d09fca79584f988200deb2a6635, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow-Dirty
+    second: {fileID: 2100000, guid: 65f0153f6f54c444595e88175f9affe2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
