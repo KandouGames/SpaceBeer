@@ -22,6 +22,8 @@ public class CurveSystem : MonoBehaviour
 
     private uint currentPlayerCurve = 0;
     bool finishedGenerating = false;
+    bool firstCurveWithoutObstacles = true;
+    bool secondCurveWithoutObstacles = true;
 
     private ScoreManager scoreManager;
 
@@ -51,8 +53,11 @@ public class CurveSystem : MonoBehaviour
             {
                 curve.AlignWith(curves[i - 1]);
             }
+            if (i != FIRST_CURVE && i != SECOND_CURVE)
+            {
+                curve.GenerateObstacles();
+            }
 
-            curve.GenerateObstacles();
         }
         finishedGenerating = true;
 
@@ -93,6 +98,8 @@ public class CurveSystem : MonoBehaviour
 
     public Curve PrepareNextCurve()
     {
+        AddObstaclesToFirstCurves();
+
         curves[FIRST_CURVE].SetObstacles(scoreManager.currentLevel);
 
         MoveCurveOrder();
@@ -141,6 +148,38 @@ public class CurveSystem : MonoBehaviour
         {
             if (i != SECOND_CURVE)
                 curves[i].transform.SetParent(transform);
+        }
+    }
+
+    private void AddObstaclesToFirstCurves()
+    {
+        if (firstCurveWithoutObstacles)
+        {
+            FillFirstCurvesAndMakeInvisible();
+
+        }
+        else if (secondCurveWithoutObstacles)
+        {
+            FillFirstCurvesAndMakeInvisible();
+        }
+    }
+
+    void FillFirstCurvesAndMakeInvisible()
+    {
+        curves[FIRST_CURVE].GenerateObstacles();
+
+        foreach (Obstacle obst in curves[FIRST_CURVE].obstacleList)
+        {
+            if (obst.type == Obstacle.obstType.Mesh)
+            {
+                Material matColor = obst.obstacleObj.GetComponentInChildren<MeshRenderer>().material;
+                matColor.color = new Color(matColor.color.r, matColor.color.g, matColor.color.b, 0);
+            }
+            else
+            {
+                Material matColor = obst.obstacleObj.GetComponentInChildren<SpriteRenderer>().material;
+                matColor.color = new Color(matColor.color.r, matColor.color.g, matColor.color.b, 0);
+            }
         }
     }
 
