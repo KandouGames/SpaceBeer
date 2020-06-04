@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeRadius: 9
   pipeSegmentCount: 8
-  ringDistance: 1.05
+  ringDistance: 0.75
   minCurveRadius: 10
   maxCurveRadius: 30
   minCurveSegmentCount: 10
