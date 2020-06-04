@@ -69,10 +69,11 @@ public class MenuManager : MonoBehaviour
     {
         //Pasamos nave y balas a la escena gameplay
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-        GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShips[playerData.spaceShipID].name).gameObject;
+        GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShipsLP[playerData.spaceShipID].name).gameObject;
 
         //Desparentamos la nave y la bala
         spaceShip.transform.parent = null;
+        spaceShip.SetActive(true);
         DontDestroyOnLoad(spaceShip);
 
         //Desactivamos las interacciones durante la animación

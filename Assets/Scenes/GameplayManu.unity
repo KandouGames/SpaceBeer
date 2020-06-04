@@ -1269,7 +1269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &263362413
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1495,7 +1495,7 @@ RectTransform:
   m_AnchorMin: {x: 0.108, y: 0.6332147}
   m_AnchorMax: {x: 0.108, y: 0.6332147}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 82.166664, y: 23}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &309602564
 MonoBehaviour:
@@ -3404,7 +3404,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -60.26342, y: -21.665405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647221988
 MonoBehaviour:
@@ -4273,12 +4273,16 @@ MonoBehaviour:
   uiManager: {fileID: 812249890}
   volumeSlider: {fileID: 1752030786}
   mainVolume: 1
-  clips:
+  mainClips:
   - {fileID: 8300000, guid: 655111b377a02ad40a37daf5be54b6ec, type: 3}
   - {fileID: 8300000, guid: ce38f0d75b3422b49a369707582aff54, type: 3}
   - {fileID: 8300000, guid: 17df4566265e5f6459bf9777917dc84f, type: 3}
   - {fileID: 8300000, guid: de5909a867de3cc46af5b8df9f1bccd0, type: 3}
-  mainSong:
+  shootClips:
+  - {fileID: 8300000, guid: a9bd3d67271a1a44ba5e8cdec874c6d2, type: 3}
+  - {fileID: 8300000, guid: c5ab43eb861ef3c4db4600527c3ec29b, type: 3}
+  - {fileID: 8300000, guid: 4a14985fcced5674bb9a3ec19845dc96, type: 3}
+  mainSound:
     clip: {fileID: 8300000, guid: 655111b377a02ad40a37daf5be54b6ec, type: 3}
     volume: 1
     loop: 0
@@ -4288,7 +4292,13 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  songID: 0
+  shootSound:
+    clip: {fileID: 8300000, guid: c5ab43eb861ef3c4db4600527c3ec29b, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  mainSoundID: 0
+  shootSoundID: 0
 --- !u!1 &787869936
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,7 +5353,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -68.4857, y: -21.665405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959525371
 MonoBehaviour:
@@ -5435,7 +5445,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 15.424995, y: 15.365841}
-  m_SizeDelta: {x: -30.85, y: -82.458435}
+  m_SizeDelta: {x: -30.85, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &992557288
 MonoBehaviour:
@@ -6813,6 +6823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 1442076583}
+  soundManager: {fileID: 776263664}
   playerShip: {fileID: 461256903}
   curveManager: {fileID: 1062300351}
   curveWorld: {fileID: 681189897}
@@ -7435,7 +7446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1395869399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8360,7 +8371,7 @@ RectTransform:
   m_AnchorMin: {x: 0.108, y: 0.39857066}
   m_AnchorMax: {x: 0.108, y: 0.39857066}
   m_AnchoredPosition: {x: 0, y: 0.20000076}
-  m_SizeDelta: {x: 75.333336, y: 14.666667}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1646326899
 MonoBehaviour:
@@ -9051,7 +9062,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 54}
-  m_SizeDelta: {x: 523.1, y: 0}
+  m_SizeDelta: {x: 523.1, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718625675
 MonoBehaviour:
@@ -9215,7 +9226,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 12}
-  m_SizeDelta: {x: -91.1678, y: -85.90381}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741359311
 MonoBehaviour:

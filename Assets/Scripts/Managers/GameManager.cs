@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     const int Y_ROT_ALIGN_CURVE_AND_PLAYER = -90;
 
     public ScoreManager scoreManager;
+    public SoundManager soundManager;
 
     public GameObject playerShip;
 
@@ -31,8 +32,12 @@ public class GameManager : MonoBehaviour
         {
             playerData = PD.GetComponent<PlayerData>();
             LoadData(playerData);
+
+            //Sound of bullet
+            soundManager.shootSoundID = playerData.weaponID;
         }
 
+        
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
         DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroid);
@@ -59,7 +64,7 @@ public class GameManager : MonoBehaviour
     void LoadData(PlayerData playerData)
     {
         //-----------------------NAVE----------------------
-        GameObject spaceShip = GameObject.Find(playerData.spaceShips[playerData.spaceShipID].name);
+        GameObject spaceShip = GameObject.Find(playerData.spaceShipsLP[playerData.spaceShipID].name); //Low poly SpaceShips
         SceneManager.MoveGameObjectToScene(spaceShip, SceneManager.GetActiveScene());
         spaceShip.transform.parent = GameObject.Find("World").transform.Find("ContainerPlayerShip").transform;
 
