@@ -155,5 +155,10 @@ public class ScoreManager : MonoBehaviour
     {
         return distance;
     }
+    
+    public ulong getDistance()
+    {
+        return distance;
+    }
 }
 
