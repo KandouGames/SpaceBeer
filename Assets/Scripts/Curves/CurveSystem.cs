@@ -55,7 +55,7 @@ public class CurveSystem : MonoBehaviour
             }
             if (i != FIRST_CURVE && i != SECOND_CURVE)
             {
-                // curve.GenerateObstacles();
+                curve.GenerateObstacles();
             }
 
         }
@@ -100,7 +100,7 @@ public class CurveSystem : MonoBehaviour
     {
         AddObstaclesToFirstCurves();
 
-        //curves[FIRST_CURVE].SetObstacles(scoreManager.currentLevel);
+        curves[FIRST_CURVE].SetObstacles(scoreManager.currentLevel);
 
         MoveCurveOrder();
         AlignCurveWithOrigin();
