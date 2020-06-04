@@ -15,6 +15,9 @@ public class Bullet : MonoBehaviour
     IEnumerator Deactivate(float lifeTime)
     {
         yield return new WaitForSeconds(lifeTime);
+
+        GetComponentInChildren<ParticleSystem>()?.Clear(true);
+
         DynamicPool.instance.ResetObj(this.gameObject, DynamicPool.objType.Bullet);
     }
 }
