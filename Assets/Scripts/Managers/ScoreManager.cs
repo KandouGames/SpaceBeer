@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Level
+{
+    SuperEasy,
+    Easy,
+    Medium,
+    Hard,
+    God,
+}
+
 public class ScoreManager : MonoBehaviour
 {
     private const int maxBarrels = 4;
@@ -11,6 +20,18 @@ public class ScoreManager : MonoBehaviour
     private ulong distance;
     private int barrels;
     public UIManager uiManager;
+
+    [HideInInspector]
+    public Level currentLevel;  //Esto es la maquina de estados
+
+    struct BeerCoinLevels
+    {
+        public static int SuperEasy = 0;
+        public static int Easy = 1500;
+        public static int Medium = 4000;
+        public static int Hard = 7500;
+        public static int God = 10000;
+    }
 
     void Start()
     {
@@ -35,6 +56,8 @@ public class ScoreManager : MonoBehaviour
 
     public void StartNewGame()
     {
+        currentLevel = Level.SuperEasy;
+
         beerCoins = 0;
         distance = 0;
         barrels = iniBarrels;
@@ -52,8 +75,6 @@ public class ScoreManager : MonoBehaviour
             ++barrels;
             uiManager.SetBarrels(barrels);
         }
-
-
     }
 
     public void DistributeBarrel()
@@ -88,6 +109,7 @@ public class ScoreManager : MonoBehaviour
         uiManager.SetBarrels(barrels);
         uiManager.SetBeerCoins(beerCoins);
 
+        SetLevel();
     }
 
     public void LooseBarrel()
@@ -101,7 +123,32 @@ public class ScoreManager : MonoBehaviour
             --barrels;
             uiManager.SetBarrels(barrels);
         }
-            
-            
+    }
+
+    public void SetLevel()
+    {
+        switch(currentLevel)
+        {
+            case Level.SuperEasy:
+                if (beerCoins > BeerCoinLevels.Easy)
+                    currentLevel = Level.Easy;
+                break;
+            case Level.Easy:
+                if (beerCoins > BeerCoinLevels.Medium)
+                    currentLevel = Level.Medium;
+                break;
+            case Level.Medium:
+                if (beerCoins > BeerCoinLevels.Hard)
+                    currentLevel = Level.Hard;
+                break;
+            case Level.Hard:
+                if (beerCoins > BeerCoinLevels.God)
+                    currentLevel = Level.God;
+                break;
+            case Level.God:
+
+                break;
+        }
     }
 }
+

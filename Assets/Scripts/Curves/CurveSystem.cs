@@ -23,6 +23,8 @@ public class CurveSystem : MonoBehaviour
     private uint currentPlayerCurve = 0;
     bool finishedGenerating = false;
 
+    private ScoreManager scoreManager;
+
 
     public void Generate(GameObject playerShip)
     {
@@ -91,6 +93,8 @@ public class CurveSystem : MonoBehaviour
 
     public Curve PrepareNextCurve()
     {
+        curves[FIRST_CURVE].SetObstacles(scoreManager.currentLevel);
+
         MoveCurveOrder();
         AlignCurveWithOrigin();
 
@@ -100,8 +104,10 @@ public class CurveSystem : MonoBehaviour
 
         MoveSpaceAtrezzo();
         FadeInLastCurve();
+
         return curves[SECOND_CURVE];
     }
+
 
     /// <summary>
     /// Places the just finished curve at the end and shifts all the curves forward in the order
@@ -152,6 +158,12 @@ public class CurveSystem : MonoBehaviour
         spaceAtrezzo.transform.SetParent(curves[SECOND_CURVE].transform, true);
     }
 
+    public void ResetObstacles()
+    {
+        foreach (Curve curve in curves)
+            curve.SetObstacles(Level.SuperEasy);
+    }
+
     public Curve[] GetCurves()
     {
         return curves;
@@ -160,6 +172,11 @@ public class CurveSystem : MonoBehaviour
     public uint getCurrentPlayerCurve()
     {
         return currentPlayerCurve;
+    }
+
+    public void SetScoreManager(ScoreManager scoreManager)
+    {
+        this.scoreManager = scoreManager;
     }
 
 }

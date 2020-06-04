@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
 
         curveManager.Generate(playerShip);
+        curveManager.SetScoreManager(scoreManager);
 
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
         playerShip.GetComponent<PlayerShipHandler>().scoreManager = this.scoreManager;
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour
         skyboxCamera.transform.parent = spaceAtrezzo.transform;
 
         curveManager.SetupAtrezzo(spaceAtrezzo);
+    }
+
+    public void StartNewGame()
+    {
+        scoreManager.StartNewGame();
+        curveManager.ResetObstacles();
     }
 
     void LoadData(PlayerData playerData)

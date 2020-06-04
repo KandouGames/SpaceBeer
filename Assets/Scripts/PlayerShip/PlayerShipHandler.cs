@@ -186,7 +186,6 @@ public class PlayerShipHandler : MonoBehaviour
         {
             case DynamicPool.objType.Asteroid:
                 scoreManager.LooseBarrel();
-
                 break;
 
             case DynamicPool.objType.PortalBarrel:
@@ -201,9 +200,6 @@ public class PlayerShipHandler : MonoBehaviour
                 other.isTrigger = true;
                 break;
         }
-
-
-        //Luego estos obstáculos se tendrán que poner otra vez trigger cuando se recoloquen
     }
 
 }

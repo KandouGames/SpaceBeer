@@ -39,9 +39,11 @@ public class Curve : MonoBehaviour
     private MeshFilter curveFilter;
 
     private ObstacleFactory obstacleFactory;
+
     [HideInInspector]
     public GameObject obstacleHolder;
     public List<Obstacle> obstacleList { get; private set; }
+
 
     /// <summary>
     /// Generates a curve
@@ -227,8 +229,12 @@ public class Curve : MonoBehaviour
 
     public void GenerateObstacles()
     {
-        //Aquí crear enemigos considerando la puntuación
         obstacleFactory.GenerateObstacles();
+    }
+
+    public void SetObstacles(Level level)
+    {
+        obstacleFactory.SetObstacles(level);
     }
 
     public void AddObstacleToCurve(GameObject obstacle, Obstacle.obstType obstType)

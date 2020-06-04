@@ -772,7 +772,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1442076583}
+      - m_Target: {fileID: 1236060288}
         m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
@@ -2439,7 +2439,8 @@ MonoBehaviour:
     type: 3}
   playerShip: {fileID: 0}
   curveCount: 20
-  generatePipes: 0
+  generatePipes: 1
+  dissapearObstaclesZ: -1
 --- !u!1 &1106481510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3660,6 +3661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 812249890}
+  currentLevel: 0
 --- !u!1 &1521153423
 GameObject:
   m_ObjectHideFlags: 0

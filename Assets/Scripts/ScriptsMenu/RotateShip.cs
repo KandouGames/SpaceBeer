@@ -7,7 +7,7 @@ public class RotateShip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.transform.Rotate(new Vector3(0, Random.Range(0, 180), 0));
     }
 
     // Update is called once per frame
