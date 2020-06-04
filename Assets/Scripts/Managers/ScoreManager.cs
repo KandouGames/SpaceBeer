@@ -150,5 +150,10 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
     }
+    
+    public ulong getDistance()
+    {
+        return distance;
+    }
 }
 
