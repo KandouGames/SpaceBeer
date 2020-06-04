@@ -21,6 +21,8 @@ public class MenuManager : MonoBehaviour
     //Esta variable guarda el tiempo en el que comenzo la interpolacion
     private float timeStartedLerp;
 
+    public string escenaGameplay;
+
     public void Awake()
     {
         camera = Camera.main;
@@ -63,19 +65,15 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void CargaEscena(string pNombreScene)
+    public void CargaEscena()
     {
         //Pasamos nave y balas a la escena gameplay
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
         GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShips[playerData.spaceShipID].name).gameObject;
-        GameObject bullet = GameObject.Find("Space").transform.Find(playerData.bullets[playerData.weaponID].name).gameObject;
 
         //Desparentamos la nave y la bala
         spaceShip.transform.parent = null;
-        bullet.transform.parent = null;
         DontDestroyOnLoad(spaceShip);
-        bullet.SetActive(true);
-        DontDestroyOnLoad(bullet);
 
         //Desactivamos las interacciones durante la animación
         mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
@@ -83,7 +81,7 @@ public class MenuManager : MonoBehaviour
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
             {
-                SceneManager.LoadScene(pNombreScene);
+                SceneManager.LoadScene(escenaGameplay);
             }
         );
     }

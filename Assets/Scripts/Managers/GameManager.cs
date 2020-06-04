@@ -72,11 +72,7 @@ public class GameManager : MonoBehaviour
         spaceShip.transform.localEulerAngles = Vector3.zero;
 
         //-----------------------ARMAS----------------------
-        GameObject bullet = GameObject.Find(playerData.bullets[playerData.weaponID].name);
-        SceneManager.MoveGameObjectToScene(bullet, SceneManager.GetActiveScene());
-
-
-        bulletPrefab = bullet;
+        bulletPrefab = playerData.bullets[playerData.weaponID];
 
     }
 

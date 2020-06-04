@@ -30,22 +30,31 @@ public class SoundManager : MonoBehaviour
         InitializeSound(buttonClickSound);
         InitializeSound(mainSong);
 
-        mainSong.loop = true;
-        mainSong.source.Play();
-        uiManager.ShowSong(mainSong.clip.name);
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+            mainSong.source.Play();
+        
     }
 
 
     private void Update()
     {
-        ulong distance = scoreManager.getDistance() + 1;
-        if (distance % 100 == 0)
+        
+        if (SceneManager.GetActiveScene().name != "MainMenu")
         {
-            changeSong();
-            uiManager.ShowSong(mainSong.clip.name);
+            ulong distance = scoreManager.getDistance();
+            if (distance == 0)
+            {
+                mainSong.loop = true;
+                mainSong.source.Play();
+                uiManager.ShowSong(mainSong.clip.name);
+            }
+
+            else if (distance % 200 == 0)
+            {
+                changeSong();
+                uiManager.ShowSong(mainSong.clip.name);
+            }
         }
-            
-            
     }
 
     private void InitializeSound(Sound s)
@@ -72,7 +81,6 @@ public class SoundManager : MonoBehaviour
 
     public void changeSong()
     {
-        Debug.Log(songID);
         songID = (songID + 1) % clips.Count;
 
         mainSong.source.Stop();
