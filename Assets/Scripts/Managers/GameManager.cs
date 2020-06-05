@@ -22,10 +22,12 @@ public class GameManager : MonoBehaviour
 
     public ObstaclesPrefabs obstaclesPrefabs;
 
+    public bool paused = true;
+
 
     void Awake()
     {
-        //Cargamos datos de la nave y balas
+        //Loading spaceShip and bullet data
         GameObject PD = GameObject.Find("PlayerData");
         PlayerData playerData;
         if (PD != null)
@@ -37,7 +39,11 @@ public class GameManager : MonoBehaviour
             soundManager.shootSoundID = playerData.weaponID;
         }
 
-        
+        //Initialize needed scripts
+        scoreManager.gameManager = this;
+        soundManager.gameManager = this;
+        playerShip.GetComponent<PlayerShipHandler>().gameManager = this;
+
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
         DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroid);
@@ -68,10 +74,10 @@ public class GameManager : MonoBehaviour
         SceneManager.MoveGameObjectToScene(spaceShip, SceneManager.GetActiveScene());
         spaceShip.transform.parent = GameObject.Find("World").transform.Find("ContainerPlayerShip").transform;
 
-        //Nos deshacemos de los objetos no necesarios
+        //Component not needed
         Destroy(spaceShip.GetComponent<RotateShip>());
 
-        //Ajustamos transform
+        //Adjust transform
         spaceShip.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
         spaceShip.transform.localPosition = Vector3.zero;
         spaceShip.transform.localEulerAngles = Vector3.zero;
@@ -79,6 +85,16 @@ public class GameManager : MonoBehaviour
         //-----------------------ARMAS----------------------
         bulletPrefab = playerData.bullets[playerData.weaponID];
 
+    }
+
+    public void PauseGame()
+    {
+        paused = true;
+    }
+
+    public void ResumeGame()
+    {
+        paused = false;
     }
 
 }

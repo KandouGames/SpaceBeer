@@ -7,6 +7,11 @@ using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
+    public GameManager gameManager;
+    public GameObject gameOverUI;
+    public GameObject gameInfoUI;
+    public GameObject pauseUI;
+    
     public List<RectTransform> tutorialSlides;
     public int tutorialSlideID;
     private float speedSlides = 0.25f;
@@ -14,7 +19,6 @@ public class UIManager : MonoBehaviour
     public Text beerCoinsText;
     public Text distanceText;
     public List<GameObject> arrayBarrels;
-    public GameObject gameOverUI;
     public Text gameOverRecordText;
     public RectTransform musicAdvisor;
     public Text musicText;
@@ -27,7 +31,12 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            gameManager.PauseGame();
+            pauseUI.SetActive(true);
+        }
+            
     }
 
     public void SetBeerCoins(int beerCoins)
@@ -53,10 +62,22 @@ public class UIManager : MonoBehaviour
 
     public void ShowGameOver(int beerCoins, ulong distance)
     {
-        PauseGame(true);
+        gameManager.PauseGame();
         gameOverUI.SetActive(true);
         gameOverRecordText.text = "You won " + beerCoins.ToString() + " beercoins \n and have traveled " + distance.ToString() + " km";
     }
+
+    public void ShowSong(string songName)
+    {
+        musicText.text = songName;
+        StartCoroutine(wait(musicAdvisor));
+    }
+
+    public void ShowGameInfo()
+    {
+        gameInfoUI.SetActive(true);
+    }
+
 
     public void NextSlide()
     {
@@ -78,6 +99,10 @@ public class UIManager : MonoBehaviour
             RectTransform actualSlide = tutorialSlides[tutorialSlideID];
             actualSlide.DOAnchorPos(new Vector2(-1140, 1140), speedSlides);
             actualSlide.gameObject.SetActive(false);
+            actualSlide.transform.parent.gameObject.SetActive(false);
+
+            ShowGameInfo();
+            gameManager.ResumeGame();
         }
     }
 
@@ -94,11 +119,8 @@ public class UIManager : MonoBehaviour
         previousSlide.DOAnchorPos(Vector2.zero, speedSlides);
     }
 
-    public void ShowSong(string songName)
-    {
-        musicText.text = songName;
-        StartCoroutine(wait(musicAdvisor));
-    }
+
+    
 
     IEnumerator wait(RectTransform advisor)
     {
@@ -110,11 +132,5 @@ public class UIManager : MonoBehaviour
 
 
 
-    public void PauseGame(bool pause)
-    {
-        if (pause)
-            Time.timeScale = 0;
-        else
-            Time.timeScale = 1;
-    }
+    
 }

@@ -40,7 +40,8 @@ public class PlayerCurveTraveller : MonoBehaviour
 
     private void Update()
     {
-        RotationAdvance();
+        if (!gameManager.paused)
+            RotationAdvance();
     }
 
     private void RotationAdvance()

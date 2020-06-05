@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     private ulong distance;
     private int barrels;
     public UIManager uiManager;
+    public GameManager gameManager;
 
     [HideInInspector]
     public Level currentLevel;  //Esto es la maquina de estados
@@ -40,18 +41,22 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        distance += 1;
-        uiManager.SetDistance(distance);
+        if (!gameManager.paused)
+        {
+            distance += 1;
+            uiManager.SetDistance(distance);
 
-        // Para probar
-        if (Input.GetKeyDown(KeyCode.Z))
-            EarnBarrel();
+            // Para probar
+            if (Input.GetKeyDown(KeyCode.Z))
+                EarnBarrel();
 
-        if (Input.GetKeyDown(KeyCode.X))
-            LooseBarrel();
+            if (Input.GetKeyDown(KeyCode.X))
+                LooseBarrel();
 
-        if (Input.GetKeyDown(KeyCode.C))
-            DistributeBarrel();
+            if (Input.GetKeyDown(KeyCode.C))
+                DistributeBarrel();
+        }
+        
     }
 
     public void StartNewGame()

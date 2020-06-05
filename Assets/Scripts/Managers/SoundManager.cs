@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
+    public GameManager gameManager;
     public ScoreManager scoreManager;
     public UIManager uiManager;
 
@@ -54,22 +55,25 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-        
         if (SceneManager.GetActiveScene().name != "MainMenu")
         {
-            ulong distance = scoreManager.getDistance();
-            if (distance == 0)
+            if (!gameManager.paused)
             {
-                mainSound.loop = true;
-                mainSound.source.Play();
-                uiManager.ShowSong(mainSound.clip.name);
-            }
+                ulong distance = scoreManager.getDistance();
+                if (distance == 0)
+                {
+                    mainSound.loop = true;
+                    mainSound.source.Play();
+                    uiManager.ShowSong(mainSound.clip.name);
+                }
 
-            else if (distance % 200 == 0)
-            {
-                changeSong();
-                uiManager.ShowSong(mainSound.clip.name);
+                else if (distance % 200 == 0)
+                {
+                    changeSong();
+                    uiManager.ShowSong(mainSound.clip.name);
+                }
             }
+            
         }
     }
 

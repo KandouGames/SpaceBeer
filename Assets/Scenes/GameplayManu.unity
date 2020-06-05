@@ -1269,7 +1269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &263362413
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1495,7 +1495,7 @@ RectTransform:
   m_AnchorMin: {x: 0.108, y: 0.6332147}
   m_AnchorMax: {x: 0.108, y: 0.6332147}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 82.166664, y: 23}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &309602564
 MonoBehaviour:
@@ -2267,9 +2267,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 812249890}
-        m_MethodName: PauseGame
-        m_Mode: 6
+      - m_Target: {fileID: 1236060288}
+        m_MethodName: ResumeGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3002,7 +3002,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 586128033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1236060288}
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 812249890}
+        m_MethodName: ShowGameInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 263362412}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &586128033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3404,7 +3437,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -60.26342, y: -21.665405}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647221988
 MonoBehaviour:
@@ -3845,7 +3878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 29.085, y: -21.224998}
+  m_AnchoredPosition: {x: 29.085022, y: -21.224998}
   m_SizeDelta: {x: -31.005, y: 42.449997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689793755
@@ -4269,6 +4302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f9f54006d66664cb14918a8b4ccfc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1236060288}
   scoreManager: {fileID: 1442076583}
   uiManager: {fileID: 812249890}
   volumeSlider: {fileID: 1752030786}
@@ -4294,6 +4328,16 @@ MonoBehaviour:
     source: {fileID: 0}
   shootSound:
     clip: {fileID: 8300000, guid: c5ab43eb861ef3c4db4600527c3ec29b, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  planetPortalSound:
+    clip: {fileID: 0}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  beerPortalSound:
+    clip: {fileID: 0}
     volume: 1
     loop: 0
     source: {fileID: 0}
@@ -4580,6 +4624,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c0b2846d7b49d4591c20edfa366753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1236060288}
+  gameOverUI: {fileID: 1347825439}
+  gameInfoUI: {fileID: 1395869398}
+  pauseUI: {fileID: 1263883038}
   tutorialSlides:
   - {fileID: 302522221}
   - {fileID: 623565513}
@@ -4594,7 +4642,6 @@ MonoBehaviour:
   - {fileID: 1029746032}
   - {fileID: 830231208}
   - {fileID: 1170926489}
-  gameOverUI: {fileID: 1347825439}
   gameOverRecordText: {fileID: 2046865336}
   musicAdvisor: {fileID: 892839209}
   musicText: {fileID: 770216933}
@@ -4798,7 +4845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6943306, y: 0}
   m_AnchorMax: {x: 1, y: 0.21777351}
-  m_AnchoredPosition: {x: 0.000061035156, y: -172.79999}
+  m_AnchoredPosition: {x: 0, y: -172.79999}
   m_SizeDelta: {x: 0.000045776, y: -5.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &892839210
@@ -5353,7 +5400,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -68.4857, y: -21.665405}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959525371
 MonoBehaviour:
@@ -5445,7 +5492,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 15.424995, y: 15.365841}
-  m_SizeDelta: {x: -30.85, y: 0}
+  m_SizeDelta: {x: -30.85, y: -82.458435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &992557288
 MonoBehaviour:
@@ -6839,6 +6886,7 @@ MonoBehaviour:
     portalPlanet: {fileID: 4053527282968314658, guid: 7701f4f7e106e0f4ea7a090ac248663b,
       type: 3}
     darkHole: {fileID: 0}
+  paused: 1
 --- !u!1 &1263883038
 GameObject:
   m_ObjectHideFlags: 0
@@ -7219,6 +7267,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3167765104264066153, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475, type: 3}
 --- !u!1 &1351078837
@@ -7446,7 +7499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1395869399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7645,6 +7698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 812249890}
+  gameManager: {fileID: 1236060288}
   currentLevel: 0
 --- !u!1 &1467897117
 GameObject:
@@ -8371,7 +8425,7 @@ RectTransform:
   m_AnchorMin: {x: 0.108, y: 0.39857066}
   m_AnchorMax: {x: 0.108, y: 0.39857066}
   m_AnchoredPosition: {x: 0, y: 0.20000076}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 75.333336, y: 14.666667}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1646326899
 MonoBehaviour:
@@ -9062,7 +9116,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 54}
-  m_SizeDelta: {x: 523.1, y: 85}
+  m_SizeDelta: {x: 523.1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718625675
 MonoBehaviour:
@@ -9226,7 +9280,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 12}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -91.1678, y: -85.90381}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741359311
 MonoBehaviour:
@@ -9656,9 +9710,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 812249890}
+      - m_Target: {fileID: 1236060288}
         m_MethodName: PauseGame
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10304,9 +10358,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1395869398}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 812249890}
+        m_MethodName: ShowGameInfo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10315,9 +10369,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 812249890}
-        m_MethodName: PauseGame
-        m_Mode: 6
+      - m_Target: {fileID: 1236060288}
+        m_MethodName: ResumeGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
