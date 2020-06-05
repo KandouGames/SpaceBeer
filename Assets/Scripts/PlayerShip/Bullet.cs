@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     IEnumerator startDeathTimer;
     public void Shoot(float bulletSpeed, float lifeTime)
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
         GetComponent<Rigidbody>().AddForce(Vector3.forward * bulletSpeed);
         startDeathTimer = Deactivate(lifeTime);
         StartCoroutine(startDeathTimer);

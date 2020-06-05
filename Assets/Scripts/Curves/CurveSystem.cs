@@ -156,11 +156,13 @@ public class CurveSystem : MonoBehaviour
         if (firstCurveWithoutObstacles)
         {
             FillFirstCurvesAndMakeInvisible();
+            firstCurveWithoutObstacles = false;
 
         }
         else if (secondCurveWithoutObstacles)
         {
             FillFirstCurvesAndMakeInvisible();
+            secondCurveWithoutObstacles = false;
         }
     }
 
