@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: d90e1d75c542b0c44b34aa7ad5b3d4f5
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Black
+    100002: BlkYllw-Ri
+    100004: DarkGrey-D
+    100006: Face
+    100008: Face0
+    100010: Glass
+    100012: Grey-Dirty
+    100014: Helmet
+    100016: Helmet0
+    100018: Light
+    100020: Light-Red
+    100022: Object02
+    100024: Rectangle0
+    100026: Red-Dirty
+    100028: Red-Suit
+    100030: Red-Suit0
+    100032: //RootNode
+    100034: White-Dir0
+    100036: White-Dirt
+    100038: Yellow-Dir
+    400000: Black
+    400002: BlkYllw-Ri
+    400004: DarkGrey-D
+    400006: Face
+    400008: Face0
+    400010: Glass
+    400012: Grey-Dirty
+    400014: Helmet
+    400016: Helmet0
+    400018: Light
+    400020: Light-Red
+    400022: Object02
+    400024: Rectangle0
+    400026: Red-Dirty
+    400028: Red-Suit
+    400030: Red-Suit0
+    400032: //RootNode
+    400034: White-Dir0
+    400036: White-Dirt
+    400038: Yellow-Dir
+    2100000: Light-Red
+    2100002: Red-Suit
+    2100004: Helmet
+    2100006: Face
+    2100008: BlkYllw-Ribbon
+    2100010: White-Dirty
+    2100012: Red-Dirty
+    2100014: No Name
+    2100016: Yellow-Dirty
+    2100018: Grey-Dirty
+    2100020: Light
+    2100022: Black
+    2100024: Glass
+    2100026: DarkGrey-Dirty
+    2300000: Black
+    2300002: BlkYllw-Ri
+    2300004: DarkGrey-D
+    2300006: Face
+    2300008: Face0
+    2300010: Glass
+    2300012: Grey-Dirty
+    2300014: Helmet
+    2300016: Helmet0
+    2300018: Light
+    2300020: Light-Red
+    2300022: Object02
+    2300024: Rectangle0
+    2300026: Red-Dirty
+    2300028: Red-Suit
+    2300030: Red-Suit0
+    2300032: White-Dir0
+    2300034: White-Dirt
+    2300036: Yellow-Dir
+    3300000: Black
+    3300002: BlkYllw-Ri
+    3300004: DarkGrey-D
+    3300006: Face
+    3300008: Face0
+    3300010: Glass
+    3300012: Grey-Dirty
+    3300014: Helmet
+    3300016: Helmet0
+    3300018: Light
+    3300020: Light-Red
+    3300022: Object02
+    3300024: Rectangle0
+    3300026: Red-Dirty
+    3300028: Red-Suit
+    3300030: Red-Suit0
+    3300032: White-Dir0
+    3300034: White-Dirt
+    3300036: Yellow-Dir
+    4300000: Light-Red
+    4300002: Red-Suit0
+    4300004: Helmet0
+    4300006: Face0
+    4300008: Helmet
+    4300010: Red-Suit
+    4300012: Face
+    4300014: BlkYllw-Ri
+    4300016: White-Dir0
+    4300018: Red-Dirty
+    4300020: Object02
+    4300022: Yellow-Dir
+    4300024: Grey-Dirty
+    4300026: Light
+    4300028: Rectangle0
+    4300030: Black
+    4300032: Glass
+    4300034: DarkGrey-D
+    4300036: White-Dirt
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 227af8007854ca246a48c2f3edf86a4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlkYllw-Ribbon
+    second: {fileID: 2100000, guid: b57e9397d56fc3147ab554d8007276b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 6a996ad16a352df4381cd86a6c88cd69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light
+    second: {fileID: 2100000, guid: dd931d1296aa9dc46a96a3131a28f226, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White-Dirty
+    second: {fileID: 2100000, guid: 7d7e8d09fca79584f988200deb2a6635, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow-Dirty
+    second: {fileID: 2100000, guid: 65f0153f6f54c444595e88175f9affe2, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
