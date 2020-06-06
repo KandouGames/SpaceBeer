@@ -25,7 +25,8 @@ public class CurveSystem : MonoBehaviour
     bool firstCurveWithoutObstacles = true;
     bool secondCurveWithoutObstacles = true;
 
-    private ScoreManager scoreManager;
+    [HideInInspector]
+    public ScoreManager scoreManager;
 
 
     public void Generate(GameObject playerShip)
@@ -213,11 +214,6 @@ public class CurveSystem : MonoBehaviour
     public uint getCurrentPlayerCurve()
     {
         return currentPlayerCurve;
-    }
-
-    public void SetScoreManager(ScoreManager scoreManager)
-    {
-        this.scoreManager = scoreManager;
     }
 
 }

@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
+    [HideInInspector]
     public GameManager gameManager;
+    [HideInInspector]
     public ScoreManager scoreManager;
+    [HideInInspector]
     public UIManager uiManager;
 
     public Slider volumeSlider;
@@ -24,7 +27,8 @@ public class SoundManager : MonoBehaviour
     public Sound buttonClickSound;
     public Sound shootSound;
     public Sound planetPortalSound;
-    public Sound beerPortalSound;
+    public Sound barrelPoratalSound;
+    public Sound crashSound;
 
     //IDs
     public int mainSoundID;
@@ -39,7 +43,8 @@ public class SoundManager : MonoBehaviour
         InitializeSound(mainSound);
         InitializeSound(shootSound);
         InitializeSound(planetPortalSound);
-        InitializeSound(beerPortalSound);
+        InitializeSound(barrelPoratalSound);
+        InitializeSound(crashSound);
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
             mainSound.source.Play();
@@ -89,8 +94,13 @@ public class SoundManager : MonoBehaviour
     public void UpdateVolume(float value)
     {
         mainVolume = value;
+
         mainSound.source.volume = mainSound.volume * mainVolume;
         buttonClickSound.source.volume = buttonClickSound.volume * mainVolume;
+        shootSound.source.volume = shootSound.volume * mainVolume;
+        planetPortalSound.source.volume = planetPortalSound.volume * mainVolume;
+        barrelPoratalSound.source.volume = barrelPoratalSound.volume * mainVolume;
+        crashSound.source.volume = crashSound.volume * mainVolume;
 
     }
 
@@ -111,7 +121,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBeerPortal()
     {
-        beerPortalSound.source.Play();
+        barrelPoratalSound.source.Play();
+    }
+
+    public void PlayCrashSound()
+    {
+        crashSound.source.Play();
     }
 
     public void changeSong()

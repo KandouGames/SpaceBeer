@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
+    [HideInInspector]
     public GameManager gameManager;
+
     public GameObject gameOverUI;
     public GameObject gameInfoUI;
     public GameObject pauseUI;

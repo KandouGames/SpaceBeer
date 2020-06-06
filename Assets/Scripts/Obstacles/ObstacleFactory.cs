@@ -132,6 +132,7 @@ public class ObstacleFactory : MonoBehaviour
 
         foreach (GameObject planetPortal in planetPortals)
         {
+            planetPortal.transform.localScale = Vector3.one;
             planetPortal.SetActive(false);
             float random = Random.Range(0.0f, 1.0f);
 
@@ -168,6 +169,7 @@ public class ObstacleFactory : MonoBehaviour
 
         foreach (GameObject barrelPortal in barrelPortals)
         {
+            barrelPortal.transform.localScale = Vector3.one;
             barrelPortal.SetActive(false);
             float random = Random.Range(0.0f, 1.0f);
 

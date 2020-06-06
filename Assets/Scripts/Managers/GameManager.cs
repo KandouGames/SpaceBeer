@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public ScoreManager scoreManager;
     public SoundManager soundManager;
+    public UIManager uiManager;
 
     public GameObject playerShip;
 
@@ -41,8 +42,23 @@ public class GameManager : MonoBehaviour
 
         //Initialize needed scripts
         scoreManager.gameManager = this;
+        scoreManager.uiManager = this.uiManager;
+
         soundManager.gameManager = this;
-        playerShip.GetComponent<PlayerShipHandler>().gameManager = this;
+        soundManager.scoreManager = this.scoreManager;
+        soundManager.uiManager = this.uiManager;
+
+        uiManager.gameManager = this;
+
+        PlayerShipHandler playerShipHandler = playerShip.GetComponent<PlayerShipHandler>(); 
+        playerShipHandler.gameManager = this;
+        playerShipHandler.scoreManager = this.scoreManager;
+        playerShipHandler.soundManager = this.soundManager;
+
+        playerShipHandler.radius = curveManager.curvePrefab.pipeRadius - 2.0f;
+        curveManager.scoreManager = this.scoreManager;
+
+
 
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
@@ -51,18 +67,16 @@ public class GameManager : MonoBehaviour
         DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
 
         curveManager.Generate(playerShip);
-        curveManager.SetScoreManager(scoreManager);
-
-        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
-        playerShip.GetComponent<PlayerShipHandler>().scoreManager = this.scoreManager;
+        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);    
+        
 
         skyboxCamera.transform.parent = spaceAtrezzo.transform;
-
         curveManager.SetupAtrezzo(spaceAtrezzo);
     }
 
     public void StartNewGame()
     {
+        paused = false;
         scoreManager.StartNewGame();
         curveManager.ResetObstacles();
     }

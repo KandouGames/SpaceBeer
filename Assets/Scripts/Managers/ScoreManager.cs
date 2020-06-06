@@ -19,7 +19,10 @@ public class ScoreManager : MonoBehaviour
     private int beerCoins;
     private ulong distance;
     private int barrels;
+
+    [HideInInspector]
     public UIManager uiManager;
+    [HideInInspector]
     public GameManager gameManager;
 
     [HideInInspector]

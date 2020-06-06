@@ -1,10 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerShipHandler : MonoBehaviour
 {
-
-    private Vector3 screenBoundaries;
     private Inputs inputs;  //Obtener controles
 
     // Translation
@@ -30,14 +29,20 @@ public class PlayerShipHandler : MonoBehaviour
     public float bulletLifeTime = 2.0f;
 
     //Boundary
-    private float radius;
-    public Curve curve;
+    [HideInInspector]
+    public float radius;
 
     //Score control
+    [HideInInspector]
     public ScoreManager scoreManager;
 
     //Game manager
+    [HideInInspector]
     public GameManager gameManager;
+
+    //Soundmanager
+    [HideInInspector]
+    public SoundManager soundManager;
 
     void Start()
     {
@@ -47,11 +52,6 @@ public class PlayerShipHandler : MonoBehaviour
 
         t_velocity = Vector2.zero;
         r_velocity = Vector2.zero;
-
-        //Camera must be in (0, 0, z)
-        screenBoundaries = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        screenBoundaries.x = Math.Abs(screenBoundaries.x);
-        screenBoundaries.y = Math.Abs(screenBoundaries.y);
 
         //Obtener controles para ordenador o para moviles
         StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
@@ -68,7 +68,6 @@ public class PlayerShipHandler : MonoBehaviour
         #endif
         */
 
-        radius = curve.pipeRadius - 2.0f;
     }
 
     void Update()
@@ -138,8 +137,7 @@ public class PlayerShipHandler : MonoBehaviour
             // Forcing position to stay on screen
             if (position.magnitude > radius)
                 position = position.normalized * radius;
-            //position.x = Mathf.Clamp(position.x, -screenBoundaries.x + 1, screenBoundaries.x - 1);
-            //position.y = Mathf.Clamp(position.y, -screenBoundaries.y + 1, screenBoundaries.y - 1);
+
 
             // Forcing to not rotate more than max
             if (rotation.x > r_maxRotationX || rotation.x < -r_maxRotationX)
@@ -195,20 +193,34 @@ public class PlayerShipHandler : MonoBehaviour
         {
             case DynamicPool.objType.Asteroid:
                 scoreManager.LooseBarrel();
+                soundManager.PlayCrashSound();
                 break;
 
             case DynamicPool.objType.PortalBarrel:
                 scoreManager.EarnBarrel();
+                animatePortalCollision(other.gameObject);
+                soundManager.PlayBeerPortal();
                 break;
 
             case DynamicPool.objType.PortalPlanet:
                 scoreManager.DistributeBarrel();
+                animatePortalCollision(other.gameObject);
+                soundManager.PlayPlanetPortal();
                 break;
             case DynamicPool.objType.Bullet:
                 //Bullets have rigidbodies and should keep being istrigger
                 other.isTrigger = true;
                 break;
         }
+    }
+    
+    public void animatePortalCollision(GameObject portal)
+    {
+        portal.transform?.DOScale(1.3f, 0.2f).OnComplete(() =>
+        {
+            portal.transform?.DOScale(0.0f, 0.5f);
+        }
+        );
     }
 
 }
