@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public Text gameOverRecordText;
     public RectTransform musicAdvisor;
     public Text musicText;
+
+    public List<Image> powerUps;
     
 
     void Start()
@@ -80,6 +82,18 @@ public class UIManager : MonoBehaviour
         gameInfoUI.SetActive(true);
     }
 
+
+    public void ShowPowerUp(Image image)
+    {
+
+        image.transform.DOShakePosition(2.0f, 4, 100);
+        image.transform.DOScale(new Vector3(2, 2, 2), 1);
+        image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 1), 1.0f).OnComplete(() =>
+        {
+            image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 0), 0.5f);
+        }
+        );
+    }
 
     public void NextSlide()
     {

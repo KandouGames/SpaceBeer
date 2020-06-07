@@ -31,6 +31,9 @@ public class PlayerShipHandler : MonoBehaviour
     //Explosion
     public Explosion explosionHandler;
 
+    //Invincibility
+    public bool invincibility = false;
+
     //Boundary
     [HideInInspector]
     public float radius;
@@ -163,7 +166,12 @@ public class PlayerShipHandler : MonoBehaviour
 
 
             if (Input.GetKeyUp(KeyCode.K))
+            {
+                UIManager uiManager = gameManager.uiManager;
                 print("Power Up");
+                uiManager.ShowPowerUp(uiManager.powerUps[1]);
+                gameManager.PowerUp(1); //PowerUp receives id of power up
+            }
         }
     }
 
@@ -195,13 +203,16 @@ public class PlayerShipHandler : MonoBehaviour
         switch (obstacle)
         {
             case DynamicPool.objType.Asteroid:
-                scoreManager.LooseBarrel();
-                soundManager.PlayCrashSound();
+                if (!invincibility)
+                {
+                    scoreManager.LooseBarrel();
+                    soundManager.PlayCrashSound();
 
-                if(scoreManager.barrels == -1)
-                    explosionHandler.PlayFullExplosion();
-                else
-                    explosionHandler.PlaySmokeExplosion();
+                    if (scoreManager.barrels == -1)
+                        explosionHandler.PlayFullExplosion();
+                    else
+                        explosionHandler.PlaySmokeExplosion();
+                }
 
                 break;
 

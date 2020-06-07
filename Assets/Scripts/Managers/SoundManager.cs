@@ -6,11 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    [HideInInspector]
     public GameManager gameManager;
-    [HideInInspector]
     public ScoreManager scoreManager;
-    [HideInInspector]
     public UIManager uiManager;
 
     public Slider volumeSlider;
@@ -27,8 +24,7 @@ public class SoundManager : MonoBehaviour
     public Sound buttonClickSound;
     public Sound shootSound;
     public Sound planetPortalSound;
-    public Sound barrelPoratalSound;
-    public Sound crashSound;
+    public Sound beerPortalSound;
 
     //IDs
     public int mainSoundID;
@@ -43,12 +39,11 @@ public class SoundManager : MonoBehaviour
         InitializeSound(mainSound);
         InitializeSound(shootSound);
         InitializeSound(planetPortalSound);
-        InitializeSound(barrelPoratalSound);
-        InitializeSound(crashSound);
+        InitializeSound(beerPortalSound);
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
             mainSound.source.Play();
-        
+
     }
 
     private void Start()
@@ -65,21 +60,24 @@ public class SoundManager : MonoBehaviour
             if (!gameManager.paused)
             {
                 ulong distance = scoreManager.getDistance();
-                if (distance == 0)
-                {
-                    mainSound.loop = true;
-                    mainSound.source.Play();
-                    uiManager.ShowSong(mainSound.clip.name);
-                }
+            if (distance == 0)
+            {
+                mainSound.loop = true;
+                mainSound.source.Play();
+                uiManager.ShowSong(mainSound.clip.name);
+            }
 
-                else if (distance % 200 == 0)
-                {
-                    changeSong();
-                    uiManager.ShowSong(mainSound.clip.name);
-                }
+            else if (distance % 2000 == 0)
+            {
+                changeSong();
+                uiManager.ShowSong(mainSound.clip.name);
+            }
             }
             
         }
+
+        
+        
     }
 
     private void InitializeSound(Sound s)
@@ -94,13 +92,8 @@ public class SoundManager : MonoBehaviour
     public void UpdateVolume(float value)
     {
         mainVolume = value;
-
         mainSound.source.volume = mainSound.volume * mainVolume;
         buttonClickSound.source.volume = buttonClickSound.volume * mainVolume;
-        shootSound.source.volume = shootSound.volume * mainVolume;
-        planetPortalSound.source.volume = planetPortalSound.volume * mainVolume;
-        barrelPoratalSound.source.volume = barrelPoratalSound.volume * mainVolume;
-        crashSound.source.volume = crashSound.volume * mainVolume;
 
     }
 
@@ -113,7 +106,10 @@ public class SoundManager : MonoBehaviour
     {
         shootSound.source.Play();
     }
+    public void PlayCrashSound()
+    {
 
+    }
     public void PlayPlanetPortal()
     {
         planetPortalSound.source.Play();
@@ -121,12 +117,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBeerPortal()
     {
-        barrelPoratalSound.source.Play();
-    }
-
-    public void PlayCrashSound()
-    {
-        crashSound.source.Play();
+        beerPortalSound.source.Play();
     }
 
     public void changeSong()

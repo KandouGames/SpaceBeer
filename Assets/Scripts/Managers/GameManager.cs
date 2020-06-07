@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public ScoreManager scoreManager;
     public SoundManager soundManager;
     public UIManager uiManager;
+    public PostProcessManager ppManager;
 
     public GameObject playerShip;
 
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public bool paused = true;
 
+    private GameObject shield;
 
     void Awake()
     {
@@ -58,7 +61,10 @@ public class GameManager : MonoBehaviour
         playerShipHandler.radius = curveManager.curvePrefab.pipeRadius - 2.0f;
         curveManager.scoreManager = this.scoreManager;
 
-
+        shield = playerShip.transform.Find("Shield").gameObject;
+        shield.transform.localScale = Vector3.zero;
+        shield.GetComponent<Light>().enabled = false;
+        shield.SetActive(false);
 
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
@@ -101,6 +107,22 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void PowerUp(int powerUpID)
+    {
+        int powerUpDuration = 5;
+        switch (powerUpID)
+        {
+            case 0: //Slow Motion
+                StartCoroutine(SlowMo(powerUpDuration));
+                break;
+
+            case 1: //Shield
+                StartCoroutine(Shield(powerUpDuration));
+                break;
+
+        }
+    }
+
     public void PauseGame()
     {
         paused = true;
@@ -109,6 +131,38 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         paused = false;
+    }
+
+    IEnumerator SlowMo(int seconds)
+    {
+        float velocity = playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity;
+        playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity = 1;
+        ppManager.PPSlowMotion(true);
+        yield return new WaitForSeconds(seconds);
+        ppManager.PPSlowMotion(false);
+        playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity = velocity;
+    }
+
+    IEnumerator Shield(int seconds)
+    {
+        shield.SetActive(true);
+        shield.transform.DOScale(new Vector3(2.1882f, 2.1882f, 2.1882f), 0.5f).OnComplete(() =>
+            {
+                shield.GetComponent<Light>().enabled = true;
+            }
+        );
+        //Ignore Asteroids and Enemies
+        playerShip.GetComponent<PlayerShipHandler>().invincibility = true;
+
+        yield return new WaitForSeconds(seconds);
+        shield.GetComponent<Light>().enabled = false;
+        shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
+        shield.SetActive(false);
+
+        //Asteroids hits again
+        playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
+
+        
     }
 
 }
@@ -121,3 +175,4 @@ public class ObstaclesPrefabs
     public GameObject portalPlanet;
     public GameObject darkHole;
 }
+
