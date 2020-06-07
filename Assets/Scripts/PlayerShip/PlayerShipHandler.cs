@@ -28,6 +28,9 @@ public class PlayerShipHandler : MonoBehaviour
     public float bulletSpeed = 20.0f;
     public float bulletLifeTime = 2.0f;
 
+    //Explosion
+    public Explosion explosionHandler;
+
     //Boundary
     [HideInInspector]
     public float radius;
@@ -194,6 +197,12 @@ public class PlayerShipHandler : MonoBehaviour
             case DynamicPool.objType.Asteroid:
                 scoreManager.LooseBarrel();
                 soundManager.PlayCrashSound();
+
+                if(scoreManager.barrels == -1)
+                    explosionHandler.PlayFullExplosion();
+                else
+                    explosionHandler.PlaySmokeExplosion();
+
                 break;
 
             case DynamicPool.objType.PortalBarrel:
@@ -222,6 +231,8 @@ public class PlayerShipHandler : MonoBehaviour
         }
         );
     }
+
+
 
 }
 

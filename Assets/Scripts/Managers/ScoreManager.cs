@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum Level
 {
@@ -18,7 +19,8 @@ public class ScoreManager : MonoBehaviour
 
     private int beerCoins;
     private ulong distance;
-    private int barrels;
+    [HideInInspector]
+    public int barrels;
 
     [HideInInspector]
     public UIManager uiManager;
@@ -122,15 +124,13 @@ public class ScoreManager : MonoBehaviour
 
     public void LooseBarrel()
     {
-        if (barrels == 0)
+        --barrels;
+        uiManager.SetBarrels(barrels);
+
+        if (barrels == -1)
         {
-            uiManager.ShowGameOver(beerCoins, distance);
-            print("game over");
-        } else
-        {
-            --barrels;
-            uiManager.SetBarrels(barrels);
-        }
+            SetGameOver();
+        } 
     }
 
     public void SetLevel()
@@ -162,6 +162,17 @@ public class ScoreManager : MonoBehaviour
     public ulong getDistance()
     {
         return distance;
+    }
+
+    public void SetGameOver()
+    {
+        gameManager.PauseGame();
+        Camera.main.transform?.DOShakeRotation(1.0f, new Vector3(0.0f, 0.0f, 50.0f), 20, 10.0f, false).OnComplete(() =>
+        {
+            uiManager.ShowGameOver(beerCoins, distance);
+            print("game over");
+        }
+        );
     }
 }
 
