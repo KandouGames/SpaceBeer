@@ -67,19 +67,9 @@ public class GameManager : MonoBehaviour
         shield.GetComponent<Light>().enabled = false;
         shield.SetActive(false);
 
-        //Pools must be generated before curves because curves place obstacles that need to be in the pools
-        DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
-        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroids[0]);
-        for (int i = 1; i < obstaclesPrefabs.asteroids.Count; i++)
-        {
-            DynamicPool.instance.addToAsteroidList(obstaclesPrefabs.asteroids[i]);
-        }
-        DynamicPool.instance.Generate(DynamicPool.objType.PortalBarrel, obstaclesPrefabs.portalBarrel);
-        DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
-        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpShield, obstaclesPrefabs.powerUpPortals.shield);
-        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpSnail, obstaclesPrefabs.powerUpPortals.snail);
-        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpLaser, obstaclesPrefabs.powerUpPortals.laser);
-        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpGrenade, obstaclesPrefabs.powerUpPortals.grenade);
+        PickUniverseBackground();
+
+        GenerateDynamicPoolObjects();
 
         curveManager.Generate(playerShip);
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
@@ -177,6 +167,36 @@ public class GameManager : MonoBehaviour
     public void SetVelocityPlayerTraveller(Level level)
     {
         playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(level);
+    }
+
+    void GenerateDynamicPoolObjects()
+    {
+        //Pools must be generated before curves because curves place obstacles that need to be in the pools
+        DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
+        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroids[0]);
+        for (int i = 1; i < obstaclesPrefabs.asteroids.Count; i++)
+        {
+            DynamicPool.instance.addToAsteroidList(obstaclesPrefabs.asteroids[i]);
+        }
+        DynamicPool.instance.Generate(DynamicPool.objType.PortalBarrel, obstaclesPrefabs.portalBarrel);
+        DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpShield, obstaclesPrefabs.powerUpPortals.shield);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpSnail, obstaclesPrefabs.powerUpPortals.snail);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpLaser, obstaclesPrefabs.powerUpPortals.laser);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpGrenade, obstaclesPrefabs.powerUpPortals.grenade);
+    }
+
+    void PickUniverseBackground()
+    {
+        for (int i = 0; i < spaceAtrezzo.transform.childCount; i++)
+        {
+            spaceAtrezzo.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        int currentUniverse = Random.Range(0, spaceAtrezzo.transform.childCount);
+
+        spaceAtrezzo.transform.GetChild(currentUniverse).gameObject.SetActive(true);
+
     }
 
 }

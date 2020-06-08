@@ -6846,6 +6846,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9175478294086509280, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175478294086509280, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175478294086509280, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167965308203727289, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960324062647910493, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5718229030058435822, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596038135665759137, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488614189831744434, guid: 3c83d38a71917cb4eb192c1b42e94f86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c83d38a71917cb4eb192c1b42e94f86, type: 3}
 --- !u!4 &1196445022 stripped
@@ -6964,16 +7004,25 @@ MonoBehaviour:
   obstaclesPrefabs:
     asteroids:
     - {fileID: 5602447729151180498, guid: ba5d7ccf89d801142903c88940fe8442, type: 3}
+    - {fileID: 7085998698252857763, guid: 048ac238259d8e545aee8219d93840a9, type: 3}
+    - {fileID: 3117909477048995059, guid: 96f22f01c6c63d54c8f828a140999047, type: 3}
+    - {fileID: 7308040669793430453, guid: e0a309790c511074c80e8e98ae5f2fd0, type: 3}
+    - {fileID: 8482840153098750052, guid: 28f0fd899dff2994696cf3a97dac3bec, type: 3}
+    - {fileID: 748344875998591552, guid: a2c645371494a3d459d8dbe215a8b505, type: 3}
     portalBarrel: {fileID: 6338083298810912051, guid: 183f070554133ff449201b990a55f239,
       type: 3}
     portalPlanet: {fileID: 4053527282968314658, guid: 7701f4f7e106e0f4ea7a090ac248663b,
       type: 3}
     darkHole: {fileID: 0}
     powerUpPortals:
-      shield: {fileID: 0}
-      snail: {fileID: 0}
-      laser: {fileID: 0}
-      grenade: {fileID: 0}
+      shield: {fileID: 4162528399091416316, guid: 589b105e692e55d49bf136dbccc9b397,
+        type: 3}
+      snail: {fileID: 4162528399091416316, guid: c6ad5de86b7f94d4f88221459c50f19c,
+        type: 3}
+      laser: {fileID: 4162528399091416316, guid: 7339995546907e34ca6367082c3a3238,
+        type: 3}
+      grenade: {fileID: 4162528399091416316, guid: 8e9c652b284c3ad45a8e7a70b1d624ed,
+        type: 3}
   paused: 1
 --- !u!1 &1263883038
 GameObject:
