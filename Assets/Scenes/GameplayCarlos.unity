@@ -3603,7 +3603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23300001, y: 0.16730201}
   m_AnchorMax: {x: 0.81200004, y: 0.38884902}
-  m_AnchoredPosition: {x: -14.000137, y: 2}
+  m_AnchoredPosition: {x: -14.000153, y: 2}
   m_SizeDelta: {x: -35.137146, y: -30.1192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &679201059
@@ -4751,7 +4751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23300001, y: 0.16730201}
   m_AnchorMax: {x: 0.81200004, y: 0.38884902}
-  m_AnchoredPosition: {x: -14.000137, y: 2}
+  m_AnchoredPosition: {x: -14.000153, y: 2}
   m_SizeDelta: {x: -35.137146, y: -60.1192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &852335848
@@ -7408,6 +7408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: gameManager
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997198843116287435, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475, type: 3}

@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class CurveSystem : MonoBehaviour
 {
+    const int THIRD_CURVE = 2;
     const int SECOND_CURVE = 1;
     const int FIRST_CURVE = 0;
 
@@ -99,7 +100,7 @@ public class CurveSystem : MonoBehaviour
 
     public Curve PrepareNextCurve()
     {
-        AddObstaclesToFirstCurves();
+        AddObstaclesToFirstCurves(false);
 
         curves[FIRST_CURVE].SetObstacles(scoreManager.currentLevel);
 
@@ -152,24 +153,25 @@ public class CurveSystem : MonoBehaviour
         }
     }
 
-    private void AddObstaclesToFirstCurves()
+    private void AddObstaclesToFirstCurves(bool retryGame)
     {
         if (firstCurveWithoutObstacles)
         {
-            FillFirstCurvesAndMakeInvisible();
+            FillFirstCurvesAndMakeInvisible(retryGame);
             firstCurveWithoutObstacles = false;
 
         }
         else if (secondCurveWithoutObstacles)
         {
-            FillFirstCurvesAndMakeInvisible();
+            FillFirstCurvesAndMakeInvisible(retryGame);
             secondCurveWithoutObstacles = false;
         }
     }
 
-    void FillFirstCurvesAndMakeInvisible()
+    void FillFirstCurvesAndMakeInvisible(bool retryGame)
     {
-        curves[FIRST_CURVE].GenerateObstacles();
+        if (!retryGame)
+            curves[FIRST_CURVE].GenerateObstacles();
 
         foreach (Obstacle obst in curves[FIRST_CURVE].obstacleList)
         {
@@ -202,8 +204,22 @@ public class CurveSystem : MonoBehaviour
 
     public void ResetObstacles()
     {
-        foreach (Curve curve in curves)
-            curve.SetObstacles(Level.SuperEasy);
+        for (int i = 0; i < curves.Length; i++)
+        {
+            curves[i].SetObstacles(Level.SuperEasy);
+            if (i == FIRST_CURVE || i == SECOND_CURVE || i == THIRD_CURVE)
+            {
+                List<Obstacle> obstacles = curves[i].obstacleList;
+                for (int j = 0; j < obstacles.Count; j++)
+                {
+                    Debug.Log("hello");
+                    obstacles[j].obstacleObj.SetActive(false);
+                }
+            }
+        }
+        firstCurveWithoutObstacles = true;
+        secondCurveWithoutObstacles = true;
+        AddObstaclesToFirstCurves(true);
     }
 
     public Curve[] GetCurves()

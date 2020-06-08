@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public ObstaclesPrefabs obstaclesPrefabs;
 
     public bool paused = true;
+    public string menuScene = "MainMenu";
+    public PlayerData playerData;
 
     private GameObject shield;
 
@@ -33,7 +35,6 @@ public class GameManager : MonoBehaviour
     {
         //Loading spaceShip and bullet data
         GameObject PD = GameObject.Find("PlayerData");
-        PlayerData playerData;
         if (PD != null)
         {
             playerData = PD.GetComponent<PlayerData>();
@@ -97,9 +98,10 @@ public class GameManager : MonoBehaviour
         Destroy(spaceShip.GetComponent<RotateShip>());
 
         //Adjust transform
-        spaceShip.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+        // spaceShip.transform.localScale = Vector3.one;
         spaceShip.transform.localPosition = Vector3.zero;
         spaceShip.transform.localEulerAngles = Vector3.zero;
+        spaceShip.gameObject.name = "PlayerShip";
 
         //-----------------------ARMAS----------------------
         bulletPrefab = playerData.bullets[playerData.weaponID];
@@ -130,6 +132,11 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         paused = false;
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(menuScene);
     }
 
     IEnumerator SlowMo(int seconds)

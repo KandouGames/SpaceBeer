@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject gameInfoUI;
     public GameObject pauseUI;
-    
+
     public List<RectTransform> tutorialSlides;
     public int tutorialSlideID;
     private float speedSlides = 0.25f;
@@ -26,12 +26,6 @@ public class UIManager : MonoBehaviour
     public Text musicText;
 
     public List<Image> powerUps;
-    
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -40,11 +34,12 @@ public class UIManager : MonoBehaviour
             gameManager.PauseGame();
             pauseUI.SetActive(true);
         }
-            
+
     }
 
     public void SetBeerCoins(int beerCoins)
     {
+        // gameManager.playerData.beerCoins += beerCoins;
         beerCoinsText.text = beerCoins.ToString();
     }
 
@@ -55,7 +50,7 @@ public class UIManager : MonoBehaviour
 
     public void SetBarrels(int barrels)
     {
-        for(int i = 0; i < arrayBarrels.Count; ++i)
+        for (int i = 0; i < arrayBarrels.Count; ++i)
         {
             if (i < barrels)
                 arrayBarrels[i].SetActive(true);
@@ -136,17 +131,17 @@ public class UIManager : MonoBehaviour
     }
 
 
-    
+
 
     IEnumerator wait(RectTransform advisor)
     {
         Vector2 anchored = advisor.anchoredPosition;
         advisor.DOAnchorPos(Vector2.zero, 1f);
         yield return new WaitForSeconds(4);
-        advisor.DOAnchorPos(anchored, 1f); 
+        advisor.DOAnchorPos(anchored, 1f);
     }
 
 
 
-    
+
 }

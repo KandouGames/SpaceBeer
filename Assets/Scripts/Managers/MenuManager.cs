@@ -71,7 +71,7 @@ public class MenuManager : MonoBehaviour
     {
         //Pasamos nave y balas a la escena gameplay
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-        GameObject spaceShip = GameObject.Find("Space").transform.Find(playerData.spaceShipsLP[playerData.spaceShipID].name).gameObject;
+        GameObject spaceShip = playerData.spaceShipsLP[playerData.spaceShipID];
 
         //Desparentamos la nave y la bala
         spaceShip.transform.parent = null;
@@ -81,12 +81,13 @@ public class MenuManager : MonoBehaviour
         //Desactivamos las interacciones durante la animación
         mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
 
-        //Hide Load Time in screenfade
-
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
             {
-                StartCoroutine("LoadScene");
+                // StartCoroutine("LoadScene");
+                //Hide Load Time in screenfade
+                SceneManager.LoadScene(escenaGameplay);
+
             }
         );
     }

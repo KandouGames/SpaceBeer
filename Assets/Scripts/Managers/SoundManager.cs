@@ -68,6 +68,12 @@ public class SoundManager : MonoBehaviour
                 ulong distance = scoreManager.getDistance();
                 if (distance == 0)
                 {
+                    if (mainTheme.source.clip is null || mainTheme.clip is null)
+                    {
+                        mainSoundID = (Random.Range(0, mainClips.Count) + 1) % mainClips.Count;
+                        mainTheme.source.clip = mainClips[mainSoundID];
+                        mainTheme.clip = mainClips[mainSoundID];
+                    }
                     mainTheme.loop = true;
                     mainTheme.source.Play();
                     uiManager.ShowSong(mainTheme.clip.name);
@@ -78,8 +84,8 @@ public class SoundManager : MonoBehaviour
                     uiManager.ShowSong(mainTheme.clip.name);
                 }
             }
-            
-        }        
+
+        }
     }
 
     private void InitializeSound(Sound s)

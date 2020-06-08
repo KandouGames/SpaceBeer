@@ -11,8 +11,9 @@ public class PlayerData : MonoBehaviour
     public List<GameObject> bullets;
     public int spaceShipID;
     public int weaponID;
+    public int beerCoins = 3000;
 
-    
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -21,6 +22,6 @@ public class PlayerData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

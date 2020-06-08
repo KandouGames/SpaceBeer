@@ -18,7 +18,7 @@ public class DynamicPool : MonoBehaviour
 
     private int numToCreateBullets = 10;
     [Tooltip("num of asteroids to create of <bold> each asteroid type </bold>")]
-    private int numToCreateAsteroids = 5;
+    private int numToCreateAsteroids = 40;
     private int numToCreatePortalBarrels = 10;
     private int numToCreatePortalPlanets = 10;
     private int numToCreateDarkHoles = 10;

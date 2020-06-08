@@ -51,6 +51,9 @@ public class PlayerShipHandler : MonoBehaviour
     [HideInInspector]
     public SoundManager soundManager;
 
+    //Renderers of the spaceship
+    Renderer[] renders;
+
     void Start()
     {
         position = this.transform.position;
@@ -63,6 +66,9 @@ public class PlayerShipHandler : MonoBehaviour
         //Obtener controles para ordenador o para moviles
         StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
         inputs = (Inputs)standaloneInput;
+
+        //Asegurarse de que la nave hija se llame Playership
+        renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
 
         /*
         #if UNITY_ANDROID
@@ -260,13 +266,12 @@ public class PlayerShipHandler : MonoBehaviour
 
     IEnumerator BlinkShip()
     {
-        //Asegurarse de que la nave hija se llame Playership
-        Renderer[] renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
-        
-        while(invincibility)
+
+
+        while (invincibility)
         {
-            foreach(Renderer render in renders)
-               render.enabled = false;
+            foreach (Renderer render in renders)
+                render.enabled = false;
             yield return new WaitForSeconds(0.1f);
 
             foreach (Renderer render in renders)

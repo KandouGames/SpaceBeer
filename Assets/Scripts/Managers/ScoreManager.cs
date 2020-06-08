@@ -63,7 +63,7 @@ public class ScoreManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
                 DistributeBarrel();
         }
-        
+
     }
 
     public void StartNewGame()
@@ -116,7 +116,7 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
 
-        
+
         uiManager.SetBarrels(barrels);
         uiManager.SetBeerCoins(beerCoins);
 
@@ -131,12 +131,12 @@ public class ScoreManager : MonoBehaviour
         if (barrels == -1)
         {
             SetGameOver();
-        } 
+        }
     }
 
     public void SetLevel()
     {
-        switch(currentLevel)
+        switch (currentLevel)
         {
             case Level.SuperEasy:
                 if (beerCoins > BeerCoinLevels.Easy)
@@ -161,7 +161,7 @@ public class ScoreManager : MonoBehaviour
 
         gameManager.SetVelocityPlayerTraveller(currentLevel);
     }
-    
+
     public ulong getDistance()
     {
         return distance;
@@ -173,6 +173,7 @@ public class ScoreManager : MonoBehaviour
         Camera.main.transform?.DOShakeRotation(1.0f, new Vector3(0.0f, 0.0f, 50.0f), 20, 10.0f, false).OnComplete(() =>
         {
             uiManager.ShowGameOver(beerCoins, distance);
+            uiManager.SetBeerCoins(beerCoins);
             soundManager.PlayGameOver();
             print("game over");
         }
