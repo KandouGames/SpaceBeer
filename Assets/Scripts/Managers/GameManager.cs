@@ -151,14 +151,16 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Shield(int seconds)
     {
+        //Ignore Asteroids and Enemies
+        playerShip.GetComponent<PlayerShipHandler>().invincibility = true;
+
         shield.SetActive(true);
         shield.transform.DOScale(new Vector3(2.1882f, 2.1882f, 2.1882f), 0.5f).OnComplete(() =>
             {
                 shield.GetComponent<Light>().enabled = true;
             }
         );
-        //Ignore Asteroids and Enemies
-        playerShip.GetComponent<PlayerShipHandler>().invincibility = true;
+        
 
         yield return new WaitForSeconds(seconds);
         shield.GetComponent<Light>().enabled = false;

@@ -25,7 +25,11 @@ public class UIManager : MonoBehaviour
     public RectTransform musicAdvisor;
     public Text musicText;
 
-    public List<Image> powerUps;
+    public List<Image> powerUpsIcons;
+
+    void Start()
+    {
+    }
 
     void Update()
     {
@@ -78,9 +82,8 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void ShowPowerUp(Image image)
+    public void ShowPowerUpIcon(Image image)
     {
-
         image.transform.DOShakePosition(2.0f, 4, 100);
         image.transform.DOScale(new Vector3(2, 2, 2), 1);
         image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 1), 1.0f).OnComplete(() =>
@@ -89,6 +92,8 @@ public class UIManager : MonoBehaviour
         }
         );
     }
+    
+
 
     public void NextSlide()
     {
@@ -99,7 +104,7 @@ public class UIManager : MonoBehaviour
             RectTransform nextSlide = tutorialSlides[tutorialSlideID];
 
 
-            actualSlide.DOAnchorPos(new Vector2(-1140, 1140), speedSlides);
+            actualSlide.DOAnchorPos(new Vector2(-1140, 0), speedSlides);
             actualSlide.gameObject.SetActive(false);
             nextSlide.gameObject.SetActive(true);
             nextSlide.DOAnchorPos(Vector2.zero, speedSlides);
@@ -108,7 +113,7 @@ public class UIManager : MonoBehaviour
         {
             //Start game
             RectTransform actualSlide = tutorialSlides[tutorialSlideID];
-            actualSlide.DOAnchorPos(new Vector2(-1140, 1140), speedSlides);
+            actualSlide.DOAnchorPos(new Vector2(-1140, 0), speedSlides);
             actualSlide.gameObject.SetActive(false);
             actualSlide.transform.parent.gameObject.SetActive(false);
 
@@ -124,7 +129,7 @@ public class UIManager : MonoBehaviour
         RectTransform previousSlide = tutorialSlides[tutorialSlideID];
 
 
-        actualSlide.DOAnchorPos(new Vector2(1140, -1140), speedSlides);
+        actualSlide.DOAnchorPos(new Vector2(1140, 0), speedSlides);
         actualSlide.gameObject.SetActive(false);
         previousSlide.gameObject.SetActive(true);
         previousSlide.DOAnchorPos(Vector2.zero, speedSlides);

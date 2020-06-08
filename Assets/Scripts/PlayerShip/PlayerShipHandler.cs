@@ -2,6 +2,8 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerShipHandler : MonoBehaviour
 {
@@ -35,6 +37,11 @@ public class PlayerShipHandler : MonoBehaviour
     //Invincibility
     public bool invincibility = false;
 
+    //Handling PowerUps
+    public List<GameObject> powerUpsInterface;
+    public int powerUpID;
+    public bool hasPowerUp = false;
+
     //Boundary
     [HideInInspector]
     public float radius;
@@ -54,6 +61,8 @@ public class PlayerShipHandler : MonoBehaviour
     //Renderers of the spaceship
     Renderer[] renders;
 
+    
+
     void Start()
     {
         position = this.transform.position;
@@ -69,6 +78,8 @@ public class PlayerShipHandler : MonoBehaviour
 
         //Asegurarse de que la nave hija se llame Playership
         renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
+        
+
 
         /*
         #if UNITY_ANDROID
@@ -172,12 +183,20 @@ public class PlayerShipHandler : MonoBehaviour
                 shoot();
 
 
-            if (Input.GetKeyUp(KeyCode.K))
+            if (Input.GetKeyUp(KeyCode.K) && hasPowerUp)
             {
                 UIManager uiManager = gameManager.uiManager;
-                print("Power Up");
-                uiManager.ShowPowerUp(uiManager.powerUps[1]);
-                gameManager.PowerUp(1); //PowerUp receives id of power up
+                //Update powerup in interface
+                powerUpsInterface[powerUpID].SetActive(false);
+
+                //Update power up state
+                hasPowerUp = false;
+
+                //PowerUp activated sign
+                uiManager.ShowPowerUpIcon(uiManager.powerUpsIcons[powerUpID]);
+
+                //PowerUp effect
+                gameManager.PowerUp(powerUpID); //PowerUp receives id of power up
             }
         }
     }
@@ -240,10 +259,30 @@ public class PlayerShipHandler : MonoBehaviour
                 animatePortalCollision(other.gameObject);
                 soundManager.PlayPlanetPortal();
                 break;
+
             case DynamicPool.objType.Bullet:
                 //Bullets have rigidbodies and should keep being istrigger
                 other.isTrigger = true;
                 break;
+
+            case DynamicPool.objType.PowerUpSnail:
+                if (!hasPowerUp)
+                {
+                    hasPowerUp = true;
+                    powerUpID = 0;
+                    powerUpsInterface[powerUpID].SetActive(true);
+                }
+                break;
+
+            case DynamicPool.objType.PowerUpShield:
+                if (!hasPowerUp)
+                {
+                    hasPowerUp = true;
+                    powerUpID = 1;
+                    powerUpsInterface[powerUpID].SetActive(true);
+                }
+                break;
+            
         }
     }
 

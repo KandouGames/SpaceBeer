@@ -33,8 +33,12 @@ public class SoundManager : MonoBehaviour
     public int mainSoundID;
     public int shootSoundID;
 
+    //Auxiliar
+    private Level prevLevel;
+
     private void Awake()
     {
+
         volumeSlider.value = mainVolume;
         volumeSlider.onValueChanged.AddListener(UpdateVolume);
 
@@ -50,6 +54,7 @@ public class SoundManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "MainMenu")
             mainTheme.source.Play();
 
+        prevLevel = scoreManager.currentLevel;
     }
 
     private void Start()
@@ -78,11 +83,13 @@ public class SoundManager : MonoBehaviour
                     mainTheme.source.Play();
                     uiManager.ShowSong(mainTheme.clip.name);
                 }
-                else if (distance % 2000 == 0)
+                else if (scoreManager.currentLevel != prevLevel)
                 {
                     changeSong();
                     uiManager.ShowSong(mainTheme.clip.name);
                 }
+
+                prevLevel = scoreManager.currentLevel;
             }
 
         }
