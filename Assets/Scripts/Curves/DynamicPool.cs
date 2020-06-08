@@ -3,26 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Not happy about this, too difficult to extend
 public class DynamicPool : MonoBehaviour
 {
-    //Not happy about this
-    public GameObject bulletPrefab;
-    public GameObject asteroidPrefab;
-    public GameObject portalBarrelPrefab;
-    public GameObject portalPlanetPrefab;
-    public GameObject darkHolePrefab;
+    private GameObject bulletPrefab;
+    private List<GameObject> asteroidPrefabList;
+    private GameObject portalBarrelPrefab;
+    private GameObject portalPlanetPrefab;
+    private GameObject darkHolePrefab;
+    private GameObject powerUpShieldPrefab;
+    private GameObject powerUpSnailPrefab;
+    private GameObject powerUpLaserPrefab;
+    private GameObject powerUpGrenadePrefab;
 
-    public int numToCreateBullets = 10;
-    public int numToCreateAsteroids = 10;
-    public int numToCreatePortalBarrels = 10;
-    public int numToCreatePortalPlanets = 10;
-    public int numToCreateDarkHoles = 10;
+    private int numToCreateBullets = 10;
+    [Tooltip("num of asteroids to create of <bold> each asteroid type </bold>")]
+    private int numToCreateAsteroids = 5;
+    private int numToCreatePortalBarrels = 10;
+    private int numToCreatePortalPlanets = 10;
+    private int numToCreateDarkHoles = 10;
+    private int numToCreatePowerUpShield = 5;
+    private int numToCreatePowerUpSnail = 5;
+    private int numToCreatePowerUpLaser = 5;
+    private int numToCreatePowerUpGrenade = 5;
 
     private Queue<GameObject> bulletQueue;
     private Queue<GameObject> asteroidQueue;
     private Queue<GameObject> portalBarrelQueue;
     private Queue<GameObject> portalPlanetQueue;
     private Queue<GameObject> darkHoleQueue;
+    private Queue<GameObject> powerUpShieldQueue;
+    private Queue<GameObject> powerUpSnailQueue;
+    private Queue<GameObject> powerUpLaserQueue;
+    private Queue<GameObject> powerUpGrenadedQueue;
 
     private GameObject curveElements;
     private GameObject bulletElements;
@@ -83,7 +96,8 @@ public class DynamicPool : MonoBehaviour
                     break;
                 case objType.Asteroid:
                     numToCreate = numToCreateAsteroids;
-                    this.asteroidPrefab = prefab;
+                    this.asteroidPrefabList = new List<GameObject>();
+                    this.asteroidPrefabList.Add(prefab);
                     break;
                 case objType.PortalBarrel:
                     numToCreate = numToCreatePortalBarrels;
@@ -97,6 +111,22 @@ public class DynamicPool : MonoBehaviour
                     numToCreate = numToCreateDarkHoles;
                     this.darkHolePrefab = prefab;
                     break;
+                case objType.PowerUpShield:
+                    numToCreate = numToCreatePowerUpShield;
+                    this.powerUpShieldPrefab = prefab;
+                    break;
+                case objType.PowerUpSnail:
+                    numToCreate = numToCreatePowerUpSnail;
+                    this.powerUpSnailPrefab = prefab;
+                    break;
+                case objType.PowerUpLaser:
+                    numToCreate = numToCreatePowerUpLaser;
+                    this.powerUpLaserPrefab = prefab;
+                    break;
+                case objType.PowerUpGrenade:
+                    numToCreate = numToCreatePowerUpGrenade;
+                    this.powerUpGrenadePrefab = prefab;
+                    break;
                 default:
                     Debug.LogError("<color=red> Dynamic pool received an incorrect object type </color>");
                     break;
@@ -108,6 +138,7 @@ public class DynamicPool : MonoBehaviour
             }
         }
     }
+
 
     public GameObject GetObj(objType objToCreate)
     {
@@ -206,6 +237,38 @@ public class DynamicPool : MonoBehaviour
                 }
                 currentQueue = darkHoleQueue;
                 break;
+            case objType.PowerUpShield:
+                if (powerUpShieldQueue is null)
+                {
+                    queueWasNull = true;
+                    powerUpShieldQueue = new Queue<GameObject>();
+                }
+                currentQueue = powerUpShieldQueue;
+                break;
+            case objType.PowerUpSnail:
+                if (powerUpSnailQueue is null)
+                {
+                    queueWasNull = true;
+                    powerUpSnailQueue = new Queue<GameObject>();
+                }
+                currentQueue = powerUpSnailQueue;
+                break;
+            case objType.PowerUpLaser:
+                if (powerUpLaserQueue is null)
+                {
+                    queueWasNull = true;
+                    powerUpLaserQueue = new Queue<GameObject>();
+                }
+                currentQueue = powerUpLaserQueue;
+                break;
+            case objType.PowerUpGrenade:
+                if (powerUpGrenadedQueue is null)
+                {
+                    queueWasNull = true;
+                    powerUpGrenadedQueue = new Queue<GameObject>();
+                }
+                currentQueue = powerUpGrenadedQueue;
+                break;
             default:
                 Debug.LogError("<color=red> Dynamic pool received an incorrect object type </color>");
                 currentQueue = asteroidQueue;
@@ -221,7 +284,8 @@ public class DynamicPool : MonoBehaviour
         switch (objToCreate)
         {
             case objType.Asteroid:
-                prefabToGenerate = this.asteroidPrefab;
+                int randomAsteroid = UnityEngine.Random.Range(0, asteroidPrefabList.Count);
+                prefabToGenerate = asteroidPrefabList[randomAsteroid];
                 break;
             case objType.Bullet:
                 prefabToGenerate = this.bulletPrefab;
@@ -235,12 +299,33 @@ public class DynamicPool : MonoBehaviour
             case objType.DarkHole:
                 prefabToGenerate = this.darkHolePrefab;
                 break;
+            case objType.PowerUpShield:
+                prefabToGenerate = this.powerUpShieldPrefab;
+                break;
+            case objType.PowerUpSnail:
+                prefabToGenerate = this.powerUpSnailPrefab;
+                break;
+            case objType.PowerUpLaser:
+                prefabToGenerate = this.powerUpLaserPrefab;
+                break;
+            case objType.PowerUpGrenade:
+                prefabToGenerate = this.powerUpGrenadePrefab;
+                break;
             default:
                 Debug.LogError("<color=red> Dynamic pool received an incorrect object type </color>");
-                prefabToGenerate = this.asteroidPrefab;
+                prefabToGenerate = asteroidPrefabList[0];
                 break;
         }
         return prefabToGenerate;
     }
 
+
+    public void addToAsteroidList(GameObject asteroidPrefabsToAdd)
+    {
+        asteroidPrefabList.Add(asteroidPrefabsToAdd);
+        for (int i = 0; i < numToCreateAsteroids; i++)
+        {
+            asteroidQueue.Enqueue(CreateSingleObject(objType.Asteroid));
+        }
+    }
 }

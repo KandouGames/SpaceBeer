@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         uiManager.gameManager = this;
 
-        PlayerShipHandler playerShipHandler = playerShip.GetComponent<PlayerShipHandler>(); 
+        PlayerShipHandler playerShipHandler = playerShip.GetComponent<PlayerShipHandler>();
         playerShipHandler.gameManager = this;
         playerShipHandler.scoreManager = this.scoreManager;
         playerShipHandler.soundManager = this.soundManager;
@@ -69,18 +69,20 @@ public class GameManager : MonoBehaviour
 
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
-        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroid);
+        DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroids[0]);
+        for (int i = 1; i < obstaclesPrefabs.asteroids.Count; i++)
+        {
+            DynamicPool.instance.addToAsteroidList(obstaclesPrefabs.asteroids[i]);
+        }
         DynamicPool.instance.Generate(DynamicPool.objType.PortalBarrel, obstaclesPrefabs.portalBarrel);
         DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
-
-        //Falta acabar dynamicpool para que pueda generar los prefabs de los portales powerup
-        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpGrenade, obstaclesPrefabs.powerUpPortals.grenade);
-        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpLaser, obstaclesPrefabs.powerUpPortals.laser);
-        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpShield, obstaclesPrefabs.powerUpPortals.shield);
-        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpSnail, obstaclesPrefabs.powerUpPortals.snail);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpShield, obstaclesPrefabs.powerUpPortals.shield);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpSnail, obstaclesPrefabs.powerUpPortals.snail);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpLaser, obstaclesPrefabs.powerUpPortals.laser);
+        DynamicPool.instance.Generate(DynamicPool.objType.PowerUpGrenade, obstaclesPrefabs.powerUpPortals.grenade);
 
         curveManager.Generate(playerShip);
-        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);    
+        playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);
 
         skyboxCamera.transform.parent = spaceAtrezzo.transform;
         curveManager.SetupAtrezzo(spaceAtrezzo);
@@ -169,7 +171,7 @@ public class GameManager : MonoBehaviour
         //Asteroids hits again
         playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
 
-        
+
     }
 
     public void SetVelocityPlayerTraveller(Level level)
@@ -182,7 +184,7 @@ public class GameManager : MonoBehaviour
 [System.Serializable]
 public class ObstaclesPrefabs
 {
-    public GameObject asteroid;
+    public List<GameObject> asteroids;
     public GameObject portalBarrel;
     public GameObject portalPlanet;
     public GameObject darkHole;
@@ -196,6 +198,6 @@ public class ObstaclesPrefabs
         public GameObject laser;
         public GameObject grenade;
     }
-    
+
 }
 
