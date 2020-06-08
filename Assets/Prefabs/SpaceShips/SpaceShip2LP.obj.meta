@@ -3,20 +3,20 @@ guid: eeaa5b1add336e44c94a1278baa28324
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5
+    100000: default
     100002: //RootNode
-    400000: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5
+    400000: default
     400002: //RootNode
-    2100000: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5Mat
-    2300000: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5
-    3300000: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5
-    4300000: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5
+    2100000: defaultMat
+    2300000: default
+    3300000: default
+    4300000: default
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SciFi_Fighter_SciFi_Fighter_SciFi_Fighter_AK5Mat
-    second: {fileID: 2100000, guid: b1a5eaefcdcc29f43a2596f23ddbc8c2, type: 2}
+      name: defaultMat
+    second: {fileID: 2100000, guid: 519ec40d89b42f8428802bf988c41b32, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
