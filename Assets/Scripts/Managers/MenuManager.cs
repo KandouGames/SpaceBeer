@@ -23,6 +23,8 @@ public class MenuManager : MonoBehaviour
 
     public string escenaGameplay;
 
+    AsyncOperation asyncLoadScene;
+
     public void Awake()
     {
         camera = Camera.main;
@@ -79,12 +81,34 @@ public class MenuManager : MonoBehaviour
         //Desactivamos las interacciones durante la animación
         mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
 
+        //Hide Load Time in screenfade
+
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
             {
-                SceneManager.LoadScene(escenaGameplay);
+                StartCoroutine("LoadScene");
             }
         );
+    }
+
+    //This is technically not necessary anymore but I want to see the repercussions of the audio changes.
+    IEnumerator LoadScene()
+    {
+        yield return null;
+
+        asyncLoadScene = SceneManager.LoadSceneAsync(escenaGameplay);
+        float timeSinceLoadingStarted = 0f;
+
+        while (!asyncLoadScene.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncLoadScene.progress / 0.9f);
+            Debug.Log("Loading progress: " + (progress * 100) + "%");
+
+            //Fake timer advancing
+            progress += timeSinceLoadingStarted;
+
+            yield return null;
+        }
     }
 
     public void ShowMainMenu()
