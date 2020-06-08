@@ -212,7 +212,6 @@ public class CurveSystem : MonoBehaviour
                 List<Obstacle> obstacles = curves[i].obstacleList;
                 for (int j = 0; j < obstacles.Count; j++)
                 {
-                    Debug.Log("hello");
                     obstacles[j].obstacleObj.SetActive(false);
                 }
             }

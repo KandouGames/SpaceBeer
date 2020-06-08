@@ -206,6 +206,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 }
 
 [System.Serializable]
