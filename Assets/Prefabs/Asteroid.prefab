@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5195877340192876785}
   - component: {fileID: 6562651330490862748}
-  - component: {fileID: 8687467910567963022}
+  - component: {fileID: 4035814055897336990}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -43,11 +43,11 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: -0.5, y: 0, z: 0}
---- !u!114 &8687467910567963022
+  m_Center: {x: -0.4, y: 0, z: 0}
+--- !u!114 &4035814055897336990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5602447729151180498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d046b8cb589d74b8065b1b494f25ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 83162735f192d1844ab319af8379845a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1808891643704361771
@@ -113,6 +113,18 @@ PrefabInstance:
     - target: {fileID: 415920, guid: ae4427e80dceffe47b5179ce000667cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 415920, guid: ae4427e80dceffe47b5179ce000667cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 415920, guid: ae4427e80dceffe47b5179ce000667cb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 415920, guid: ae4427e80dceffe47b5179ce000667cb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6168749354565349705, guid: ae4427e80dceffe47b5179ce000667cb, type: 3}

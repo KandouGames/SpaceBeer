@@ -7,6 +7,10 @@ public class ObstacleFactory : MonoBehaviour
     private Curve curve;
     private float pipeRadius;
 
+    private int nAsteroids = 40;
+    private int nPlanetPortals = 2;
+    private int nBarrelPortals = 2;
+
     private List<GameObject> asteroids;
     private List<GameObject> planetPortals;
     private List<GameObject> barrelPortals;
@@ -38,7 +42,7 @@ public class ObstacleFactory : MonoBehaviour
     public void GenerateAsteroids()
     {
         asteroids = new List<GameObject>();
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < nAsteroids; ++i)
         {
             GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.Asteroid);
             asteroids.Add(obstacle);
@@ -49,7 +53,7 @@ public class ObstacleFactory : MonoBehaviour
     public void GenerateBarrelPortals()
     {
         barrelPortals = new List<GameObject>();
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < nBarrelPortals; ++i)
         {
             GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.PortalBarrel);
             barrelPortals.Add(obstacle);
@@ -61,7 +65,7 @@ public class ObstacleFactory : MonoBehaviour
     public void GeneratePlanetPortals()
     {
         planetPortals = new List<GameObject>();
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < nPlanetPortals; ++i)
         {
             GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.PortalPlanet);
             planetPortals.Add(obstacle);
@@ -75,34 +79,37 @@ public class ObstacleFactory : MonoBehaviour
         switch (level)
         {
             case Level.SuperEasy:
-                threshold = 0.25f;
+                threshold = 0.2f;
                 break;
             case Level.Easy:
-                threshold = 0.4f;
+                threshold = 0.25f;
                 break;
             case Level.Medium:
-                threshold = 0.6f;
+                threshold = 0.3f;
                 break;
             case Level.Hard:
-                threshold = 0.8f;
+                threshold = 0.5f;
                 break;
             case Level.God:
-                threshold = 0.9f;
+                threshold = 0.7f;
                 break;
             default:
-                threshold = 0.25f;
+                threshold = 0.2f;
                 break;
         }
 
         foreach (GameObject asteroid in asteroids)
         {
             asteroid.SetActive(false);
+        }
+
+        for (int i = 0; i < nAsteroids / 10; ++i)
+        {
             float random = Random.Range(0.0f, 1.0f);
 
             if (random < threshold)
-                SetObstacle(asteroid);
+                SetRandomShapeObstacles(asteroids.GetRange(10 * i, 10));
         }
-        
     }
 
     public void SetPlanetPortals(Level level)
@@ -111,22 +118,22 @@ public class ObstacleFactory : MonoBehaviour
         switch (level)
         {
             case Level.SuperEasy:
-                threshold = 0.5f;
+                threshold = 0.12f;
                 break;
             case Level.Easy:
-                threshold = 0.4f;
+                threshold = 0.1f;
                 break;
             case Level.Medium:
-                threshold = 0.35f;
+                threshold = 0.1f;
                 break;
             case Level.Hard:
-                threshold = 0.3f;
+                threshold = 0.09f;
                 break;
             case Level.God:
-                threshold = 0.2f;
+                threshold = 0.08f;
                 break;
             default:
-                threshold = 0.5f;
+                threshold = 0.1f;
                 break;
         }
 
@@ -137,7 +144,7 @@ public class ObstacleFactory : MonoBehaviour
             float random = Random.Range(0.0f, 1.0f);
 
             if (random < threshold)
-                SetObstacle(planetPortal);
+                SetRandomPosObstacle(planetPortal);
         }
 
     }
@@ -148,22 +155,22 @@ public class ObstacleFactory : MonoBehaviour
         switch (level)
         {
             case Level.SuperEasy:
-                threshold = 0.7f;
+                threshold = 0.15f;
                 break;
             case Level.Easy:
-                threshold = 0.6f;
+                threshold = 0.1f;
                 break;
             case Level.Medium:
-                threshold = 0.5f;
+                threshold = 0.1f;
                 break;
             case Level.Hard:
-                threshold = 0.4f;
+                threshold = 0.1f;
                 break;
             case Level.God:
-                threshold = 0.3f;
+                threshold = 0.08f;
                 break;
             default:
-                threshold = 0.7f;
+                threshold = 0.5f;
                 break;
         }
 
@@ -174,11 +181,11 @@ public class ObstacleFactory : MonoBehaviour
             float random = Random.Range(0.0f, 1.0f);
 
             if (random < threshold)
-                SetObstacle(barrelPortal);
+                SetRandomPosObstacle(barrelPortal);
         }
     }
 
-    public void SetObstacle(GameObject obstacle)
+    public void SetRandomPosObstacle(GameObject obstacle)
     {
         obstacle.SetActive(true);
         obstacle.GetComponent<CapsuleCollider>().isTrigger = true;
@@ -200,7 +207,7 @@ public class ObstacleFactory : MonoBehaviour
 
         if (DetectOverlap(obstacle))
         {
-            SetObstacle(obstacle);
+            SetRandomPosObstacle(obstacle);
         }
     }
 
@@ -234,6 +241,101 @@ public class ObstacleFactory : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetRandomShapeObstacles(List<GameObject> obstacles)
+    {
+        float random = Random.Range(0.0f, 1.0f);
+
+        if (random < 0.33f)
+            SetColumnObstacles(obstacles);
+        else if (random < 0.66f)
+            SetArrowObstacles(obstacles);
+        else if (random < 1.0f)
+            SetCircledObstacles(obstacles);
+    }
+
+    public void SetCircledObstacles(List<GameObject> obstacles)
+    {
+        Transform[] curvePoints = curve.GetCurveBasePoints();
+        Transform randCurvePoint = curvePoints[Random.Range(0, curvePoints.Length)];
+
+        float obstacleRadius = obstacles[0].GetComponent<CapsuleCollider>().radius;
+        float radius = Random.Range((pipeRadius - obstacleRadius) * 0.4f, pipeRadius - obstacleRadius);
+
+        Vector3 center = randCurvePoint.position;
+
+        int nObstacles = obstacles.Count;
+        for (int i = 0; i < nObstacles; ++i)
+        {
+            obstacles[i].SetActive(true);
+            obstacles[i].GetComponent<CapsuleCollider>().isTrigger = true;
+
+            obstacles[i].transform.position = center;
+            obstacles[i].transform.rotation = randCurvePoint.rotation;
+
+            float angle = 2.0f * Mathf.PI * ((float)i / nObstacles);
+            float deltaXPos = Mathf.Cos(angle) * radius;
+            float deltaYPos = Mathf.Sin(angle) * radius;
+
+            obstacles[i].transform.position += obstacles[i].transform.right * deltaXPos + obstacles[i].transform.up * deltaYPos;
+        }
+    }
+
+    public void SetArrowObstacles(List<GameObject> obstacles)
+    {
+        Transform[] curvePoints = curve.GetCurveBasePoints();
+        Transform randCurvePoint = curvePoints[Random.Range(0, curvePoints.Length)];
+
+        float obstacleRadius = obstacles[0].GetComponent<CapsuleCollider>().radius;
+        float radius = Random.Range(-(pipeRadius - obstacleRadius) * 0.5f, (pipeRadius - obstacleRadius) * 0.5f);
+        Vector3 center = randCurvePoint.position + randCurvePoint.up * radius;        
+
+        int nObstacles = obstacles.Count;
+        float step = (pipeRadius * 2.0f) / nObstacles;
+        for (int i = 0; i < nObstacles; ++i)
+        {
+            obstacles[i].SetActive(true);
+            obstacles[i].GetComponent<CapsuleCollider>().isTrigger = true;
+
+            obstacles[i].transform.position = center;
+            obstacles[i].transform.rotation = randCurvePoint.rotation;
+
+            float deltaXPos = -pipeRadius + step * i;
+
+            obstacles[i].transform.position += obstacles[i].transform.right * deltaXPos;
+
+            if (Vector3.Distance(obstacles[i].transform.position, randCurvePoint.position) > (pipeRadius - obstacleRadius))
+                obstacles[i].SetActive(false);
+        }
+    }
+
+    public void SetColumnObstacles(List<GameObject> obstacles)
+    {
+        Transform[] curvePoints = curve.GetCurveBasePoints();
+        Transform randCurvePoint = curvePoints[Random.Range(0, curvePoints.Length)];
+
+        float obstacleRadius = obstacles[0].GetComponent<CapsuleCollider>().radius;
+        float radius = Random.Range(-(pipeRadius - obstacleRadius) * 0.5f, (pipeRadius - obstacleRadius) * 0.5f);
+        Vector3 center = randCurvePoint.position + randCurvePoint.right * radius;
+
+        int nObstacles = obstacles.Count;
+        float step = (pipeRadius * 2.0f) / nObstacles;
+        for (int i = 0; i < nObstacles; ++i)
+        {
+            obstacles[i].SetActive(true);
+            obstacles[i].GetComponent<CapsuleCollider>().isTrigger = true;
+
+            obstacles[i].transform.position = center;
+            obstacles[i].transform.rotation = randCurvePoint.rotation;
+
+            float deltaYPos = -pipeRadius + step * i;
+
+            obstacles[i].transform.position += obstacles[i].transform.up * deltaYPos;
+
+            if (Vector3.Distance(obstacles[i].transform.position, randCurvePoint.position) > (pipeRadius - obstacleRadius))
+                obstacles[i].SetActive(false);
+        }
     }
 
 

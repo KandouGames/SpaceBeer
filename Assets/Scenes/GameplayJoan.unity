@@ -3675,7 +3675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23300001, y: 0.16730201}
   m_AnchorMax: {x: 0.81200004, y: 0.38884902}
-  m_AnchoredPosition: {x: -14.000153, y: 2}
+  m_AnchoredPosition: {x: -14.000122, y: 2.0000305}
   m_SizeDelta: {x: -35.137146, y: -30.1192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &679201059
@@ -4377,7 +4377,7 @@ MonoBehaviour:
   scoreManager: {fileID: 1442076583}
   uiManager: {fileID: 812249890}
   volumeSlider: {fileID: 1752030786}
-  mainVolume: 0.617
+  mainVolume: 0.197
   mainClips:
   - {fileID: 8300000, guid: 655111b377a02ad40a37daf5be54b6ec, type: 3}
   - {fileID: 8300000, guid: ce38f0d75b3422b49a369707582aff54, type: 3}
@@ -4387,8 +4387,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a9bd3d67271a1a44ba5e8cdec874c6d2, type: 3}
   - {fileID: 8300000, guid: c5ab43eb861ef3c4db4600527c3ec29b, type: 3}
   - {fileID: 8300000, guid: 4a14985fcced5674bb9a3ec19845dc96, type: 3}
-  mainSound:
-    clip: {fileID: 8300000, guid: 655111b377a02ad40a37daf5be54b6ec, type: 3}
+  mainTheme:
+    clip: {fileID: 8300000, guid: b29e267de14e75f479d2a175b3241908, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
@@ -4407,13 +4407,23 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  barrelPoratalSound:
+  beerPortalSound:
     clip: {fileID: 8300000, guid: c7e86b03c223c294d8119f44ebb8a7c8, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
   crashSound:
-    clip: {fileID: 8300000, guid: 25bf24d9016cdb1468b52923d3cc4e5e, type: 3}
+    clip: {fileID: 8300000, guid: fccc46974bfb74a4498b8793b264e90c, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  finalCrashSound:
+    clip: {fileID: 8300000, guid: cb275360d570ad04f9ddcd8facc10a27, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  gameOverSound:
+    clip: {fileID: 8300000, guid: fa83c05cd68d03146ae128b010fd52b0, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
@@ -4723,6 +4733,7 @@ MonoBehaviour:
   gameOverRecordText: {fileID: 2046865336}
   musicAdvisor: {fileID: 892839209}
   musicText: {fileID: 770216933}
+  powerUps: []
 --- !u!1 &830231208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4832,7 +4843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23300001, y: 0.16730201}
   m_AnchorMax: {x: 0.81200004, y: 0.38884902}
-  m_AnchoredPosition: {x: -14.000153, y: 2}
+  m_AnchoredPosition: {x: -14.000122, y: 2.0000305}
   m_SizeDelta: {x: -35.137146, y: -60.1192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &852335848
@@ -7078,6 +7089,7 @@ MonoBehaviour:
   scoreManager: {fileID: 1442076583}
   soundManager: {fileID: 776263664}
   uiManager: {fileID: 812249890}
+  ppManager: {fileID: 0}
   playerShip: {fileID: 461256903}
   curveManager: {fileID: 1062300351}
   curveWorld: {fileID: 681189897}
@@ -7093,6 +7105,15 @@ MonoBehaviour:
     portalPlanet: {fileID: 4053527282968314658, guid: 7701f4f7e106e0f4ea7a090ac248663b,
       type: 3}
     darkHole: {fileID: 0}
+    powerUpPortals:
+      shield: {fileID: 4162528399091416316, guid: 589b105e692e55d49bf136dbccc9b397,
+        type: 3}
+      snail: {fileID: 4162528399091416316, guid: c6ad5de86b7f94d4f88221459c50f19c,
+        type: 3}
+      laser: {fileID: 4162528399091416316, guid: 7339995546907e34ca6367082c3a3238,
+        type: 3}
+      grenade: {fileID: 4162528399091416316, guid: 8e9c652b284c3ad45a8e7a70b1d624ed,
+        type: 3}
   paused: 1
 --- !u!1 &1263883038
 GameObject:
@@ -7923,6 +7944,7 @@ MonoBehaviour:
   barrels: 0
   uiManager: {fileID: 0}
   gameManager: {fileID: 1236060288}
+  soundManager: {fileID: 0}
   currentLevel: 0
 --- !u!1 &1467897117
 GameObject:

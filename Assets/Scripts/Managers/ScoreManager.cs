@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
     public UIManager uiManager;
     [HideInInspector]
     public GameManager gameManager;
+    [HideInInspector]
+    public SoundManager soundManager;
 
     [HideInInspector]
     public Level currentLevel;  //Esto es la maquina de estados
@@ -33,9 +35,9 @@ public class ScoreManager : MonoBehaviour
     struct BeerCoinLevels
     {
         public static int SuperEasy = 0;
-        public static int Easy = 1500;
+        public static int Easy = 750;
         public static int Medium = 4000;
-        public static int Hard = 7500;
+        public static int Hard = 7000;
         public static int God = 10000;
     }
 
@@ -79,7 +81,6 @@ public class ScoreManager : MonoBehaviour
 
     public void EarnBarrel()
     {
-        
         if (barrels < maxBarrels)
         {
             ++barrels;
@@ -157,6 +158,8 @@ public class ScoreManager : MonoBehaviour
 
                 break;
         }
+
+        gameManager.SetVelocityPlayerTraveller(currentLevel);
     }
     
     public ulong getDistance()
@@ -170,6 +173,7 @@ public class ScoreManager : MonoBehaviour
         Camera.main.transform?.DOShakeRotation(1.0f, new Vector3(0.0f, 0.0f, 50.0f), 20, 10.0f, false).OnComplete(() =>
         {
             uiManager.ShowGameOver(beerCoins, distance);
+            soundManager.PlayGameOver();
             print("game over");
         }
         );

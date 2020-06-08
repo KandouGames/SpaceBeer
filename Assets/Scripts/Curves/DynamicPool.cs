@@ -35,7 +35,11 @@ public class DynamicPool : MonoBehaviour
         Asteroid,
         PortalBarrel,
         PortalPlanet,
-        DarkHole
+        DarkHole,
+        PowerUpShield,
+        PowerUpSnail,
+        PowerUpLaser,
+        PowerUpGrenade,
     };
 
 

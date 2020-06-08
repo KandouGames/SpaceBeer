@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 public class PlayerShipHandler : MonoBehaviour
 {
@@ -177,13 +178,11 @@ public class PlayerShipHandler : MonoBehaviour
 
     private void updateTransform()
     {
-        
-        this.transform.position = /*Quaternion.Euler(rest_rotation) **/ position;
+
+        this.transform.position = position;
 
         // Using vertical rotation with x axes and horizontal rotation with y and z axes
-        this.transform.rotation = Quaternion.Euler(new Vector3(-rotation.y, rotation.x * 0.5f, -rotation.x) /*+ rest_rotation*/);
-        
-        
+        this.transform.rotation = Quaternion.Euler(new Vector3(-rotation.y, rotation.x * 0.5f, -rotation.x));
     }
 
     private void shoot()
@@ -206,12 +205,20 @@ public class PlayerShipHandler : MonoBehaviour
                 if (!invincibility)
                 {
                     scoreManager.LooseBarrel();
-                    soundManager.PlayCrashSound();
 
                     if (scoreManager.barrels == -1)
+                    {
+
                         explosionHandler.PlayFullExplosion();
+                        soundManager.mainTheme.source.Stop();
+                        soundManager.PlayFinalCrashSound();
+                    }
                     else
+                    {
                         explosionHandler.PlaySmokeExplosion();
+                        soundManager.PlayCrashSound();
+                        StartCoroutine(ProtectFromAsteroids(2));
+                    }
                 }
 
                 break;
@@ -233,7 +240,7 @@ public class PlayerShipHandler : MonoBehaviour
                 break;
         }
     }
-    
+
     public void animatePortalCollision(GameObject portal)
     {
         portal.transform?.DOScale(1.3f, 0.2f).OnComplete(() =>
@@ -243,7 +250,29 @@ public class PlayerShipHandler : MonoBehaviour
         );
     }
 
+    IEnumerator ProtectFromAsteroids(int seconds)
+    {
+        invincibility = true;
+        StartCoroutine(BlinkShip());
+        yield return new WaitForSeconds(seconds);
+        invincibility = false;
+    }
 
+    IEnumerator BlinkShip()
+    {
+        //Asegurarse de que la nave hija se llame Playership
+        Renderer[] renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
+        
+        while(invincibility)
+        {
+            foreach(Renderer render in renders)
+               render.enabled = false;
+            yield return new WaitForSeconds(0.1f);
 
+            foreach (Renderer render in renders)
+                render.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 }
 

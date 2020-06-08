@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         //Initialize needed scripts
         scoreManager.gameManager = this;
         scoreManager.uiManager = this.uiManager;
+        scoreManager.soundManager = this.soundManager;
 
         soundManager.gameManager = this;
         soundManager.scoreManager = this.scoreManager;
@@ -72,9 +73,14 @@ public class GameManager : MonoBehaviour
         DynamicPool.instance.Generate(DynamicPool.objType.PortalBarrel, obstaclesPrefabs.portalBarrel);
         DynamicPool.instance.Generate(DynamicPool.objType.PortalPlanet, obstaclesPrefabs.portalPlanet);
 
+        //Falta acabar dynamicpool para que pueda generar los prefabs de los portales powerup
+        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpGrenade, obstaclesPrefabs.powerUpPortals.grenade);
+        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpLaser, obstaclesPrefabs.powerUpPortals.laser);
+        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpShield, obstaclesPrefabs.powerUpPortals.shield);
+        //DynamicPool.instance.Generate(DynamicPool.objType.PowerUpSnail, obstaclesPrefabs.powerUpPortals.snail);
+
         curveManager.Generate(playerShip);
         playerShip.GetComponent<PlayerCurveTraveller>().Setup(curveManager, this, curveWorld);    
-        
 
         skyboxCamera.transform.parent = spaceAtrezzo.transform;
         curveManager.SetupAtrezzo(spaceAtrezzo);
@@ -84,7 +90,8 @@ public class GameManager : MonoBehaviour
     {
         paused = false;
         scoreManager.StartNewGame();
-        curveManager.ResetObstacles();
+        curveManager.ResetObstacles(); //hay que poner las dos primeras curvas vacías
+        SetVelocityPlayerTraveller(Level.SuperEasy);
     }
 
     void LoadData(PlayerData playerData)
@@ -165,6 +172,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void SetVelocityPlayerTraveller(Level level)
+    {
+        playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(level);
+    }
+
 }
 
 [System.Serializable]
@@ -174,5 +186,16 @@ public class ObstaclesPrefabs
     public GameObject portalBarrel;
     public GameObject portalPlanet;
     public GameObject darkHole;
+    public PowerUpPortals powerUpPortals;
+
+    [System.Serializable]
+    public class PowerUpPortals
+    {
+        public GameObject shield;
+        public GameObject snail;
+        public GameObject laser;
+        public GameObject grenade;
+    }
+    
 }
 

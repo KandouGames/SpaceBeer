@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerCurveTraveller : MonoBehaviour
 {
     private CurveSystem curveManager;
@@ -10,7 +12,17 @@ public class PlayerCurveTraveller : MonoBehaviour
 
     private Curve currentCurve;
 
-    public float playerVelocity = 1f;
+    public float playerVelocity = 7.0f;
+
+    struct LevelVelocities
+    {
+        public static float SuperEasy = 7.0f;
+        public static float Easy = 10.0f;
+        public static float Medium = 12.0f;
+        public static float Hard = 13.0f;
+        public static float God = 14.0f;
+    };
+
     private float curveSystemAccumulatedRotation = 0f;
     private float worldRotation = 0f;
 
@@ -33,9 +45,9 @@ public class PlayerCurveTraveller : MonoBehaviour
         deltaToRotation = 0f;
         totalDeltaTraveled = 0f;
 
-
         SetupCurrentCurve();
 
+        SetVelocity(Level.SuperEasy);
     }
 
     private void Update()
@@ -79,5 +91,29 @@ public class PlayerCurveTraveller : MonoBehaviour
 
     }
 
+    public void SetVelocity(Level level)
+    {
+        switch (level)
+        {
+            case Level.SuperEasy:
+                playerVelocity = LevelVelocities.SuperEasy;
+                break;
+            case Level.Easy:
+                playerVelocity = LevelVelocities.Easy;
+                break;
+            case Level.Medium:
+                playerVelocity = LevelVelocities.Medium;
+                break;
+            case Level.Hard:
+                playerVelocity = LevelVelocities.Hard;
+                break;
+            case Level.God:
+                playerVelocity = LevelVelocities.God;
+                break;
+        }
+    }
+
 
 }
+
+

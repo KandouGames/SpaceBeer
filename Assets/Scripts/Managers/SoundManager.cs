@@ -20,11 +20,14 @@ public class SoundManager : MonoBehaviour
     public List<AudioClip> shootClips;
 
     //Sounds
-    public Sound mainSound;
+    public Sound mainTheme;
     public Sound buttonClickSound;
     public Sound shootSound;
     public Sound planetPortalSound;
     public Sound beerPortalSound;
+    public Sound crashSound;
+    public Sound finalCrashSound;
+    public Sound gameOverSound;
 
     //IDs
     public int mainSoundID;
@@ -36,13 +39,16 @@ public class SoundManager : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(UpdateVolume);
 
         InitializeSound(buttonClickSound);
-        InitializeSound(mainSound);
+        InitializeSound(mainTheme);
         InitializeSound(shootSound);
         InitializeSound(planetPortalSound);
         InitializeSound(beerPortalSound);
+        InitializeSound(crashSound);
+        InitializeSound(finalCrashSound);
+        InitializeSound(gameOverSound);
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
-            mainSound.source.Play();
+            mainTheme.source.Play();
 
     }
 
@@ -60,24 +66,20 @@ public class SoundManager : MonoBehaviour
             if (!gameManager.paused)
             {
                 ulong distance = scoreManager.getDistance();
-            if (distance == 0)
-            {
-                mainSound.loop = true;
-                mainSound.source.Play();
-                uiManager.ShowSong(mainSound.clip.name);
-            }
-
-            else if (distance % 2000 == 0)
-            {
-                changeSong();
-                uiManager.ShowSong(mainSound.clip.name);
-            }
+                if (distance == 0)
+                {
+                    mainTheme.loop = true;
+                    mainTheme.source.Play();
+                    uiManager.ShowSong(mainTheme.clip.name);
+                }
+                else if (distance % 2000 == 0)
+                {
+                    changeSong();
+                    uiManager.ShowSong(mainTheme.clip.name);
+                }
             }
             
-        }
-
-        
-        
+        }        
     }
 
     private void InitializeSound(Sound s)
@@ -86,15 +88,19 @@ public class SoundManager : MonoBehaviour
         s.source.clip = s.clip;
         s.source.volume = s.volume * mainVolume;
         s.source.loop = s.loop;
-        
     }
 
     public void UpdateVolume(float value)
     {
         mainVolume = value;
-        mainSound.source.volume = mainSound.volume * mainVolume;
+        mainTheme.source.volume = mainTheme.volume * mainVolume;
         buttonClickSound.source.volume = buttonClickSound.volume * mainVolume;
-
+        shootSound.source.volume = shootSound.volume * mainVolume;
+        planetPortalSound.source.volume = planetPortalSound.volume * mainVolume;
+        beerPortalSound.source.volume = beerPortalSound.volume * mainVolume;
+        crashSound.source.volume = crashSound.volume * mainVolume;
+        finalCrashSound.source.volume = finalCrashSound.volume * mainVolume;
+        gameOverSound.source.volume = gameOverSound.volume * mainVolume;
     }
 
     public void PlayButtonPressed()
@@ -106,10 +112,17 @@ public class SoundManager : MonoBehaviour
     {
         shootSound.source.Play();
     }
+
     public void PlayCrashSound()
     {
-
+        crashSound.source.Play();
     }
+
+    public void PlayFinalCrashSound()
+    {
+        finalCrashSound.source.Play();
+    }
+
     public void PlayPlanetPortal()
     {
         planetPortalSound.source.Play();
@@ -120,14 +133,19 @@ public class SoundManager : MonoBehaviour
         beerPortalSound.source.Play();
     }
 
+    public void PlayGameOver()
+    {
+        gameOverSound.source.Play();
+    }
+
     public void changeSong()
     {
         mainSoundID = (mainSoundID + 1) % mainClips.Count;
 
-        mainSound.source.Stop();
-        mainSound.source.clip = mainClips[mainSoundID];
-        mainSound.clip = mainClips[mainSoundID];
-        mainSound.source.Play();
+        mainTheme.source.Stop();
+        mainTheme.source.clip = mainClips[mainSoundID];
+        mainTheme.clip = mainClips[mainSoundID];
+        mainTheme.source.Play();
     }
 }
 
