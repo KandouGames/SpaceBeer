@@ -48,6 +48,9 @@ public class PlayerCurveTraveller : MonoBehaviour
         SetupCurrentCurve();
 
         SetVelocity(Level.SuperEasy);
+
+        //Rotate the curve to see it during the tutorial
+        curveManager.transform.localRotation = Quaternion.Euler(0, 0, curveSystemAccumulatedRotation);
     }
 
     private void Update()

@@ -120,7 +120,7 @@ public class MenuManager : MonoBehaviour
         while (!asyncLoadScene.isDone)
         {
             float progress = Mathf.Clamp01(asyncLoadScene.progress / 0.9f);
-            Debug.Log("Loading progress: " + (progress * 100) + "%");
+            // Debug.Log("Loading progress: " + (progress * 100) + "%");
             slide.value = progress;
 
             //Fake timer advancing
