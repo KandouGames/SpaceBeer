@@ -173,7 +173,7 @@ public class ScoreManager : MonoBehaviour
         Camera.main.transform?.DOShakeRotation(1.0f, new Vector3(0.0f, 0.0f, 50.0f), 20, 10.0f, false).OnComplete(() =>
         {
             uiManager.ShowGameOver(beerCoins, distance);
-            uiManager.SetBeerCoins(beerCoins);
+            gameManager.playerData.beerCoins += beerCoins;
             soundManager.PlayGameOver();
             print("game over");
         }

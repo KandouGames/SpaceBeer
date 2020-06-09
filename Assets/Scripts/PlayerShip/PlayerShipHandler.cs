@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class PlayerShipHandler : MonoBehaviour
 {
+    public FloatingJoystickVersion joystick;
     private Inputs inputs;  //Obtener controles
 
     // Translation
@@ -58,10 +59,11 @@ public class PlayerShipHandler : MonoBehaviour
     [HideInInspector]
     public SoundManager soundManager;
 
+    [HideInInspector]
+    public UIManager uiManager;
+
     //Renderers of the spaceship
     Renderer[] renders;
-
-    
 
     void Start()
     {
@@ -79,18 +81,16 @@ public class PlayerShipHandler : MonoBehaviour
         //Asegurarse de que la nave hija se llame Playership
         renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
         
-
-
-        /*
         #if UNITY_ANDROID
-            PhoneInputs phoneInputs = new PhoneInputs();
+            PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
             inputs = (Inputs)phoneInputs;
-            inputs.setJoystick(joystick);
+            joystick.gameObject.SetActive(true);
+            inputs.SetJoystick(joystick, this);
         #else
-            StandaloneInput standaloneInput = new StandaloneInput();
-            inputs = (Inputs)standaloneInput;
+                joystick.gameObject.SetActive(false);
+                StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+                inputs = (Inputs)standaloneInput;
         #endif
-        */
 
     }
 
@@ -180,7 +180,7 @@ public class PlayerShipHandler : MonoBehaviour
 
 
             if (Input.GetKeyUp(KeyCode.J))
-                shoot();
+                Shoot();
 
 
             if (Input.GetKeyUp(KeyCode.K) && hasPowerUp)
@@ -203,14 +203,13 @@ public class PlayerShipHandler : MonoBehaviour
 
     private void updateTransform()
     {
-
         this.transform.position = position;
 
         // Using vertical rotation with x axes and horizontal rotation with y and z axes
         this.transform.rotation = Quaternion.Euler(new Vector3(-rotation.y, rotation.x * 0.5f, -rotation.x));
     }
 
-    private void shoot()
+    public void Shoot()
     {
         Bullet goBullet = DynamicPool.instance.GetObj(DynamicPool.objType.Bullet).GetComponent<Bullet>();
         goBullet.transform.position = this.transform.position;
@@ -272,6 +271,8 @@ public class PlayerShipHandler : MonoBehaviour
                     powerUpID = 0;
                     powerUpsInterface[powerUpID].SetActive(true);
                 }
+                soundManager.PlayPowerUpPortal();
+                animatePortalCollision(other.gameObject);
                 break;
 
             case DynamicPool.objType.PowerUpShield:
@@ -281,6 +282,8 @@ public class PlayerShipHandler : MonoBehaviour
                     powerUpID = 1;
                     powerUpsInterface[powerUpID].SetActive(true);
                 }
+                soundManager.PlayPowerUpPortal();
+                animatePortalCollision(other.gameObject);
                 break;
             
         }

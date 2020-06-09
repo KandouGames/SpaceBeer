@@ -10,6 +10,9 @@ public class FloatingJoystickVersion : Joystick
 
     private int idJoystickTouch;
 
+    [HideInInspector]
+    public PlayerShipHandler playerShipHandler;
+
     protected override void Start()
     {
         touches = new Dictionary<int, float>();
@@ -62,7 +65,7 @@ public class FloatingJoystickVersion : Joystick
                 // Shooting
                 float deltaTimeTouch = Time.time - touches[idTouch];
                 if (deltaTimeTouch < shootingDeltaTime)
-                    print("dispara");
+                    playerShipHandler.Shoot();
 
                 touches.Remove(idTouch);
             }

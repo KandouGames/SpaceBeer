@@ -10,10 +10,14 @@ public class ObstacleFactory : MonoBehaviour
     private int nAsteroids = 40;
     private int nPlanetPortals = 2;
     private int nBarrelPortals = 2;
+    private int nSnailPortals = 1;
+    private int nShieldPortals = 1;
 
     private List<GameObject> asteroids;
     private List<GameObject> planetPortals;
     private List<GameObject> barrelPortals;
+    private List<GameObject> snailPortals;
+    private List<GameObject> shieldPortals;
 
 
     public void SetCurve(Curve curve)
@@ -28,6 +32,8 @@ public class ObstacleFactory : MonoBehaviour
         GenerateAsteroids();
         GeneratePlanetPortals();
         GenerateBarrelPortals();
+        GenerateSnailPortals();
+        GenerateShieldPortals();
 
         SetObstacles(Level.SuperEasy);
     }
@@ -37,6 +43,8 @@ public class ObstacleFactory : MonoBehaviour
         SetAsteroids(level);
         SetPlanetPortals(level);
         SetBarrelPortals(level);
+        SetSnailPortals(level);
+        SetShieldPortals(level);
     }
 
     public void GenerateAsteroids()
@@ -72,6 +80,30 @@ public class ObstacleFactory : MonoBehaviour
             curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);
         }
     }
+
+    public void GenerateSnailPortals()
+    {
+        snailPortals = new List<GameObject>();
+        for (int i = 0; i < nSnailPortals; ++i)
+        {
+            GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.PowerUpSnail);
+            snailPortals.Add(obstacle);
+            curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);
+        }
+    }
+
+    public void GenerateShieldPortals()
+    {
+        shieldPortals = new List<GameObject>();
+        for (int i = 0; i < nSnailPortals; ++i)
+        {
+            GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.PowerUpShield);
+            shieldPortals.Add(obstacle);
+            curve.AddObstacleToCurve(obstacle, Obstacle.obstType.Texture);
+        }
+    }
+
+
 
     public void SetAsteroids(Level level)
     {
@@ -182,6 +214,78 @@ public class ObstacleFactory : MonoBehaviour
 
             if (random < threshold)
                 SetRandomPosObstacle(barrelPortal);
+        }
+    }
+
+    public void SetShieldPortals(Level level)
+    {
+        float threshold;
+        switch (level)
+        {
+            case Level.SuperEasy:
+                threshold = 0.1f;
+                break;
+            case Level.Easy:
+                threshold = 0.1f;
+                break;
+            case Level.Medium:
+                threshold = 0.09f;
+                break;
+            case Level.Hard:
+                threshold = 0.09f;
+                break;
+            case Level.God:
+                threshold = 0.08f;
+                break;
+            default:
+                threshold = 0.1f;
+                break;
+        }
+
+        foreach (GameObject shieldPortal in shieldPortals)
+        {
+            shieldPortal.transform.localScale = Vector3.one;
+            shieldPortal.SetActive(false);
+            float random = Random.Range(0.0f, 1.0f);
+
+            if (random < threshold)
+                SetRandomPosObstacle(shieldPortal);
+        }
+    }
+
+    public void SetSnailPortals(Level level)
+    {
+        float threshold;
+        switch (level)
+        {
+            case Level.SuperEasy:
+                threshold = 0.1f;
+                break;
+            case Level.Easy:
+                threshold = 0.1f;
+                break;
+            case Level.Medium:
+                threshold = 0.09f;
+                break;
+            case Level.Hard:
+                threshold = 0.09f;
+                break;
+            case Level.God:
+                threshold = 0.08f;
+                break;
+            default:
+                threshold = 0.1f;
+                break;
+        }
+
+        foreach (GameObject snailPortal in snailPortals)
+        {
+            snailPortal.transform.localScale = Vector3.one;
+            snailPortal.SetActive(false);
+            float random = Random.Range(0.0f, 1.0f);
+
+            if (random < threshold)
+                SetRandomPosObstacle(snailPortal);
         }
     }
 

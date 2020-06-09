@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     [HideInInspector]
     public GameManager gameManager;
 
+    public Canvas gamePlayUI;
+    public Image screenFader;
+
     public GameObject gameOverUI;
     public GameObject gameInfoUI;
     public GameObject pauseUI;
+    
 
     public List<RectTransform> tutorialSlides;
     public int tutorialSlideID;
@@ -27,8 +32,18 @@ public class UIManager : MonoBehaviour
 
     public List<Image> powerUpsIcons;
 
-    void Start()
+    public string mainMenuScene;
+
+    void Awake()
     {
+        gamePlayUI.GetComponent<GraphicRaycaster>().enabled = false;
+        Color color = screenFader.color;
+        screenFader.color = new Color(color.r, color.g, color.b, 1);
+        screenFader.DOColor(new Color(color.r, color.g, color.b, 0), 1.0f).OnComplete(() =>
+        {
+            gamePlayUI.GetComponent<GraphicRaycaster>().enabled = true;
+        }
+        );
     }
 
     void Update()
@@ -43,7 +58,6 @@ public class UIManager : MonoBehaviour
 
     public void SetBeerCoins(int beerCoins)
     {
-        // gameManager.playerData.beerCoins += beerCoins;
         beerCoinsText.text = beerCoins.ToString();
     }
 
@@ -146,7 +160,18 @@ public class UIManager : MonoBehaviour
         advisor.DOAnchorPos(anchored, 1f);
     }
 
+    public void LoadMainMenu()
+    {
+        //Desactivamos las interacciones durante la animación
+        gamePlayUI.GetComponent<GraphicRaycaster>().enabled = false;
 
+        Color color = screenFader.color;
+        screenFader.DOColor(new Color(color.r, color.g, color.b, 1), 1.0f).OnComplete(() =>
+        {
+            //Hide Load Time in screenfade
+            SceneManager.LoadScene(mainMenuScene);
 
-
+        }
+        );
+    }
 }

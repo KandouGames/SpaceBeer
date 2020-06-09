@@ -39,9 +39,12 @@ public class GameManager : MonoBehaviour
         {
             playerData = PD.GetComponent<PlayerData>();
             LoadData(playerData);
+            playerData.wasInGameplay = true;
 
             //Sound of bullet
             soundManager.shootSoundID = playerData.weaponID;
+            soundManager.mainVolume = playerData.mainVolume;
+            soundManager.playerData = this.playerData;
         }
 
         //Initialize needed scripts
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
         soundManager.gameManager = this;
         soundManager.scoreManager = this.scoreManager;
         soundManager.uiManager = this.uiManager;
+        
 
         uiManager.gameManager = this;
 
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
     void LoadData(PlayerData playerData)
     {
         //-----------------------NAVE----------------------
-        GameObject spaceShip = GameObject.Find(playerData.spaceShipsLP[playerData.spaceShipID].name); //Low poly SpaceShips
+        GameObject spaceShip = playerData.spaceShipsLP[playerData.spaceShipID]; //Low poly SpaceShips
         SceneManager.MoveGameObjectToScene(spaceShip, SceneManager.GetActiveScene());
         spaceShip.transform.parent = GameObject.Find("World").transform.Find("ContainerPlayerShip").transform;
 
@@ -134,11 +138,6 @@ public class GameManager : MonoBehaviour
         paused = false;
     }
 
-    public void ReturnToMainMenu()
-    {
-        SceneManager.LoadScene(menuScene);
-    }
-
     IEnumerator SlowMo(int seconds)
     {
         float velocity = playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity;
@@ -167,10 +166,8 @@ public class GameManager : MonoBehaviour
         shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
         shield.SetActive(false);
 
-        //Asteroids hits again
+        //Asteroids hit again
         playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
-
-
     }
 
     public void SetVelocityPlayerTraveller(Level level)

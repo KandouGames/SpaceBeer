@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-
     public Image screenFader;
     public Canvas mainMenuUI;
     public float transitionTime = 1.0f;
+
+    public Text beerCoinsText;
 
     public MenuPanels menuPanels;
     public MenuCameraPositions cameraPositions;
@@ -21,7 +22,7 @@ public class MenuManager : MonoBehaviour
     //Esta variable guarda el tiempo en el que comenzo la interpolacion
     private float timeStartedLerp;
 
-    public string escenaGameplay;
+    public string gameplayScene;
 
     AsyncOperation asyncLoadScene;
 
@@ -46,7 +47,15 @@ public class MenuManager : MonoBehaviour
         currentCameraView.position = cameraPositions.mainPanel.position;
         currentCameraView.rotation = cameraPositions.mainPanel.rotation;
 
-
+        mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
+        
+        Color color = screenFader.color;
+        screenFader.color = new Color(color.r, color.g, color.b, 1);
+        screenFader.DOColor(new Color(color.r, color.g, color.b, 0), transitionTime).OnComplete(() =>
+        {
+            mainMenuUI.GetComponent<GraphicRaycaster>().enabled = true;
+        }
+        );
     }
 
     void Update()
@@ -86,7 +95,7 @@ public class MenuManager : MonoBehaviour
             {
                 // StartCoroutine("LoadScene");
                 //Hide Load Time in screenfade
-                SceneManager.LoadScene(escenaGameplay);
+                SceneManager.LoadScene(gameplayScene);
 
             }
         );
@@ -97,7 +106,7 @@ public class MenuManager : MonoBehaviour
     {
         yield return null;
 
-        asyncLoadScene = SceneManager.LoadSceneAsync(escenaGameplay);
+        asyncLoadScene = SceneManager.LoadSceneAsync(gameplayScene);
         float timeSinceLoadingStarted = 0f;
 
         while (!asyncLoadScene.isDone)
@@ -164,6 +173,8 @@ public class MenuManager : MonoBehaviour
         menuPanels.hangarPanel.SetActive(true);
         menuPanels.exitPanel.SetActive(false);
         menuPanels.volumePanel.SetActive(false);
+
+        beerCoinsText.text = GameObject.Find("PlayerData").GetComponent<PlayerData>().beerCoins.ToString();
 
         currentCameraView.position = cameraPositions.hangarPanel.position;
         currentCameraView.rotation = cameraPositions.hangarPanel.rotation;

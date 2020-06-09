@@ -6,15 +6,17 @@ public interface Inputs
 {
     float GetInputX();
     float GetInputY();
+    void SetJoystick(FloatingJoystickVersion joystick, PlayerShipHandler playerShipHandler);
 }
 
 public class PhoneInputs : MonoBehaviour, Inputs
 {
-    public Joystick joystick;
+    public FloatingJoystickVersion joystick;
 
-    public void setJoystick(Joystick j)
+    public void SetJoystick(FloatingJoystickVersion j, PlayerShipHandler playerShipHandler)
     {
         this.joystick = j;
+        this.joystick.playerShipHandler = playerShipHandler;
     }
 
     public float GetInputX()
@@ -42,8 +44,6 @@ public class PhoneInputs : MonoBehaviour, Inputs
 
         return y;
     }
-
-    
 }
 
 public class StandaloneInput : MonoBehaviour, Inputs
@@ -56,5 +56,10 @@ public class StandaloneInput : MonoBehaviour, Inputs
     public float GetInputY()
     {
         return Input.GetAxisRaw("Vertical");
+    }
+
+    public void SetJoystick(FloatingJoystickVersion joystick, PlayerShipHandler playerShipHandler)
+    {
+        
     }
 }

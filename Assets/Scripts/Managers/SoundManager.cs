@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     public GameManager gameManager;
     public ScoreManager scoreManager;
     public UIManager uiManager;
+    public PlayerData playerData;
 
     public Slider volumeSlider;
 
@@ -25,6 +26,7 @@ public class SoundManager : MonoBehaviour
     public Sound shootSound;
     public Sound planetPortalSound;
     public Sound beerPortalSound;
+    public Sound powerUpPortalSound;
     public Sound crashSound;
     public Sound finalCrashSound;
     public Sound gameOverSound;
@@ -36,9 +38,8 @@ public class SoundManager : MonoBehaviour
     //Auxiliar
     private Level prevLevel;
 
-    private void Awake()
+    private void Start()
     {
-
         volumeSlider.value = mainVolume;
         volumeSlider.onValueChanged.AddListener(UpdateVolume);
 
@@ -50,16 +51,14 @@ public class SoundManager : MonoBehaviour
         InitializeSound(crashSound);
         InitializeSound(finalCrashSound);
         InitializeSound(gameOverSound);
+        InitializeSound(powerUpPortalSound);
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
             mainTheme.source.Play();
 
-        prevLevel = scoreManager.currentLevel;
-    }
+        if (scoreManager != null)
+            prevLevel = scoreManager.currentLevel;
 
-    private void Start()
-    {
-        //Shoot sound comes from weapon selected in MainMenu
         if (shootClips.Count != 0 && shootSoundID < shootClips.Count && shootClips[shootSoundID] != null) shootSound.source.clip = shootClips[shootSoundID];
     }
 
@@ -106,11 +105,13 @@ public class SoundManager : MonoBehaviour
     public void UpdateVolume(float value)
     {
         mainVolume = value;
+        playerData.mainVolume = mainVolume;
         mainTheme.source.volume = mainTheme.volume * mainVolume;
         buttonClickSound.source.volume = buttonClickSound.volume * mainVolume;
         shootSound.source.volume = shootSound.volume * mainVolume;
         planetPortalSound.source.volume = planetPortalSound.volume * mainVolume;
         beerPortalSound.source.volume = beerPortalSound.volume * mainVolume;
+        powerUpPortalSound.source.volume = powerUpPortalSound.volume * mainVolume;
         crashSound.source.volume = crashSound.volume * mainVolume;
         finalCrashSound.source.volume = finalCrashSound.volume * mainVolume;
         gameOverSound.source.volume = gameOverSound.volume * mainVolume;
@@ -144,6 +145,11 @@ public class SoundManager : MonoBehaviour
     public void PlayBeerPortal()
     {
         beerPortalSound.source.Play();
+    }
+
+    public void PlayPowerUpPortal()
+    {
+        powerUpPortalSound.source.Play();
     }
 
     public void PlayGameOver()
