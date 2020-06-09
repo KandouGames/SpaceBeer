@@ -20,16 +20,20 @@ public class GameManager : MonoBehaviour
 
     public Camera skyboxCamera;
     public GameObject spaceAtrezzo;
+    public WarpSpeed speedParticles;
 
     public GameObject bulletPrefab;
-
     public ObstaclesPrefabs obstaclesPrefabs;
+
 
     public bool paused = true;
     public string menuScene = "MainMenu";
     public PlayerData playerData;
 
     private GameObject shield;
+
+    public delegate void OnDifficultyChangeDelegate(Level currentLevel);
+    public OnDifficultyChangeDelegate onDifficultyChange;
 
     void Awake()
     {
@@ -55,7 +59,6 @@ public class GameManager : MonoBehaviour
         soundManager.gameManager = this;
         soundManager.scoreManager = this.scoreManager;
         soundManager.uiManager = this.uiManager;
-        
 
         uiManager.gameManager = this;
 
@@ -72,6 +75,8 @@ public class GameManager : MonoBehaviour
         shield.GetComponent<Light>().enabled = false;
         shield.SetActive(false);
 
+        speedParticles.gameManager = this;
+
         PickUniverseBackground();
 
         GenerateDynamicPoolObjects();
@@ -86,6 +91,8 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         paused = false;
+        speedParticles.Disengage();
+        speedParticles.particleSpeed = 0.2f;
         scoreManager.StartNewGame();
         curveManager.ResetObstacles(); //hay que poner las dos primeras curvas vacías
         SetVelocityPlayerTraveller(Level.SuperEasy);
@@ -159,7 +166,7 @@ public class GameManager : MonoBehaviour
                 shield.GetComponent<Light>().enabled = true;
             }
         );
-        
+
 
         yield return new WaitForSeconds(seconds);
         shield.GetComponent<Light>().enabled = false;

@@ -35,10 +35,10 @@ public class ScoreManager : MonoBehaviour
     struct BeerCoinLevels
     {
         public static int SuperEasy = 0;
-        public static int Easy = 750;
-        public static int Medium = 4000;
-        public static int Hard = 7000;
-        public static int God = 10000;
+        public static int Easy = 500; //500
+        public static int Medium = 1250; //1250
+        public static int Hard = 3000; //3000
+        public static int God = 5500; //5500
     }
 
     void Start()
@@ -160,6 +160,8 @@ public class ScoreManager : MonoBehaviour
         }
 
         gameManager.SetVelocityPlayerTraveller(currentLevel);
+        if (!(gameManager.onDifficultyChange is null))
+            gameManager.onDifficultyChange.Invoke(currentLevel);
     }
 
     public ulong getDistance()
