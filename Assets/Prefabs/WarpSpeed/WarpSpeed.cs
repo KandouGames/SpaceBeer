@@ -16,7 +16,6 @@ public class WarpSpeed : MonoBehaviour
         particles = GetComponent<ParticleSystem>();
         rend = particles.GetComponent<ParticleSystemRenderer>();
         gameManager.onDifficultyChange += ChangeVelocity;
-
     }
 
     void Update()
