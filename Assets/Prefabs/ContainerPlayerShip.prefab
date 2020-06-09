@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a991d1836daa97c4bb03804f9ce5dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
   t_velocity: {x: 0, y: 0}
   position: {x: 0, y: 0}
   r_velocity: {x: 0, y: 0}
@@ -59,10 +60,14 @@ MonoBehaviour:
   bulletLifeTime: 2
   explosionHandler: {fileID: 32247019582358195}
   invincibility: 0
+  powerUpsInterface: []
+  powerUpID: 0
+  hasPowerUp: 0
   radius: 0
   scoreManager: {fileID: 0}
   gameManager: {fileID: 0}
   soundManager: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!114 &8692641112055714442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +91,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.75
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
