@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
         scoreManager.StartNewGame();
         curveManager.ResetObstacles(); //hay que poner las dos primeras curvas vacías
         SetVelocityPlayerTraveller(Level.SuperEasy);
+        playerShip.GetComponent<PlayerShipHandler>().position = Vector2.zero;
+
     }
 
     void LoadData(PlayerData playerData)
@@ -147,12 +149,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SlowMo(int seconds)
     {
-        float velocity = playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity;
         playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity = 1;
         ppManager.PPSlowMotion(true);
         yield return new WaitForSeconds(seconds);
         ppManager.PPSlowMotion(false);
-        playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity = velocity;
+        playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(scoreManager.currentLevel);
     }
 
     IEnumerator Shield(int seconds)
@@ -167,14 +168,20 @@ public class GameManager : MonoBehaviour
             }
         );
 
+        //countshields++;
 
         yield return new WaitForSeconds(seconds);
-        shield.GetComponent<Light>().enabled = false;
-        shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
-        shield.SetActive(false);
+        //countshields--;
+        //if(countshields != 0)
+        //{
+            shield.GetComponent<Light>().enabled = false;
+            shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
+            shield.SetActive(false);
 
-        //Asteroids hit again
-        playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
+            //Asteroids hit again
+            playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
+        //}
+
     }
 
     public void SetVelocityPlayerTraveller(Level level)

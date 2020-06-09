@@ -65,7 +65,7 @@ public class PlayerShipHandler : MonoBehaviour
     //Renderers of the spaceship
     Renderer[] renders;
 
-    void Start()
+    void Awake()
     {
         position = this.transform.position;
         //rotation = Vector2.zero;
@@ -74,23 +74,27 @@ public class PlayerShipHandler : MonoBehaviour
         t_velocity = Vector2.zero;
         r_velocity = Vector2.zero;
 
-        //Obtener controles para ordenador o para moviles
-        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-        inputs = (Inputs)standaloneInput;
 
         //Asegurarse de que la nave hija se llame Playership
         renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
+
+
+        //Obtener controles para ordenador o para moviles
+        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+        inputs = (Inputs)standaloneInput;
         
-        #if UNITY_ANDROID
-            PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
-            inputs = (Inputs)phoneInputs;
-            joystick.gameObject.SetActive(true);
-            inputs.SetJoystick(joystick, this);
-        #else
-                joystick.gameObject.SetActive(false);
-                standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-                inputs = (Inputs)standaloneInput;
-        #endif
+         #if UNITY_ANDROID
+             PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
+             inputs = (Inputs)phoneInputs;
+             joystick.gameObject.SetActive(true);
+             inputs.SetJoystick(joystick, this);
+         #else
+             joystick.gameObject.SetActive(false);
+             standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+             inputs = (Inputs)standaloneInput;
+         #endif
+         
+
 
     }
 
@@ -183,21 +187,8 @@ public class PlayerShipHandler : MonoBehaviour
                 Shoot();
 
 
-            if (Input.GetKeyUp(KeyCode.K) && hasPowerUp)
-            {
-                UIManager uiManager = gameManager.uiManager;
-                //Update powerup in interface
-                powerUpsInterface[powerUpID].SetActive(false);
-
-                //Update power up state
-                hasPowerUp = false;
-
-                //PowerUp activated sign
-                uiManager.ShowPowerUpIcon(uiManager.powerUpsIcons[powerUpID]);
-
-                //PowerUp effect
-                gameManager.PowerUp(powerUpID); //PowerUp receives id of power up
-            }
+            if (Input.GetKeyUp(KeyCode.K))
+                StartPowerUp();
         }
     }
 
@@ -215,6 +206,25 @@ public class PlayerShipHandler : MonoBehaviour
         goBullet.transform.position = this.transform.position;
         goBullet.transform.rotation = Quaternion.identity;
         goBullet.Shoot(bulletSpeed, bulletLifeTime);
+    }
+
+    public void StartPowerUp()
+    {
+        if(hasPowerUp)
+        {
+            UIManager uiManager = gameManager.uiManager;
+            //Update powerup in interface
+            powerUpsInterface[powerUpID].SetActive(false);
+
+            //Update power up state
+            hasPowerUp = false;
+
+            //PowerUp activated sign
+            uiManager.ShowPowerUpIcon(uiManager.powerUpsIcons[powerUpID]);
+
+            //PowerUp effect
+            gameManager.PowerUp(powerUpID); //PowerUp receives id of power up
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -308,8 +318,6 @@ public class PlayerShipHandler : MonoBehaviour
 
     IEnumerator BlinkShip()
     {
-
-
         while (invincibility)
         {
             foreach (Renderer render in renders)

@@ -77,6 +77,9 @@ public class ScoreManager : MonoBehaviour
         uiManager.SetBeerCoins(beerCoins);
         uiManager.SetDistance(distance);
         uiManager.SetBarrels(barrels);
+
+        PlayerShipHandler playerShipHandler = gameManager.playerShip.GetComponent<PlayerShipHandler>();
+        playerShipHandler.powerUpsInterface[playerShipHandler.powerUpID].SetActive(false);
     }
 
     public void EarnBarrel()
