@@ -48,7 +48,7 @@ public class MenuManager : MonoBehaviour
         currentCameraView.rotation = cameraPositions.mainPanel.rotation;
 
         mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
-        
+
         Color color = screenFader.color;
         screenFader.color = new Color(color.r, color.g, color.b, 1);
         screenFader.DOColor(new Color(color.r, color.g, color.b, 0), transitionTime).OnComplete(() =>
@@ -89,16 +89,22 @@ public class MenuManager : MonoBehaviour
 
         //Desactivamos las interacciones durante la animación
         mainMenuUI.GetComponent<GraphicRaycaster>().enabled = false;
+        Image[] slide = screenFader.GetComponentsInChildren<Image>();
+
+        foreach (Image img in slide)
+        {
+            img.DOColor(new Color(img.color.r, img.color.g, img.color.b, 1), transitionTime / 3);
+        }
 
         Color color = screenFader.color;
+
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), transitionTime).OnComplete(() =>
             {
-                // StartCoroutine("LoadScene");
-                //Hide Load Time in screenfade
-                SceneManager.LoadScene(gameplayScene);
-
+                StartCoroutine("LoadScene");
             }
         );
+
+
     }
 
     //This is technically not necessary anymore but I want to see the repercussions of the audio changes.
@@ -108,11 +114,14 @@ public class MenuManager : MonoBehaviour
 
         asyncLoadScene = SceneManager.LoadSceneAsync(gameplayScene);
         float timeSinceLoadingStarted = 0f;
+        Slider slide = screenFader.GetComponentInChildren<Slider>();
+
 
         while (!asyncLoadScene.isDone)
         {
             float progress = Mathf.Clamp01(asyncLoadScene.progress / 0.9f);
             Debug.Log("Loading progress: " + (progress * 100) + "%");
+            slide.value = progress;
 
             //Fake timer advancing
             progress += timeSinceLoadingStarted;
