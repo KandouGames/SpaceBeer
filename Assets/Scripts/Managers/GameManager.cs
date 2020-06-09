@@ -186,6 +186,8 @@ public class GameManager : MonoBehaviour
     {
         //Pools must be generated before curves because curves place obstacles that need to be in the pools
         DynamicPool.instance.Generate(DynamicPool.objType.Bullet, bulletPrefab);
+        DynamicPool.instance.StartWarmParticles();
+
         DynamicPool.instance.Generate(DynamicPool.objType.Asteroid, obstaclesPrefabs.asteroids[0]);
         for (int i = 1; i < obstaclesPrefabs.asteroids.Count; i++)
         {

@@ -328,4 +328,24 @@ public class DynamicPool : MonoBehaviour
             asteroidQueue.Enqueue(CreateSingleObject(objType.Asteroid));
         }
     }
+
+    public void StartWarmParticles()
+    {
+        StartCoroutine("WarmParticles");
+    }
+
+    IEnumerator WarmParticles()
+    {
+        foreach (GameObject bullet in bulletQueue)
+        {
+            bullet.transform.position = new Vector3(100, 100, 100);
+            bullet.SetActive(true);
+        }
+        yield return new WaitForSeconds(0.5f);
+        foreach (GameObject bullet in bulletQueue)
+        {
+            bullet.transform.position = Vector3.zero;
+            bullet.SetActive(false);
+        }
+    }
 }
