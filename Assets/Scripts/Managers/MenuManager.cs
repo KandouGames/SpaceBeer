@@ -308,7 +308,10 @@ public class MenuManager : MonoBehaviour
         playerData.weapons[playerData.weaponID].SetActive(true);
     }
 
-
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
 
 [System.Serializable]

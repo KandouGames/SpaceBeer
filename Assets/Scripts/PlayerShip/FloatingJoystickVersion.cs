@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class FloatingJoystickVersion : Joystick
 {
     private Dictionary<int, float> touches;
-    private float shootingDeltaTime = 0.3f;
+    private float shootingDeltaTime = 0.1f;
 
     private int idJoystickTouch;
 

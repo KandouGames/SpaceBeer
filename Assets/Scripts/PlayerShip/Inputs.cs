@@ -22,10 +22,10 @@ public class PhoneInputs : MonoBehaviour, Inputs
     public float GetInputX()
     {
         float x;
-        if (joystick.Horizontal >= 0.4f)
-            x = joystick.Horizontal;
-        else if (joystick.Horizontal <= -0.4f)
-            x = joystick.Horizontal;
+        if (joystick.Horizontal >= 0.3f)
+            x = 1;
+        else if (joystick.Horizontal <= -0.3f)
+            x = -1;
         else
             x = 0;
 
@@ -35,10 +35,10 @@ public class PhoneInputs : MonoBehaviour, Inputs
     public float GetInputY()
     {
         float y;
-        if (joystick.Vertical >= 0.4f)
-            y = joystick.Vertical;
-        else if (joystick.Vertical <= -0.4f)
-            y = joystick.Vertical;
+        if (joystick.Vertical >= 0.3f)
+            y = 1;
+        else if (joystick.Vertical <= -0.3f)
+            y = -1;
         else
             y = 0;
 

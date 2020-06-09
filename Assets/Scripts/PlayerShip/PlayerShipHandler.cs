@@ -2,7 +2,6 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
-using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerShipHandler : MonoBehaviour
@@ -80,8 +79,9 @@ public class PlayerShipHandler : MonoBehaviour
 
 
         //Obtener controles para ordenador o para moviles
-        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-        inputs = (Inputs)standaloneInput;
+        //StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+        //inputs = (Inputs)standaloneInput;
+        
         
          #if UNITY_ANDROID
              PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
@@ -93,9 +93,6 @@ public class PlayerShipHandler : MonoBehaviour
              standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
              inputs = (Inputs)standaloneInput;
          #endif
-         
-
-
     }
 
     void Update()
@@ -202,10 +199,13 @@ public class PlayerShipHandler : MonoBehaviour
 
     public void Shoot()
     {
+        //Usless until using different types of enemies
+       /*
         Bullet goBullet = DynamicPool.instance.GetObj(DynamicPool.objType.Bullet).GetComponent<Bullet>();
         goBullet.transform.position = this.transform.position;
         goBullet.transform.rotation = Quaternion.identity;
         goBullet.Shoot(bulletSpeed, bulletLifeTime);
+        */
     }
 
     public void StartPowerUp()

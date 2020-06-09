@@ -19,6 +19,7 @@ MonoBehaviour:
   snapY: 0
   background: {fileID: 31312640180138315}
   handle: {fileID: 31312641031506769}
+  playerShipHandler: {fileID: 0}
 --- !u!1001 &8146177439245093585
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -95,7 +95,7 @@ public class ObstacleFactory : MonoBehaviour
     public void GenerateShieldPortals()
     {
         shieldPortals = new List<GameObject>();
-        for (int i = 0; i < nSnailPortals; ++i)
+        for (int i = 0; i < nShieldPortals; ++i)
         {
             GameObject obstacle = DynamicPool.instance.GetObj(DynamicPool.objType.PowerUpShield);
             shieldPortals.Add(obstacle);

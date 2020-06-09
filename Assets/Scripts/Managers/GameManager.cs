@@ -94,9 +94,10 @@ public class GameManager : MonoBehaviour
         speedParticles.Disengage();
         speedParticles.particleSpeed = 0.2f;
         scoreManager.StartNewGame();
-        curveManager.ResetObstacles(); //hay que poner las dos primeras curvas vacías
+        curveManager.ResetObstacles();
         SetVelocityPlayerTraveller(Level.SuperEasy);
         playerShip.GetComponent<PlayerShipHandler>().position = Vector2.zero;
+        playerShip.GetComponent<PlayerShipHandler>().hasPowerUp = false;
 
     }
 
