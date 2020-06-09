@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: 2d7d0da56f1c3fc428fe06fb501e91d6
+guid: 90dfe13939fdfa1499ee69bf47411808
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: 01 - Default
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: Weapon
+    100002: //RootNode
+    400000: Weapon
+    400002: //RootNode
+    2100000: WeaponMat
+    2300000: Weapon
+    3300000: Weapon
     4300000: Weapon
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WeaponMat
+    second: {fileID: 2100000, guid: ddc525205621715409963e2f200e2589, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

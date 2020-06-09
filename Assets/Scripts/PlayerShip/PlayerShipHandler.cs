@@ -88,7 +88,7 @@ public class PlayerShipHandler : MonoBehaviour
             inputs.SetJoystick(joystick, this);
         #else
                 joystick.gameObject.SetActive(false);
-                StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+                standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
                 inputs = (Inputs)standaloneInput;
         #endif
 
