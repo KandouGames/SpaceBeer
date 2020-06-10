@@ -217,11 +217,11 @@ public class ScoreManager : MonoBehaviour
                 break;
             case Level.Easy:
                 currentLevelStr = "Level: Cool";
-                quoteString = "You got this. Keep it up!.";
+                quoteString = "You got this. Keep it up!";
                 break;
             case Level.Medium:
                 currentLevelStr = "Level: Keep it rollin'";
-                quoteString = "Put the pedal to the metal, McFly!";
+                quoteString = "Put the pedal to the metal, \nMcFly!";
                 break;
             case Level.Hard:
                 currentLevelStr = "Level: Despair";

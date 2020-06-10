@@ -9039,16 +9039,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3167765104264066153, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
         type: 3}
-      propertyPath: powerUpsInterface.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3167765104264066153, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3167765104264066153, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
-        type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 228813606}
@@ -9062,16 +9052,6 @@ PrefabInstance:
       propertyPath: powerUpsInterface.Array.data[1]
       value: 
       objectReference: {fileID: 1842935592}
-    - target: {fileID: 2627169532185753839, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997198843116287435, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca1b2f8ba1ea5a4c9c0f0d2522b2475, type: 3}
 --- !u!1 &1385986394

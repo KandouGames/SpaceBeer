@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
         if (barrels != 0)
         {
 
-            if (DOTween.IsTweening(difficultyTextContainer))
+            if (DOTween.IsTweening(dangerText))
             {
                 dangerText.DOPause();
             }

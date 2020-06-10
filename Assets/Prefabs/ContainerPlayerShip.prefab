@@ -60,7 +60,9 @@ MonoBehaviour:
   bulletLifeTime: 2
   explosionHandler: {fileID: 32247019582358195}
   invincibility: 0
-  powerUpsInterface: []
+  powerUpsInterface:
+  - {fileID: 0}
+  - {fileID: 0}
   powerUpID: 0
   hasPowerUp: 0
   radius: 0
@@ -118,6 +120,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3026632307082432129}
     m_Modifications:
+    - target: {fileID: 4970570970787095303, guid: bdd66a6a0bcdcae4f9acadbccea10903,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970570970787095303, guid: bdd66a6a0bcdcae4f9acadbccea10903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1041834311371157027, guid: bdd66a6a0bcdcae4f9acadbccea10903,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,16 +185,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4970570970787095303, guid: bdd66a6a0bcdcae4f9acadbccea10903,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerShip
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970570970787095303, guid: bdd66a6a0bcdcae4f9acadbccea10903,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdd66a6a0bcdcae4f9acadbccea10903, type: 3}
 --- !u!4 &2627169532185753839 stripped
@@ -202,11 +204,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Explosion
-      objectReference: {fileID: 0}
-    - target: {fileID: 2606203907701655068, guid: 2204a92ff8f53dd44b5f855c5dab9fbe,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2606203907701655069, guid: 2204a92ff8f53dd44b5f855c5dab9fbe,
         type: 3}
@@ -290,6 +287,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3026632307082432129}
     m_Modifications:
+    - target: {fileID: 2683460351866760084, guid: 42b23e0cd4f5e384f8caa18e0d015e4b,
+        type: 3}
+      propertyPath: m_Name
+      value: Shield
+      objectReference: {fileID: 0}
     - target: {fileID: 2683460351866760083, guid: 42b23e0cd4f5e384f8caa18e0d015e4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,11 +346,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2683460351866760084, guid: 42b23e0cd4f5e384f8caa18e0d015e4b,
-        type: 3}
-      propertyPath: m_Name
-      value: Shield
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42b23e0cd4f5e384f8caa18e0d015e4b, type: 3}
