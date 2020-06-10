@@ -233,6 +233,7 @@ public class MenuManager : MonoBehaviour
     public void ShowTutorial(bool show)
     {
         menuPanels.volumePanel.SetActive(!show);
+        tutorialSlides[0].SetActive(true);
         menuPanels.tutorialPanel.SetActive(show);
     }
 
@@ -246,8 +247,8 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            slideID = 0;
             tutorialSlides[slideID].SetActive(false);
+            slideID = 0;
             ShowTutorial(false);
             menuPanels.volumePanel.SetActive(false);
         } 
@@ -255,7 +256,7 @@ public class MenuManager : MonoBehaviour
 
     public void PreviousSlide()
     {
-        if (slideID != tutorialSlides.Count - 1)
+        if (slideID <= tutorialSlides.Count - 1 && slideID >= 0)
         {
             tutorialSlides[slideID].SetActive(false);
             slideID--;

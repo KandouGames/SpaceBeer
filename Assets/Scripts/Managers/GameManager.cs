@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject bulletPrefab;
     public ObstaclesPrefabs obstaclesPrefabs;
 
-    private int countSlowmo;
-    private int countShield;
+    public int countSlowmo;
+    public int countShield;
 
 
     public bool paused = true;
@@ -177,6 +177,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Shield(int seconds)
     {
+        shield.GetComponent<Renderer>().enabled = true;
+        shield.GetComponent<ShieldAnimation>().disappear = false;
+
         //Ignore Asteroids and Enemies
         playerShip.GetComponent<PlayerShipHandler>().invincibility = true;
 
@@ -195,14 +198,17 @@ public class GameManager : MonoBehaviour
         
         if(countShield == 0)
         {
+            //Blink
+            shield.GetComponent<ShieldAnimation>().disappear = true;
+
+            yield return new WaitForSeconds(1.0f);
+
             shield.GetComponent<Light>().enabled = false;
-            shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f).OnComplete(() =>
-                {
-                    shield.SetActive(false);
-                    //Asteroids hit again
-                    playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
-                }
-            );
+            shield.SetActive(false);
+            shield.GetComponent<ShieldAnimation>().disappear = false;
+            //Asteroids hit again
+            playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
+                
         }
 
     }

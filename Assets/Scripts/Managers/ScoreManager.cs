@@ -174,8 +174,8 @@ public class ScoreManager : MonoBehaviour
 
                 break;
         }
-
-        gameManager.SetVelocityPlayerTraveller(currentLevel);
+        if (gameManager.countSlowmo == 0)
+            gameManager.SetVelocityPlayerTraveller(currentLevel);
     }
 
     private void LevelChanged()

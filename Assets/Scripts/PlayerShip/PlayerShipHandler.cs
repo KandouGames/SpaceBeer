@@ -78,21 +78,22 @@ public class PlayerShipHandler : MonoBehaviour
         //Asegurarse de que la nave hija se llame Playership
         renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
 
+        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+        inputs = (Inputs)standaloneInput;
 
         //Obtener controles para ordenador o para moviles
-         #if UNITY_ANDROID
-             PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
-             inputs = (Inputs)phoneInputs;
-             joystick.gameObject.SetActive(true);
-             inputs.SetJoystick(joystick, this);
+        #if UNITY_ANDROID
+            PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
+            inputs = (Inputs)phoneInputs;
+            joystick.gameObject.SetActive(true);
+            inputs.SetJoystick(joystick, this);
         #else
             joystick.gameObject.SetActive(false);
             standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
             inputs = (Inputs)standaloneInput;
         #endif
 
-        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-        inputs = (Inputs)standaloneInput;
+        
 
     }
 
@@ -312,7 +313,8 @@ public class PlayerShipHandler : MonoBehaviour
         invincibility = true;
         StartCoroutine(BlinkShip());
         yield return new WaitForSeconds(seconds);
-        invincibility = false;
+        if (gameManager.countShield == 0)
+            invincibility = false;
     }
 
     IEnumerator BlinkShip()

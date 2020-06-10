@@ -7,6 +7,7 @@ public class ShieldAnimation : MonoBehaviour
     Light pointLight;
     private float angle;
     private float speed = 10.0f;
+    public bool disappear = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +22,22 @@ public class ShieldAnimation : MonoBehaviour
     {
         angle = (angle < 0.0f) ? 2 * Mathf.PI : angle - speed * Time.deltaTime;
         pointLight.range = 3.7f + Mathf.Cos(angle) * 1.1f;
+
+        if (disappear)
+            StartCoroutine(BlinkShield());
+
+    }
+
+    IEnumerator BlinkShield()
+    {
+        while (disappear)
+        {
+            this.GetComponent<Renderer>().enabled = false;
+            yield return new WaitForSeconds(0.1f);
+
+
+            this.GetComponent<Renderer>().enabled = true;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
