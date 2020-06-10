@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.017599918, g: 0.017586222, b: 0.017599918, a: 1}
+  m_IndirectSpecularColor: {r: 0.10808513, g: 0.103314154, b: 0.09672802, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -415,7 +415,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -106.888885, y: -30.036362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119290972
 MonoBehaviour:
@@ -1006,7 +1006,7 @@ RectTransform:
   m_AnchorMin: {x: 0.38476923, y: 0.4262843}
   m_AnchorMax: {x: 0.61952704, y: 0.45839703}
   m_AnchoredPosition: {x: -0.5, y: 1}
-  m_SizeDelta: {x: -0.51921785, y: 4.011722}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198895499
 MonoBehaviour:
@@ -1259,7 +1259,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -53.333336, y: -30.036362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207002809
 MonoBehaviour:
@@ -1834,7 +1834,7 @@ RectTransform:
   m_AnchorMin: {x: 0.11784616, y: 0.05165934}
   m_AnchorMax: {x: 0.8852308, y: 0.37936267}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: -13.315459, y: -1.982922}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255153789
 MonoBehaviour:
@@ -1881,9 +1881,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'DM-CGS-33 of CasualGameSounds - Asset Store Unity
+  m_Text: 'DM-CGS-15 of CasualGameSounds - Asset Store Unity
 
-    DM-CGS-15 of CasualGameSounds - Asset Store Unity
+    DM-CGS-28 of CasualGameSounds - Asset Store Unity
+
+    DM-CGS-33 of CasualGameSounds - Asset Store Unity
+
+    DM-CGS-42 of CasualGameSounds - Asset Store Unity
 
     Heavyweapons1 of FuturisticGunSoundFX - asset store unity
 
@@ -1891,7 +1895,9 @@ MonoBehaviour:
 
     Laser12 of FuturisticGunSoundFX - asset store unity
 
-    446121 of JustInvoke from freesound.rog'
+    446121 of JustInvoke from freesound.rog
+
+    Game Over Sound Effects High Quality of Freak Gamer from youtube'
 --- !u!222 &255153791
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2737,7 +2743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &383417865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2898,7 +2904,7 @@ RectTransform:
   m_AnchorMin: {x: 0.26761538, y: 0.45839703}
   m_AnchorMax: {x: 0.7308462, y: 0.7563407}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: -12.177983, y: 4.7122126}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401480578
 MonoBehaviour:
@@ -3000,7 +3006,7 @@ RectTransform:
   m_AnchorMin: {x: 0.3795926, y: 0.8883125}
   m_AnchorMax: {x: 0.61714816, y: 0.95312506}
   m_AnchoredPosition: {x: 1, y: 1}
-  m_SizeDelta: {x: -1.6133325, y: -3.7305775}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408816193
 MonoBehaviour:
@@ -9218,7 +9224,7 @@ RectTransform:
   m_AnchorMin: {x: 0.16900001, y: 0.56326544}
   m_AnchorMax: {x: 0.83144444, y: 0.7695309}
   m_AnchoredPosition: {x: -0.5, y: 0}
-  m_SizeDelta: {x: 38.524456, y: -19.67935}
+  m_SizeDelta: {x: 38.524456, y: -19.59232}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524149393
 MonoBehaviour:
@@ -9995,7 +10001,7 @@ RectTransform:
   m_AnchorMin: {x: 0.40969238, y: 0.47831443}
   m_AnchorMax: {x: 0.59300005, y: 0.5168083}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -4.069482, y: -1.6043267}
+  m_SizeDelta: {x: -4.069482, y: -1.5880848}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629248997
 MonoBehaviour:
@@ -10087,7 +10093,7 @@ RectTransform:
   m_AnchorMin: {x: 0.38476923, y: 0.795}
   m_AnchorMax: {x: 0.6155385, y: 0.8383407}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: -9.032058, y: 1.3935031}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632633660
 MonoBehaviour:
@@ -10845,7 +10851,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -103.77781, y: -30.036362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721856780
 MonoBehaviour:
@@ -16467,7 +16473,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -66.333336, y: -30.036362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856984703
 MonoBehaviour:
@@ -16695,7 +16701,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -31.333334, y: -23.21014}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865423730
 MonoBehaviour:
@@ -17771,7 +17777,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -71.55559, y: -30.036362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941175984
 MonoBehaviour:
@@ -18470,7 +18476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1037348052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26025,7 +26031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.27800003, y: 0.8}
   m_AnchorMax: {x: 0.66800004, y: 1.0832056}
-  m_AnchoredPosition: {x: -2.199997, y: 1.9999924}
+  m_AnchoredPosition: {x: -2.199997, y: 1.9999866}
   m_SizeDelta: {x: -1.3122265, y: -0.3790209}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1305699930
@@ -26783,7 +26789,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -103.44447, y: -30.010162}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368968921
 MonoBehaviour:
@@ -32446,7 +32452,7 @@ RectTransform:
   m_AnchorMin: {x: 0.3795926, y: 0.8883125}
   m_AnchorMax: {x: 0.61714816, y: 0.95312506}
   m_AnchoredPosition: {x: 1, y: 1}
-  m_SizeDelta: {x: -1.6133325, y: -3.7305775}
+  m_SizeDelta: {x: -1.6133325, y: -3.7032306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1479725053
 MonoBehaviour:
@@ -33466,7 +33472,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -31.333334, y: -23.21014}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1555055987
 MonoBehaviour:
@@ -39755,7 +39761,7 @@ RectTransform:
   m_AnchorMin: {x: 0.054851856, y: 0.06667292}
   m_AnchorMax: {x: 0.9480001, y: 0.42832708}
   m_AnchoredPosition: {x: -0.5, y: 1}
-  m_SizeDelta: {x: -2.7611275, y: -35.48335}
+  m_SizeDelta: {x: -2.7611275, y: -35.330753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734986375
 MonoBehaviour:
@@ -41871,7 +41877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1989604172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42921,7 +42927,7 @@ RectTransform:
   m_AnchorMin: {x: 0.25300002, y: 0.7993428}
   m_AnchorMax: {x: 0.74700004, y: 0.85600007}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: -14.6766815, y: -7.7876353}
+  m_SizeDelta: {x: -14.6766815, y: -7.7637296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061702901
 MonoBehaviour:
@@ -43457,7 +43463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2108914536
 RectTransform:
   m_ObjectHideFlags: 0
