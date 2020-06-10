@@ -44,6 +44,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         StartNewGame();
+        gameManager.onDifficultyChange += ShowDifficulty;
     }
 
     void Update()
@@ -143,19 +144,31 @@ public class ScoreManager : MonoBehaviour
         {
             case Level.SuperEasy:
                 if (beerCoins > BeerCoinLevels.Easy)
+                {
                     currentLevel = Level.Easy;
+                    LevelChanged();
+                }
                 break;
             case Level.Easy:
                 if (beerCoins > BeerCoinLevels.Medium)
+                {
                     currentLevel = Level.Medium;
+                    LevelChanged();
+                }
                 break;
             case Level.Medium:
                 if (beerCoins > BeerCoinLevels.Hard)
+                {
                     currentLevel = Level.Hard;
+                    LevelChanged();
+                }
                 break;
             case Level.Hard:
                 if (beerCoins > BeerCoinLevels.God)
+                {
                     currentLevel = Level.God;
+                    LevelChanged();
+                }
                 break;
             case Level.God:
 
@@ -163,6 +176,10 @@ public class ScoreManager : MonoBehaviour
         }
 
         gameManager.SetVelocityPlayerTraveller(currentLevel);
+    }
+
+    private void LevelChanged()
+    {
         if (!(gameManager.onDifficultyChange is null))
             gameManager.onDifficultyChange.Invoke(currentLevel);
     }
@@ -183,6 +200,39 @@ public class ScoreManager : MonoBehaviour
             print("game over");
         }
         );
+    }
+
+
+    private void ShowDifficulty(Level currentLevel)
+    {
+
+        string currentLevelStr = "Level: Easy";
+        string quoteString = "You got this. Keep it up!";
+
+        switch (currentLevel)
+        {
+            case Level.SuperEasy:
+                currentLevelStr = "Level: Calm";
+                quoteString = "Como ronea como ronea, la virgen cervecezera.";
+                break;
+            case Level.Easy:
+                currentLevelStr = "Level: Cool";
+                quoteString = "You got this. Keep it up!.";
+                break;
+            case Level.Medium:
+                currentLevelStr = "Level: Keep it rollin'";
+                quoteString = "Put the pedal to the metal, McFly!";
+                break;
+            case Level.Hard:
+                currentLevelStr = "Level: Despair";
+                quoteString = "They're everywhere. Help!";
+                break;
+            case Level.God:
+                currentLevelStr = "Level: God";
+                quoteString = "You are the goddam best, McFly";
+                break;
+        }
+        uiManager.ShowCurrentDifficulty(currentLevelStr, quoteString);
     }
 }
 

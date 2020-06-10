@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject gameInfoUI;
     public GameObject pauseUI;
-    
+
 
     public List<RectTransform> tutorialSlides;
     public int tutorialSlideID;
@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     public List<Image> powerUpsIcons;
 
     public string mainMenuScene;
+    public RectTransform difficultyTextContainer;
+    private Text difficultyText;
+    private Text difficultyQuoteText;
 
     void Awake()
     {
@@ -44,6 +47,10 @@ public class UIManager : MonoBehaviour
             gamePlayUI.GetComponent<GraphicRaycaster>().enabled = true;
         }
         );
+
+        difficultyQuoteText = difficultyTextContainer?.transform.GetChild(0)?.GetComponent<Text>();
+        difficultyText = difficultyTextContainer?.transform.GetChild(1)?.GetComponent<Text>();
+
     }
 
     void Update()
@@ -106,7 +113,7 @@ public class UIManager : MonoBehaviour
         }
         );
     }
-    
+
 
 
     public void NextSlide()
@@ -168,10 +175,30 @@ public class UIManager : MonoBehaviour
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), 1.0f).OnComplete(() =>
         {
-            //Hide Load Time in screenfade
             SceneManager.LoadScene(mainMenuScene);
-
         }
         );
+    }
+
+    public void ShowCurrentDifficulty(string difficulty, string quote)
+    {
+        int quantityToMove = 130;
+        float durationOfTween = 0.5f;
+        float showDifficultyDuration = 3;
+
+        difficultyText.text = difficulty;
+        difficultyQuoteText.text = quote;
+
+        if (DOTween.IsTweening(difficultyTextContainer))
+        {
+            DOTween.Kill(difficultyTextContainer);
+            difficultyTextContainer.transform.position = new Vector3(difficultyTextContainer.transform.position.x,
+             difficultyTextContainer.transform.position.y - quantityToMove, difficultyTextContainer.transform.position.z);
+        }
+
+        difficultyTextContainer.transform.DOMoveY(quantityToMove, durationOfTween).SetEase(Ease.InOutBack).OnComplete(() =>
+        {
+            difficultyTextContainer.transform.DOMoveY(-quantityToMove, durationOfTween).SetEase(Ease.InOutBack).SetDelay(showDifficultyDuration);
+        });
     }
 }
