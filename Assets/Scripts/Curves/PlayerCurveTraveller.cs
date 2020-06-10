@@ -18,9 +18,9 @@ public class PlayerCurveTraveller : MonoBehaviour
     {
         public static float SuperEasy = 7.0f;
         public static float Easy = 10.0f;
-        public static float Medium = 12.0f;
-        public static float Hard = 13.0f;
-        public static float God = 14.0f;
+        public static float Medium = 11.0f;
+        public static float Hard = 12.0f;
+        public static float God = 13.0f;
     };
 
     private float curveSystemAccumulatedRotation = 0f;

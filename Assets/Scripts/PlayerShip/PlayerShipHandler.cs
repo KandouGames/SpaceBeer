@@ -80,21 +80,19 @@ public class PlayerShipHandler : MonoBehaviour
 
 
         //Obtener controles para ordenador o para moviles
-        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-        inputs = (Inputs)standaloneInput;
-        
          #if UNITY_ANDROID
              PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
              inputs = (Inputs)phoneInputs;
              joystick.gameObject.SetActive(true);
              inputs.SetJoystick(joystick, this);
-         #else
-             joystick.gameObject.SetActive(false);
-             standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-             inputs = (Inputs)standaloneInput;
-         #endif
-         
+        #else
+            joystick.gameObject.SetActive(false);
+            standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+            inputs = (Inputs)standaloneInput;
+        #endif
 
+        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+        inputs = (Inputs)standaloneInput;
 
     }
 
@@ -202,10 +200,12 @@ public class PlayerShipHandler : MonoBehaviour
 
     public void Shoot()
     {
+        /*
         Bullet goBullet = DynamicPool.instance.GetObj(DynamicPool.objType.Bullet).GetComponent<Bullet>();
         goBullet.transform.position = this.transform.position;
         goBullet.transform.rotation = Quaternion.identity;
         goBullet.Shoot(bulletSpeed, bulletLifeTime);
+        */
     }
 
     public void StartPowerUp()
@@ -295,7 +295,6 @@ public class PlayerShipHandler : MonoBehaviour
                 soundManager.PlayPowerUpPortal();
                 animatePortalCollision(other.gameObject);
                 break;
-            
         }
     }
 

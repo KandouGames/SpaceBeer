@@ -114,16 +114,16 @@ public class ObstacleFactory : MonoBehaviour
                 threshold = 0.2f;
                 break;
             case Level.Easy:
-                threshold = 0.25f;
+                threshold = 0.22f;
                 break;
             case Level.Medium:
-                threshold = 0.3f;
+                threshold = 0.25f;
                 break;
             case Level.Hard:
-                threshold = 0.5f;
+                threshold = 0.25f;
                 break;
             case Level.God:
-                threshold = 0.7f;
+                threshold = 0.27f;
                 break;
             default:
                 threshold = 0.2f;
@@ -159,13 +159,13 @@ public class ObstacleFactory : MonoBehaviour
                 threshold = 0.1f;
                 break;
             case Level.Hard:
-                threshold = 0.09f;
+                threshold = 0.1f;
                 break;
             case Level.God:
-                threshold = 0.08f;
+                threshold = 0.1f;
                 break;
             default:
-                threshold = 0.1f;
+                threshold = 0.12f;
                 break;
         }
 
@@ -199,10 +199,10 @@ public class ObstacleFactory : MonoBehaviour
                 threshold = 0.1f;
                 break;
             case Level.God:
-                threshold = 0.08f;
+                threshold = 0.1f;
                 break;
             default:
-                threshold = 0.5f;
+                threshold = 0.15f;
                 break;
         }
 
