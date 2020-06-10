@@ -192,6 +192,13 @@ public class MenuManager : MonoBehaviour
         timeStartedLerp = Time.time;
     }
 
+    public void ShowStore()
+    {
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        playerData.spaceShips[playerData.spaceShipID].SetActive(false);
+        playerData.weapons[playerData.weaponID].SetActive(false);
+    }
+
     public void ShowExitMenu()
     {
         menuPanels.mainPanel.SetActive(false);
