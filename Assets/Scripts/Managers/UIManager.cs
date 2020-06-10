@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
 
 
     public List<RectTransform> tutorialSlides;
+    public GameObject slidePC;
+    public GameObject slideAndroid;
     public int tutorialSlideID;
     private float speedSlides = 0.25f;
 
@@ -56,6 +58,14 @@ public class UIManager : MonoBehaviour
 
         dangerText.DOFade(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo);
         musicAdvisorPos = musicAdvisor.anchoredPosition;
+
+        #if UNITY_ANDROID
+                slidePC.SetActive(false);
+                slideAndroid.SetActive(true);   
+        #else
+                slidePC.SetActive(true);
+                slideAndroid.SetActive(false);
+        #endif
     }
 
     void Update()

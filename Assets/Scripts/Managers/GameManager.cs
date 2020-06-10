@@ -100,9 +100,10 @@ public class GameManager : MonoBehaviour
         curveManager.ResetObstacles();
         SetVelocityPlayerTraveller(Level.SuperEasy);
         playerShip.GetComponent<PlayerShipHandler>().position = Vector2.zero;
-        playerShip.GetComponent<PlayerShipHandler>().hasPowerUp = false;
+
 
         //Reset PowerUps
+        playerShip.GetComponent<PlayerShipHandler>().hasPowerUp = false;
         ppManager.PPSlowMotion(false);
         playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
         playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(scoreManager.currentLevel);

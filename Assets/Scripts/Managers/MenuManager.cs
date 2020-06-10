@@ -15,6 +15,8 @@ public class MenuManager : MonoBehaviour
 
     public MenuPanels menuPanels;
     public List<GameObject> tutorialSlides;
+    public GameObject slidePC;
+    public GameObject slideAndroid;
     private int slideID;
     public MenuCameraPositions cameraPositions;
 
@@ -58,6 +60,15 @@ public class MenuManager : MonoBehaviour
             mainMenuUI.GetComponent<GraphicRaycaster>().enabled = true;
         }
         );
+
+        #if UNITY_ANDROID
+                slidePC.SetActive(false);
+                slideAndroid.SetActive(true);
+        #else
+                slidePC.SetActive(true);
+                slideAndroid.SetActive(false);
+        #endif
+
     }
 
     void Update()
