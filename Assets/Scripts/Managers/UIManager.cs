@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     public Text beerCoinsText;
     public Text distanceText;
+    public Text dangerText;
     public List<GameObject> arrayBarrels;
     public Text gameOverRecordText;
     public RectTransform musicAdvisor;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     public RectTransform difficultyTextContainer;
     private Text difficultyText;
     private Text difficultyQuoteText;
+
 
     void Awake()
     {
@@ -51,6 +53,7 @@ public class UIManager : MonoBehaviour
         difficultyQuoteText = difficultyTextContainer?.transform.GetChild(0)?.GetComponent<Text>();
         difficultyText = difficultyTextContainer?.transform.GetChild(1)?.GetComponent<Text>();
 
+        dangerText.DOFade(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo);
     }
 
     void Update()
@@ -75,6 +78,7 @@ public class UIManager : MonoBehaviour
 
     public void SetBarrels(int barrels)
     {
+
         for (int i = 0; i < arrayBarrels.Count; ++i)
         {
             if (i < barrels)
@@ -82,6 +86,22 @@ public class UIManager : MonoBehaviour
             else
                 arrayBarrels[i].SetActive(false);
         }
+
+        if (barrels == 0)
+        {
+            dangerText.gameObject.SetActive(true);
+            dangerText.DOPlay();
+        }
+        else
+        {
+
+            if (DOTween.IsTweening(difficultyTextContainer))
+            {
+                dangerText.DOPause();
+            }
+            dangerText.gameObject.SetActive(false);
+        }
+
     }
 
     public void ShowGameOver(int beerCoins, ulong distance)
