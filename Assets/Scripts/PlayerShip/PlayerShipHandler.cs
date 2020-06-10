@@ -82,7 +82,6 @@ public class PlayerShipHandler : MonoBehaviour
         //StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
         //inputs = (Inputs)standaloneInput;
         
-        
          #if UNITY_ANDROID
              PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
              inputs = (Inputs)phoneInputs;
