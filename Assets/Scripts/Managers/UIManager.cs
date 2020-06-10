@@ -45,13 +45,21 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         gamePlayUI.GetComponent<GraphicRaycaster>().enabled = false;
-        Color color = screenFader.color;
-        screenFader.color = new Color(color.r, color.g, color.b, 1);
-        screenFader.DOColor(new Color(color.r, color.g, color.b, 0), 1.0f).OnComplete(() =>
+
+        Image[] slide = screenFader.GetComponentsInChildren<Image>();
+
+        foreach (Image img in slide)
         {
-            gamePlayUI.GetComponent<GraphicRaycaster>().enabled = true;
+            img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
         }
-        );
+
+        foreach (Image img in slide)
+        {
+            img.DOColor(new Color(img.color.r, img.color.g, img.color.b, 0), 1).OnComplete(() =>
+            {
+                gamePlayUI.GetComponent<GraphicRaycaster>().enabled = true;
+            });
+        }
 
         difficultyQuoteText = difficultyTextContainer?.transform.GetChild(0)?.GetComponent<Text>();
         difficultyText = difficultyTextContainer?.transform.GetChild(1)?.GetComponent<Text>();
@@ -59,13 +67,13 @@ public class UIManager : MonoBehaviour
         dangerText.DOFade(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo);
         musicAdvisorPos = musicAdvisor.anchoredPosition;
 
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
                 slidePC.SetActive(false);
                 slideAndroid.SetActive(true);   
-        #else
-                slidePC.SetActive(true);
-                slideAndroid.SetActive(false);
-        #endif
+#else
+        slidePC.SetActive(true);
+        slideAndroid.SetActive(false);
+#endif
     }
 
     void Update()
