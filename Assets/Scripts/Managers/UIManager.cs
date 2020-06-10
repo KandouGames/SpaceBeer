@@ -83,18 +83,34 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < arrayBarrels.Count; ++i)
         {
-            if (i < barrels)
+            if (i < barrels && arrayBarrels[i].activeSelf)
+            {
+
                 arrayBarrels[i].SetActive(true);
+                arrayBarrels[i].transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InOutBack);
+            }
             else
-                arrayBarrels[i].SetActive(false);
+            {
+                if (DOTween.IsTweening(arrayBarrels[i]))
+                {
+                    arrayBarrels[i].transform.DOKill();
+                }
+
+                arrayBarrels[i].transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutBack).OnComplete(() =>
+                {
+
+                    if (barrels == 0)
+                    {
+                        dangerText.gameObject.SetActive(true);
+                        dangerText.DOPlay();
+                    }
+
+                    arrayBarrels[i].SetActive(false);
+                });
+            }
         }
 
-        if (barrels == 0)
-        {
-            dangerText.gameObject.SetActive(true);
-            dangerText.DOPlay();
-        }
-        else
+        if (barrels != 0)
         {
 
             if (DOTween.IsTweening(difficultyTextContainer))
@@ -192,15 +208,44 @@ public class UIManager : MonoBehaviour
     {
         //Desactivamos las interacciones durante la animación
         gamePlayUI.GetComponent<GraphicRaycaster>().enabled = false;
+        Image[] slide = screenFader.GetComponentsInChildren<Image>();
+
+        gameOverUI.SetActive(false);
+
+        foreach (Image img in slide)
+        {
+            img.DOColor(new Color(img.color.r, img.color.g, img.color.b, 1), 1);
+        }
 
         Color color = screenFader.color;
         screenFader.DOColor(new Color(color.r, color.g, color.b, 1), 1.0f).OnComplete(() =>
         {
-            SceneManager.LoadScene(mainMenuScene);
+            StartCoroutine("LoadScene");
         }
         );
     }
 
+
+    IEnumerator LoadScene()
+    {
+        yield return null;
+
+        AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(mainMenuScene);
+        float timeSinceLoadingStarted = 0f;
+        Slider slide = screenFader.GetComponentInChildren<Slider>();
+
+
+        while (!asyncLoadScene.isDone)
+        {
+            float progress = Mathf.Clamp01(asyncLoadScene.progress / 0.9f);
+            slide.value = progress;
+
+            //Fake timer advancing
+            progress += timeSinceLoadingStarted;
+
+            yield return null;
+        }
+    }
     public void ShowCurrentDifficulty(string difficulty, string quote)
     {
         int quantityToMove = 130;
