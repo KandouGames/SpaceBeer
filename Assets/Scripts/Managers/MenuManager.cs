@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     public Text beerCoinsText;
 
     public MenuPanels menuPanels;
+    public List<GameObject> tutorialSlides;
+    private int slideID;
     public MenuCameraPositions cameraPositions;
 
     private Camera camera;
@@ -210,6 +212,40 @@ public class MenuManager : MonoBehaviour
         menuPanels.volumePanel.SetActive(true);
     }
 
+    public void ShowTutorial(bool show)
+    {
+        menuPanels.volumePanel.SetActive(!show);
+        menuPanels.tutorialPanel.SetActive(show);
+    }
+
+    public void NextSlide()
+    {
+        if (slideID != tutorialSlides.Count - 1)
+        {
+            tutorialSlides[slideID].SetActive(false);
+            slideID++;
+            tutorialSlides[slideID].SetActive(true);
+        }
+        else
+        {
+            slideID = 0;
+            tutorialSlides[slideID].SetActive(false);
+            ShowTutorial(false);
+            menuPanels.volumePanel.SetActive(false);
+        } 
+    }
+
+    public void PreviousSlide()
+    {
+        if (slideID != tutorialSlides.Count - 1)
+        {
+            tutorialSlides[slideID].SetActive(false);
+            slideID--;
+            tutorialSlides[slideID].SetActive(true);
+        }
+
+    }
+
     //Este metodo actualiza el indice y se encarga de enseñar la nave en el menu
     public void Next()
     {
@@ -323,6 +359,7 @@ public class MenuPanels
     public GameObject hangarPanel;
     public GameObject exitPanel;
     public GameObject volumePanel;
+    public GameObject tutorialPanel;
 }
 
 [System.Serializable]

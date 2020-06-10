@@ -2,6 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerShipHandler : MonoBehaviour
@@ -211,13 +212,13 @@ public class PlayerShipHandler : MonoBehaviour
     {
         if (hasPowerUp)
         {
-            UIManager uiManager = gameManager.uiManager;
-            //Update powerup in interface
-            powerUpsInterface[powerUpID].SetActive(false);
-
             //Update power up state
             hasPowerUp = false;
 
+            UIManager uiManager = gameManager.uiManager;
+            //Update powerup in interface
+            powerUpsInterface[powerUpID].SetActive(false);
+            
             //PowerUp activated sign
             uiManager.ShowPowerUpIcon(uiManager.powerUpsIcons[powerUpID]);
 
@@ -241,7 +242,7 @@ public class PlayerShipHandler : MonoBehaviour
 
                     if (scoreManager.barrels == -1)
                     {
-
+                        hasPowerUp = false;
                         explosionHandler.PlayFullExplosion();
                         soundManager.mainTheme.source.Stop();
                         soundManager.PlayFinalCrashSound();

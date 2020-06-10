@@ -51,6 +51,7 @@ public class PlayerCurveTraveller : MonoBehaviour
 
         //Rotate the curve to see it during the tutorial
         curveManager.transform.localRotation = Quaternion.Euler(0, 0, curveSystemAccumulatedRotation);
+
     }
 
     private void Update()

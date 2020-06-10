@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     public GameObject bulletPrefab;
     public ObstaclesPrefabs obstaclesPrefabs;
 
+    private int countSlowmo;
+    private int countShield;
+
 
     public bool paused = true;
     public string menuScene = "MainMenu";
@@ -99,6 +102,11 @@ public class GameManager : MonoBehaviour
         playerShip.GetComponent<PlayerShipHandler>().position = Vector2.zero;
         playerShip.GetComponent<PlayerShipHandler>().hasPowerUp = false;
 
+        //Reset PowerUps
+        ppManager.PPSlowMotion(false);
+        playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
+        playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(scoreManager.currentLevel);
+
     }
 
     void LoadData(PlayerData playerData)
@@ -150,11 +158,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SlowMo(int seconds)
     {
-        playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity = 1;
+        playerShip.GetComponent<PlayerCurveTraveller>().playerVelocity = 3.5f;
         ppManager.PPSlowMotion(true);
+
+        countSlowmo++;
+
         yield return new WaitForSeconds(seconds);
-        ppManager.PPSlowMotion(false);
-        playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(scoreManager.currentLevel);
+
+        countSlowmo--;
+
+        if (countSlowmo == 0)
+        {
+            ppManager.PPSlowMotion(false);
+            playerShip.GetComponent<PlayerCurveTraveller>().SetVelocity(scoreManager.currentLevel);
+        }
     }
 
     IEnumerator Shield(int seconds)
@@ -169,19 +186,23 @@ public class GameManager : MonoBehaviour
             }
         );
 
-        //countshields++;
+        countShield++;
 
         yield return new WaitForSeconds(seconds);
-        //countshields--;
-        //if(countshields != 0)
-        //{
-            shield.GetComponent<Light>().enabled = false;
-            shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f);
-            shield.SetActive(false);
 
-            //Asteroids hit again
-            playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
-        //}
+        countShield--;
+        
+        if(countShield == 0)
+        {
+            shield.GetComponent<Light>().enabled = false;
+            shield.transform.DOScale(new Vector3(0.0f, 0.0f, 0.0f), 0.5f).OnComplete(() =>
+                {
+                    shield.SetActive(false);
+                    //Asteroids hit again
+                    playerShip.GetComponent<PlayerShipHandler>().invincibility = false;
+                }
+            );
+        }
 
     }
 

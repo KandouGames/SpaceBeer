@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     public Text gameOverRecordText;
     public RectTransform musicAdvisor;
     public Text musicText;
+    private Vector2 musicAdvisorPos;
 
     public List<Image> powerUpsIcons;
 
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
         difficultyText = difficultyTextContainer?.transform.GetChild(1)?.GetComponent<Text>();
 
         dangerText.DOFade(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        musicAdvisorPos = musicAdvisor.anchoredPosition;
     }
 
     void Update()
@@ -127,10 +129,10 @@ public class UIManager : MonoBehaviour
     {
         image.transform.DOShakePosition(2.0f, 4, 100);
         image.transform.DOScale(new Vector3(2, 2, 2), 1);
-        image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 1), 1.0f).OnComplete(() =>
-        {
-            image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 0), 0.5f);
-        }
+        image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 0.4f), 1.0f).OnComplete(() =>
+            {
+                image.DOColor(new Color(image.color.r, image.color.g, image.color.b, 0), 0.5f);
+            }
         );
     }
 
@@ -181,10 +183,9 @@ public class UIManager : MonoBehaviour
 
     IEnumerator wait(RectTransform advisor)
     {
-        Vector2 anchored = advisor.anchoredPosition;
         advisor.DOAnchorPos(Vector2.zero, 1f);
         yield return new WaitForSeconds(4);
-        advisor.DOAnchorPos(anchored, 1f);
+        advisor.DOAnchorPos(musicAdvisorPos, 1f);
     }
 
     public void LoadMainMenu()
