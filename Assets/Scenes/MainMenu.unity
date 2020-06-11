@@ -415,7 +415,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -106.888885, y: -30.036362}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119290972
 MonoBehaviour:
@@ -1003,10 +1003,10 @@ RectTransform:
   m_Father: {fileID: 383417865}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.38476923, y: 0.4262843}
-  m_AnchorMax: {x: 0.61952704, y: 0.45839703}
-  m_AnchoredPosition: {x: -0.5, y: 1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.38476923, y: 0.43945125}
+  m_AnchorMax: {x: 0.6155385, y: 0.48283902}
+  m_AnchoredPosition: {x: 0, y: -1}
+  m_SizeDelta: {x: 1.6346067, y: 1.3868698}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198895499
 MonoBehaviour:
@@ -1259,7 +1259,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -53.333336, y: -30.036362}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207002809
 MonoBehaviour:
@@ -1831,10 +1831,10 @@ RectTransform:
   m_Father: {fileID: 383417865}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.11784616, y: 0.05165934}
-  m_AnchorMax: {x: 0.8852308, y: 0.37936267}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.16240743, y: 0.05165934}
+  m_AnchorMax: {x: 0.83900005, y: 0.418}
+  m_AnchoredPosition: {x: 0.5, y: -0.5}
+  m_SizeDelta: {x: -2.21002, y: -2.189293}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255153789
 MonoBehaviour:
@@ -1870,7 +1870,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 811b5e886d149d34998323bea638dc51, type: 3}
-    m_FontSize: 11
+    m_FontSize: 9
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -1884,8 +1884,6 @@ MonoBehaviour:
   m_Text: 'DM-CGS-15 of CasualGameSounds - Asset Store Unity
 
     DM-CGS-28 of CasualGameSounds - Asset Store Unity
-
-    DM-CGS-33 of CasualGameSounds - Asset Store Unity
 
     DM-CGS-42 of CasualGameSounds - Asset Store Unity
 
@@ -2743,7 +2741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &383417865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2901,10 +2899,10 @@ RectTransform:
   m_Father: {fileID: 383417865}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.26761538, y: 0.45839703}
-  m_AnchorMax: {x: 0.7308462, y: 0.7563407}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.27685186, y: 0.5}
+  m_AnchorMax: {x: 0.7215926, y: 0.7563407}
+  m_AnchoredPosition: {x: 0, y: 2}
+  m_SizeDelta: {x: -2.193326, y: 1.4836241}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401480578
 MonoBehaviour:
@@ -2959,9 +2957,7 @@ MonoBehaviour:
 
     Nightingale - Eveningland
 
-    Upstairs with cat- Diamond Ortiz
-
-'
+    Upstairs with cat- Diamond Ortiz'
 --- !u!222 &401480580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3006,7 +3002,7 @@ RectTransform:
   m_AnchorMin: {x: 0.3795926, y: 0.8883125}
   m_AnchorMax: {x: 0.61714816, y: 0.95312506}
   m_AnchoredPosition: {x: 1, y: 1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -1.6133325, y: 3.226366}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408816193
 MonoBehaviour:
@@ -9224,7 +9220,7 @@ RectTransform:
   m_AnchorMin: {x: 0.16900001, y: 0.56326544}
   m_AnchorMax: {x: 0.83144444, y: 0.7695309}
   m_AnchoredPosition: {x: -0.5, y: 0}
-  m_SizeDelta: {x: 38.524456, y: -19.59232}
+  m_SizeDelta: {x: 43.535564, y: 2.2016861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524149393
 MonoBehaviour:
@@ -9271,9 +9267,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Carlos Rizo Maci\xE1   @roombastic\nJoan Torres L\xF3pez   linkedin-Joan
-    Torres L\xF3pez\nManuel Akira Shinohara Soto   @Manu57205421\nCristian Adrian
-    Penizzotto   linkedin-Cristian Penizzotto"
+  m_Text: "Carlos Rizo Maci\xE1  -  twitter @roombastic\nJoan Torres L\xF3pez  -  linkedin
+    Joan Torres L\xF3pez\nManuel Akira Shinohara Soto  -  twitter @Manu57205421\nCristian
+    Adrian Penizzotto  -  linkedin Cristian Penizzotto"
 --- !u!222 &524149395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10001,7 +9997,7 @@ RectTransform:
   m_AnchorMin: {x: 0.40969238, y: 0.47831443}
   m_AnchorMax: {x: 0.59300005, y: 0.5168083}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -4.069482, y: -1.5880848}
+  m_SizeDelta: {x: -4.069482, y: 2.4791741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629248997
 MonoBehaviour:
@@ -10093,7 +10089,7 @@ RectTransform:
   m_AnchorMin: {x: 0.38476923, y: 0.795}
   m_AnchorMax: {x: 0.6155385, y: 0.8383407}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -9.032058, y: 1.3978454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632633660
 MonoBehaviour:
@@ -10851,7 +10847,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -103.77781, y: -30.036362}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721856780
 MonoBehaviour:
@@ -16473,7 +16469,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -66.333336, y: -30.036362}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856984703
 MonoBehaviour:
@@ -16701,7 +16697,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -31.333334, y: -7.4597435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865423730
 MonoBehaviour:
@@ -17777,7 +17773,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -71.55559, y: -30.036362}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941175984
 MonoBehaviour:
@@ -18476,7 +18472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1037348052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26031,7 +26027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.27800003, y: 0.8}
   m_AnchorMax: {x: 0.66800004, y: 1.0832056}
-  m_AnchoredPosition: {x: -2.199997, y: 1.9999866}
+  m_AnchoredPosition: {x: -2.199997, y: 1.9999847}
   m_SizeDelta: {x: -1.3122265, y: -0.3790209}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1305699930
@@ -26789,7 +26785,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -103.44447, y: -14.287704}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368968921
 MonoBehaviour:
@@ -32452,7 +32448,7 @@ RectTransform:
   m_AnchorMin: {x: 0.3795926, y: 0.8883125}
   m_AnchorMax: {x: 0.61714816, y: 0.95312506}
   m_AnchoredPosition: {x: 1, y: 1}
-  m_SizeDelta: {x: -1.6133325, y: -3.7032306}
+  m_SizeDelta: {x: -1.6133325, y: 3.1448617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1479725053
 MonoBehaviour:
@@ -33472,7 +33468,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -31.333334, y: -7.4597435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1555055987
 MonoBehaviour:
@@ -39761,7 +39757,7 @@ RectTransform:
   m_AnchorMin: {x: 0.054851856, y: 0.06667292}
   m_AnchorMax: {x: 0.9480001, y: 0.42832708}
   m_AnchoredPosition: {x: -0.5, y: 1}
-  m_SizeDelta: {x: -2.7611275, y: -35.330753}
+  m_SizeDelta: {x: -2.7611275, y: 2.8816206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734986375
 MonoBehaviour:
@@ -41877,7 +41873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1989604172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42927,7 +42923,7 @@ RectTransform:
   m_AnchorMin: {x: 0.25300002, y: 0.7993428}
   m_AnchorMax: {x: 0.74700004, y: 0.85600007}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: -14.6766815, y: -7.7637296}
+  m_SizeDelta: {x: -14.6766815, y: -1.7773246}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061702901
 MonoBehaviour:
@@ -43463,7 +43459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2108914536
 RectTransform:
   m_ObjectHideFlags: 0
