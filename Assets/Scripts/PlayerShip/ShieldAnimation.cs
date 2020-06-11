@@ -21,7 +21,7 @@ public class ShieldAnimation : MonoBehaviour
     void Update()
     {
         angle = (angle < 0.0f) ? 2 * Mathf.PI : angle - speed * Time.deltaTime;
-        pointLight.range = 3.7f + Mathf.Cos(angle) * 1.1f;
+        pointLight.range = 4.75f + Mathf.Cos(angle) * 0.75f;
 
         if (disappear)
             StartCoroutine(BlinkShield());
