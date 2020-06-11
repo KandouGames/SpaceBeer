@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
         playerShip.GetComponent<PlayerShipHandler>().invincibility = true;
 
         shield.SetActive(true);
-        shield.transform.DOScale(new Vector3(2.1882f, 2.1882f, 2.1882f), 0.5f).OnComplete(() =>
+        shield.transform.DOScale(new Vector3(3.538918f, 3.538918f, 3.93917f), 0.5f).OnComplete(() =>
             {
                 shield.GetComponent<Light>().enabled = true;
             }
