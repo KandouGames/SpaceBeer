@@ -57,11 +57,15 @@ public class MenuManager : MonoBehaviour
 
         Color color = screenFader.color;
         screenFader.color = new Color(color.r, color.g, color.b, 1);
-        screenFader.DOColor(new Color(color.r, color.g, color.b, 0), transitionTime).OnComplete(() =>
+        Image[] slide = screenFader.GetComponentsInChildren<Image>();
+
+        foreach (Image img in slide)
         {
-            mainMenuUI.GetComponent<GraphicRaycaster>().enabled = true;
+            img.DOColor(new Color(img.color.r, img.color.g, img.color.b, 0), transitionTime).OnComplete(() =>
+            {
+                mainMenuUI.GetComponent<GraphicRaycaster>().enabled = true;
+            });
         }
-        );
         PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
 
         spaceShipsModel[playerData.spaceShipID].SetActive(true);
@@ -71,8 +75,8 @@ public class MenuManager : MonoBehaviour
                 slideAndroid.SetActive(true);
 #else
         slidePC.SetActive(true);
-                slideAndroid.SetActive(false);
-        #endif
+        slideAndroid.SetActive(false);
+#endif
 
     }
 
@@ -111,7 +115,7 @@ public class MenuManager : MonoBehaviour
 
         foreach (Image img in slide)
         {
-            img.DOColor(new Color(img.color.r, img.color.g, img.color.b, 1), transitionTime / 3);
+            img.DOColor(new Color(img.color.r, img.color.g, img.color.b, 1), transitionTime);
         }
 
         Color color = screenFader.color;
@@ -256,7 +260,7 @@ public class MenuManager : MonoBehaviour
             slideID = 0;
             ShowTutorial(false);
             menuPanels.volumePanel.SetActive(false);
-        } 
+        }
     }
 
     public void PreviousSlide()
