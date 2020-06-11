@@ -197,7 +197,6 @@ public class ScoreManager : MonoBehaviour
             uiManager.ShowGameOver(beerCoins, distance);
             gameManager.playerData.beerCoins += beerCoins;
             soundManager.PlayGameOver();
-            print("game over");
         }
         );
     }

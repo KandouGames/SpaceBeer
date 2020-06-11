@@ -104,6 +104,11 @@ public class UIManager : MonoBehaviour
             if (i < barrels && arrayBarrels[i].activeSelf)
             {
 
+                if (DOTween.IsTweening(arrayBarrels[i]))
+                {
+                    arrayBarrels[i].transform.DOKill();
+                }
+
                 arrayBarrels[i].SetActive(true);
                 arrayBarrels[i].transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InOutBack);
             }
@@ -116,13 +121,6 @@ public class UIManager : MonoBehaviour
 
                 arrayBarrels[i].transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InOutBack).OnComplete(() =>
                 {
-
-                    if (barrels == 0)
-                    {
-                        dangerText.gameObject.SetActive(true);
-                        dangerText.DOPlay();
-                    }
-
                     arrayBarrels[i].SetActive(false);
                 });
             }
@@ -130,12 +128,16 @@ public class UIManager : MonoBehaviour
 
         if (barrels != 0)
         {
-
             if (DOTween.IsTweening(dangerText))
             {
                 dangerText.DOPause();
             }
             dangerText.gameObject.SetActive(false);
+        }
+        else if (barrels == 0)
+        {
+            dangerText.gameObject.SetActive(true);
+            dangerText.DOPlay();
         }
 
     }
@@ -212,9 +214,6 @@ public class UIManager : MonoBehaviour
         previousSlide.DOAnchorPos(Vector2.zero, speedSlides);
     }
 
-
-
-
     IEnumerator wait(RectTransform advisor)
     {
         advisor.DOAnchorPos(Vector2.zero, 1f);
@@ -268,7 +267,7 @@ public class UIManager : MonoBehaviour
     {
         int quantityToMove = 130;
         float durationOfTween = 0.5f;
-        float showDifficultyDuration = 3;
+        float showDifficultyDuration = 5;
 
         difficultyText.text = difficulty;
         difficultyQuoteText.text = quote;
