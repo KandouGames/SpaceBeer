@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10808513, g: 0.103314154, b: 0.09672802, a: 1}
+  m_IndirectSpecularColor: {r: 0.017599918, g: 0.017586222, b: 0.017599918, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -1077,7 +1077,7 @@ PrefabInstance:
     - target: {fileID: 4970570970787095303, guid: bdd66a6a0bcdcae4f9acadbccea10903,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1041834311371157027, guid: bdd66a6a0bcdcae4f9acadbccea10903,
         type: 3}
@@ -26150,6 +26150,10 @@ MonoBehaviour:
       rotation: {x: 0, y: 0, z: 0}
   timeTakenDuringLerp: 5
   gameplayScene: Gameplay
+  spaceShipsModel:
+  - {fileID: 639403538}
+  - {fileID: 1892670007}
+  - {fileID: 1343594452}
 --- !u!4 &1307544051
 Transform:
   m_ObjectHideFlags: 0

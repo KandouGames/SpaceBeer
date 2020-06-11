@@ -75,8 +75,7 @@ public class PlayerShipHandler : MonoBehaviour
         r_velocity = Vector2.zero;
 
 
-        //Asegurarse de que la nave hija se llame Playership
-        renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
+        
 
         StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
         inputs = (Inputs)standaloneInput;
@@ -95,6 +94,11 @@ public class PlayerShipHandler : MonoBehaviour
 
         
 
+    }
+    private void Start()
+    {
+        //Asegurarse de que la nave hija se llame Playership
+        renders = this.transform.Find("PlayerShip").GetComponentsInChildren<Renderer>();
     }
 
     void Update()

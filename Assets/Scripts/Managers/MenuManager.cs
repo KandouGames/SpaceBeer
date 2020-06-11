@@ -28,6 +28,8 @@ public class MenuManager : MonoBehaviour
 
     public string gameplayScene;
 
+    public List<GameObject> spaceShipsModel;
+
     AsyncOperation asyncLoadScene;
 
     public void Awake()
@@ -60,12 +62,15 @@ public class MenuManager : MonoBehaviour
             mainMenuUI.GetComponent<GraphicRaycaster>().enabled = true;
         }
         );
+        PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
 
-        #if UNITY_ANDROID
+        spaceShipsModel[playerData.spaceShipID].SetActive(true);
+
+#if UNITY_ANDROID
                 slidePC.SetActive(false);
                 slideAndroid.SetActive(true);
-        #else
-                slidePC.SetActive(true);
+#else
+        slidePC.SetActive(true);
                 slideAndroid.SetActive(false);
         #endif
 

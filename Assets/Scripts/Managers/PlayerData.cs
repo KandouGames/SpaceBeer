@@ -35,6 +35,7 @@ public class PlayerData : MonoBehaviour
             {
                 beerCoins = playerData.beerCoins;
                 mainVolume = playerData.mainVolume;
+                spaceShipID = playerData.spaceShipID;
                 Destroy(playerData.gameObject);
             }
         }
