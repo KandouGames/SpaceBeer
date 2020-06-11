@@ -101,7 +101,6 @@ public class GameManager : MonoBehaviour
         SetVelocityPlayerTraveller(Level.SuperEasy);
         playerShip.GetComponent<PlayerShipHandler>().position = Vector2.zero;
 
-
         //Reset PowerUps
         playerShip.GetComponent<PlayerShipHandler>().hasPowerUp = false;
         ppManager.PPSlowMotion(false);

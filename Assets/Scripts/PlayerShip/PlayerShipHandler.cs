@@ -74,12 +74,6 @@ public class PlayerShipHandler : MonoBehaviour
         t_velocity = Vector2.zero;
         r_velocity = Vector2.zero;
 
-
-        
-
-        StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
-        inputs = (Inputs)standaloneInput;
-
         //Obtener controles para ordenador o para moviles
         #if UNITY_ANDROID
             PhoneInputs phoneInputs = this.gameObject.AddComponent<PhoneInputs>();
@@ -88,12 +82,9 @@ public class PlayerShipHandler : MonoBehaviour
             inputs.SetJoystick(joystick, this);
         #else
             joystick.gameObject.SetActive(false);
-            standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
+            StandaloneInput standaloneInput = this.gameObject.AddComponent<StandaloneInput>();
             inputs = (Inputs)standaloneInput;
         #endif
-
-        
-
     }
     private void Start()
     {
@@ -251,6 +242,7 @@ public class PlayerShipHandler : MonoBehaviour
                         explosionHandler.PlayFullExplosion();
                         soundManager.mainTheme.source.Stop();
                         soundManager.PlayFinalCrashSound();
+                        invincibility = true;
                     }
                     else
                     {
